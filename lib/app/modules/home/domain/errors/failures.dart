@@ -23,3 +23,39 @@ class HomeShortTitleFailure extends HomeFailure {
           label: label,
         );
 }
+
+class HomeDataSourceFailure extends HomeFailure {
+  HomeDataSourceFailure({
+    required String message,
+    StackTrace? stackTrace,
+    String? label,
+  }) : super(
+          message: message,
+          stackTrace: stackTrace,
+          label: label,
+        );
+}
+
+class HomeParseFailure extends HomeFailure {
+  HomeParseFailure({
+    required String message,
+    StackTrace? stackTrace,
+    String? label,
+  }) : super(
+          message: message,
+          stackTrace: stackTrace,
+          label: label,
+        );
+}
+
+class HomeUnknownFailure extends HomeFailure {
+  HomeUnknownFailure({
+    required String message,
+    StackTrace? stackTrace,
+    String? label,
+  }) : super(
+          message: message,
+          stackTrace: stackTrace,
+          label: label,
+        );
+}
