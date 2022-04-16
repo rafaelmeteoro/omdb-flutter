@@ -1,0 +1,37 @@
+name: Flutter CI
+
+# This workflow is triggered on pushes to the repository.
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    name: Flutter Build
+    # This job will run on ubuntu virtual machine
+    runs-on: ubuntu-latest
+    steps:      
+      - uses: actions/checkout@v2
+      # Setup Java environment
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+      # Setup Flutter environment
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.2'
+          channel: 'stable'
+
+      - name: Flutter Version
+        run: flutter --version
+
+      - name: Get all Flutter Packages
+        run: flutter pub get
+
+      - name: Run Flutter Analyse
+        run: flutter analyze
+
+      - name: Run Flutter Test
+        run: flutter test
