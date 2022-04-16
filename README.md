@@ -1,6 +1,7 @@
 # omdb_flutter
 
 ![Github CI](https://github.com/rafaelmeteoro/omdb-flutter/actions/workflows/flutter-ci.yml/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/rafaelmeteoro/omdb-flutter/branch/main/graph/badge.svg?token=0MOKJSGOJ4)](https://codecov.io/gh/rafaelmeteoro/omdb-flutter)
 
 A new Flutter project.
 
