@@ -1,5 +1,7 @@
 # omdb_flutter
 
+![Github CI](https://github.com/rafaelmeteoro/omdb-flutter/actions/workflows/flutter-ci.yml/badge.svg?branch=main)
+
 A new Flutter project.
 
 ## Getting Started
