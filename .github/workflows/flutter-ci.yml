@@ -37,4 +37,7 @@ jobs:
         run: flutter analyze
 
       - name: Run Flutter Test
-        run: flutter test
+        run: flutter test --coverage
+
+      - name: Share test reports with Codecov
+        uses: codecov/codecov-action@v2
