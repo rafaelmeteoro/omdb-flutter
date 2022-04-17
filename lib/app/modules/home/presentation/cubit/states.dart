@@ -5,7 +5,7 @@ abstract class HomeState extends Equatable {}
 
 class HomeInitialState implements HomeState {
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => []; // coverage:ignore-line
 
   @override
   bool? get stringify => true;
