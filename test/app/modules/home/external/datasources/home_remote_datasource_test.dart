@@ -25,13 +25,11 @@ void main() {
         () async {
       // Arrange
       const title = '123456';
-      when(() => dioMock.get('https://www.omdbapi.com/?apikey=1abc75a6',
-          queryParameters: {'s': title})).thenAnswer(
+      when(() => dioMock.get('/', queryParameters: {'s': title})).thenAnswer(
         (_) async => Response(
           statusCode: 200,
           data: getMoviesResponseMock,
-          requestOptions:
-              RequestOptions(path: 'https://www.omdbapi.com/?apikey=1abc75a6'),
+          requestOptions: RequestOptions(path: '/'),
         ),
       );
 
@@ -40,8 +38,7 @@ void main() {
 
       // Assert
       expect(result, isA<ResultSearch>());
-      verify(() => dioMock.get('https://www.omdbapi.com/?apikey=1abc75a6',
-          queryParameters: {'s': title})).called(1);
+      verify(() => dioMock.get('/', queryParameters: {'s': title})).called(1);
       verifyNoMoreInteractions(dioMock);
     });
 
@@ -50,13 +47,11 @@ void main() {
         () async {
       // Arrange
       const title = '123456';
-      when(() => dioMock.get('https://www.omdbapi.com/?apikey=1abc75a6',
-          queryParameters: {'s': title})).thenAnswer(
+      when(() => dioMock.get('/', queryParameters: {'s': title})).thenAnswer(
         (_) async => Response(
           statusCode: 400,
           data: {'message': 'Title not found'},
-          requestOptions:
-              RequestOptions(path: 'https://www.omdbapi.com/?apikey=1abc75a6'),
+          requestOptions: RequestOptions(path: '/'),
         ),
       );
 
@@ -70,12 +65,11 @@ void main() {
         () async {
       // Arrange
       const title = '123456';
-      when(() => dioMock.get('https://www.omdbapi.com/?apikey=1abc75a6',
-          queryParameters: {'s': title})).thenThrow(
+      when(() => dioMock.get('/', queryParameters: {'s': title})).thenThrow(
         DioError(
           type: DioErrorType.connectTimeout,
           requestOptions: RequestOptions(
-            path: 'https://www.omdbapi.com/?apikey=1abc75a6',
+            path: '/',
           ),
         ),
       );
@@ -90,11 +84,10 @@ void main() {
         () async {
       // Arrange
       const title = '123456';
-      when(() => dioMock.get('https://www.omdbapi.com/?apikey=1abc75a6',
-          queryParameters: {'s': title})).thenThrow(
+      when(() => dioMock.get('/', queryParameters: {'s': title})).thenThrow(
         DioError(
           requestOptions: RequestOptions(
-            path: 'https://www.omdbapi.com/?apikey=1abc75a6',
+            path: '/',
           ),
         ),
       );
