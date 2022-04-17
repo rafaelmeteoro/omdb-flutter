@@ -15,7 +15,7 @@ class HomeRemoteDatasource implements IHomeRemoteDatasource {
   Future<ResultSearch> getResult({required String title}) async {
     try {
       final Response response = await _dio.get(
-        'https://www.omdbapi.com/?apikey=1abc75a6',
+        '/',
         queryParameters: {'s': title},
       );
 
