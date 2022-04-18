@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:omdb_flutter/app/core/styles/text_styles.dart';
 import 'package:omdb_flutter/app/modules/home/domain/entities/home_entity.dart';
 
 class ItemCard extends StatelessWidget {
