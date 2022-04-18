@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:omdb_flutter/app/core/api_config.dart';
 import 'package:omdb_flutter/app/core/token_interceptor.dart';
 import 'package:omdb_flutter/app/modules/home/home_module.dart';
+import 'package:search/search.dart';
 
 class AppModule extends Module {
   @override
@@ -33,6 +34,6 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/', module: HomeModule()),
+        ModuleRoute('/', module: SearchModule()),
       ];
 }
