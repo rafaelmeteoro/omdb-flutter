@@ -78,9 +78,6 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         'Nenhum resultado econtrado. Faça outra pesquisa.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
                       ),
                     ),
                   );
