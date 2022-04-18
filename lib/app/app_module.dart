@@ -23,7 +23,9 @@ class AppModule extends Module {
             );
             final dio = Dio(baseOptions);
             dio.interceptors.add(TokenInterceptor(apiConfig: config));
-            dio.interceptors.add(LogInterceptor());
+            dio.interceptors.add(LogInterceptor(
+              responseBody: true,
+            ));
             return dio;
           },
         ),

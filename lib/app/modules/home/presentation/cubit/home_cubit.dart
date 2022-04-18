@@ -3,6 +3,7 @@ import 'package:omdb_flutter/app/modules/home/domain/errors/failures.dart';
 import 'package:omdb_flutter/app/modules/home/domain/usecases/get_movies.dart';
 import 'package:omdb_flutter/app/modules/home/presentation/cubit/events.dart';
 import 'package:omdb_flutter/app/modules/home/presentation/cubit/states.dart';
+import 'package:rxdart/rxdart.dart';
 
 class HomeCubit extends Bloc<HomeEvent, HomeState> {
   final IGetMoviesUseCase _getMoviesUseCase;
@@ -10,9 +11,8 @@ class HomeCubit extends Bloc<HomeEvent, HomeState> {
     required IGetMoviesUseCase getMoviesUseCase,
   })  : _getMoviesUseCase = getMoviesUseCase,
         super(HomeInitialState()) {
-    on<SearchMoviesEvent>(
-      (event, emit) => _searchMovies(event, emit),
-    );
+    on<SearchMoviesEvent>((event, emit) => _searchMovies(event, emit),
+        transformer: debounce(const Duration(milliseconds: 700)));
   }
 
   Future<void> _searchMovies(
@@ -31,4 +31,8 @@ class HomeCubit extends Bloc<HomeEvent, HomeState> {
       emit(HomeErrorState(errorMessage: error.message));
     }
   }
+}
+
+EventTransformer<HomeEvent> debounce<HomeEvent>(Duration duration) {
+  return (events, mapper) => events.debounceTime(duration).flatMap(mapper);
 }
