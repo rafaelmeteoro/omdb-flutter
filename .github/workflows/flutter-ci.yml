@@ -28,16 +28,13 @@ jobs:
         run: flutter --version
 
       - name: Get all Flutter Packages
-        run: make build-modules
-        # run: flutter pub get
+        run: make build-modules        
 
       - name: Run Flutter Analyse
-        run: make analyze-modules
-        # run: flutter analyze
+        run: make analyze-modules        
 
       - name: Run Flutter Test
-        run: make test-modules
-        # run: flutter test --coverage
+        run: make test-modules        
 
       - name: Share test reports with Codecov
         uses: codecov/codecov-action@v2
