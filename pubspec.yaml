@@ -12,15 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  flutter_modular: ^4.5.1+1
-  mocktail: ^0.3.0
-  dio: ^4.0.6
-  equatable: ^2.0.3
-  bloc: ^8.0.3
-  flutter_bloc: ^8.0.1
-  rxdart: ^0.27.3
-  cached_network_image: ^3.2.0
+  core:
+    path: "./infrastructure/core"
 
 dev_dependencies:
   bloc_test: ^9.0.3
