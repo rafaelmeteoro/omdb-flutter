@@ -129,6 +129,7 @@ void main() {
         );
         return homeCubit;
       },
+      wait: const Duration(milliseconds: 700),
       act: (bloc) async => homeCubit.add(SearchMoviesEvent(searchText: 'test')),
       expect: () {
         return [
@@ -154,6 +155,7 @@ void main() {
         );
         return homeCubit;
       },
+      wait: const Duration(milliseconds: 700),
       act: (bloc) async => homeCubit.add(SearchMoviesEvent(searchText: 'test')),
       expect: () {
         return [
@@ -174,6 +176,7 @@ void main() {
             .thenThrow(HomeShortTitleFailure(message: ''));
         return homeCubit;
       },
+      wait: const Duration(milliseconds: 700),
       act: (bloc) async => homeCubit.add(SearchMoviesEvent(searchText: 'test')),
       expect: () {
         return [
