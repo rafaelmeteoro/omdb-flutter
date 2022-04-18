@@ -12,6 +12,7 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      key: const Key("enterMovieQuery"),
       onChanged: (query) {
         _onQueryChanged(query);
       },
@@ -19,12 +20,18 @@ class SearchTextField extends StatelessWidget {
         hintText: 'Search Movies',
         prefixIcon: const Icon(
           Icons.search,
+          color: Colors.white70,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          borderSide: const BorderSide(color: Colors.white),
+        ),
       ),
       textInputAction: TextInputAction.search,
+      cursorColor: Colors.white,
     );
   }
 }
