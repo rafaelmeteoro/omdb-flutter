@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+if [ ! -d $2 ]; then
+  echo "$2 isn't a valid directory"
+  exit 1
+fi
+
+directory=$2
+cd $directory
+
+case "$1" in
+  clean)
+    flutter clean
+    if [ -f pubspec.lock ]; then
+      rm pubspec.lock
+    fi
+    ;;
+  build)
+    flutter pub get
+    ;;
+  upgrade)
+    flutter pub upgrade
+    ;;
+  *)
+    echo $"Usage: $0 {clean|build|upgrade}"
+    ;;
+    
+esac

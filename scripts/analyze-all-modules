@@ -11,6 +11,7 @@ for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubs
   scripts/analyze-module analyze $directory
 done
 
+## Analyze root
 echo "checking files format for project root"
 scripts/analyze-module format .
 

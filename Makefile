@@ -1,5 +1,8 @@
 .DEFAULT_GOAL := help
 
+build-modules: ## Rebuild all modules of the current project
+				@scripts/build-all-modules
+
 analyze-modules: ## Do static Analysis on all modules of the current project
 				@scripts/analyze-all-modules
 
