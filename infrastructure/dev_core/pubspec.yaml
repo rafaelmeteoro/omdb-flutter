@@ -1,4 +1,4 @@
-name: search
+name: dev_core
 description: A new Flutter package project.
 publish_to: none
 version: 0.0.1
@@ -10,15 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  core:
-    path: "../../infrastructure/core"
-
+  bloc_test: ^9.0.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-  dev_core:
-    path: "../../infrastructure/dev_core"
   
 flutter:
-  uses-material-design: true
