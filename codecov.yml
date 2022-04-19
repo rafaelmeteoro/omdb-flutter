@@ -2,3 +2,4 @@ ignore:
   - "./infrastructure/core/lib/failures/failures.dart"
   - "./features/search/lib/src/domain/entities/result_search.dart"
   - "./features/search/lib/src/domain/entities/movie.dart"
+  - "./features/search/lib/src/presentation/bloc/search_event.dart"
