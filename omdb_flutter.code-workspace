@@ -13,6 +13,10 @@
       "path": "./infrastructure/core"
     },
     {
+      "name": "Dev Dependencies",
+      "path": "./infrastructure/dev_core"
+    },
+    {
       "name": "Search",
       "path": "./features/search"
     }
