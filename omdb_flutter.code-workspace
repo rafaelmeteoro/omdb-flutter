@@ -1,0 +1,37 @@
+{
+  "folders": [
+    {
+      "name": "Root",
+      "path": "."
+    },
+    {
+      "name": "Application",
+      "path": "./lib"
+    },
+    {
+      "name": "Dependencies",
+      "path": "./infrastructure/core"
+    },
+    {
+      "name": "Search",
+      "path": "./features/search"
+    }
+  ],
+  "settings": {
+    "editor.tabSize": 2,
+    "files.insertFinalNewline": true,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "lib": true,
+      "infrastructure": true,
+      "features": true
+    }
+  }
+}
