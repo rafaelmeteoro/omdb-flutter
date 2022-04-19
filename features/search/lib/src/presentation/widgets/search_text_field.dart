@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatelessWidget {
-  final Function(String) _onQueryChanged;
+  final Function(String query) _onQueryChanged;
 
   const SearchTextField({
     Key? key,
-    required Function(String) onQueryChanged,
+    required Function(String query) onQueryChanged,
   })  : _onQueryChanged = onQueryChanged,
         super(key: key);
 

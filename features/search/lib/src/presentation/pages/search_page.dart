@@ -88,7 +88,10 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: result.length,
                       itemBuilder: (context, index) {
                         final movie = result[index];
-                        return ItemCard(movie: movie);
+                        return ItemCard(
+                          movie: movie,
+                          onPressed: (movie) {},
+                        );
                       },
                     ),
                   );
