@@ -36,10 +36,12 @@ jobs:
       - name: Run Flutter Test
         run: make test-modules        
 
-      - name: Share test reports with Codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Share test reports with Codacy
+      - name: Upload coverage to Codacy
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
