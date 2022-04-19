@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e
+
+## Analyze all infrastructure
+for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo "checking files formart for project $directory"
+  scripts/analyze-module format $directory
+
+  echo "analyze the project $directory"
+  scripts/analyze-module analyze $directory
+done
+
+## Analyze all features
+for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo "checking files formart for project $directory"
+  scripts/analyze-module format $directory
+
+  echo "analyze the project $directory"
+  scripts/analyze-module analyze $directory
+done
+
+## Analyze root
+echo "checking files format for project root"
+scripts/analyze-module format .
+
+echo "analyze the project root"
+scripts/analyze-module analyze .

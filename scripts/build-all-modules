@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+## Rebuild all infrastructure
+for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo "building $directory"
+  scripts/build-module clean $directory
+  scripts/build-module build $directory
+done
+
+## Rebuild all features
+for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo "building $directory"
+  scripts/build-module clean $directory
+  scripts/build-module build $directory
+done
+
+## Rebuild root
+echo "building root"
+scripts/build-module clean .
+scripts/build-module build .

@@ -1,4 +1,4 @@
-name: core
+name: search
 description: A new Flutter package project.
 publish_to: none
 version: 0.0.1
@@ -10,16 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  core:
+    path: "../../infrastructure/core"
+  dartz: ^0.10.1
   flutter_modular: ^4.5.1+1
-  mocktail: ^0.3.0
   dio: ^4.0.6
+  mocktail: ^0.3.0
   equatable: ^2.0.3
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
   rxdart: ^0.27.3
   cached_network_image: ^3.2.0
-  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

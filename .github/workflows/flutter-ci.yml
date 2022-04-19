@@ -6,9 +6,6 @@ on:
   push:
     branches:
     - main
-  pull_request:
-    branches:
-    - main
 
 jobs:
   build:
@@ -31,13 +28,26 @@ jobs:
         run: flutter --version
 
       - name: Get all Flutter Packages
-        run: flutter pub get
+        run: make build-modules        
 
       - name: Run Flutter Analyse
-        run: flutter analyze
+        run: make analyze-modules        
 
       - name: Run Flutter Test
-        run: flutter test --coverage
+        run: make test-modules        
 
-      - name: Share test reports with Codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
