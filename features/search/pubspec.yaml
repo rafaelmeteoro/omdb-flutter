@@ -10,9 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   core:
     path: "../../infrastructure/core"
+  dartz: ^0.10.1
+  mocktail: ^0.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,2 +1,2 @@
 ignore:
-  - "/lib/app/modules/home/presentation/cubit/states.dart"
+  - "./lib/app/modules/home/presentation/cubit/states.dart"
