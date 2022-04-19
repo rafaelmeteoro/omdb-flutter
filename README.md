@@ -2,6 +2,8 @@
 
 ![Github CI](https://github.com/rafaelmeteoro/omdb-flutter/actions/workflows/flutter-ci.yml/badge.svg?branch=main)
 [![codecov](https://codecov.io/gh/rafaelmeteoro/omdb-flutter/branch/main/graph/badge.svg?token=0MOKJSGOJ4)](https://codecov.io/gh/rafaelmeteoro/omdb-flutter)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/828678c44517445fa4eec790fa8cb58d)](https://www.codacy.com/gh/rafaelmeteoro/omdb-flutter/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rafaelmeteoro/omdb-flutter&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/828678c44517445fa4eec790fa8cb58d)](https://www.codacy.com/gh/rafaelmeteoro/omdb-flutter/dashboard?utm_source=github.com&utm_medium=referral&utm_content=rafaelmeteoro/omdb-flutter&utm_campaign=Badge_Coverage)
 
 A new Flutter project.
 
