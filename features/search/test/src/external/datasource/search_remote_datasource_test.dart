@@ -1,7 +1,5 @@
 import 'package:core/core.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:search/src/domain/entities/result_search.dart';
 import 'package:search/src/external/datasource/search_remote_datasource.dart';
 import 'package:search/src/infra/datasource/search_remote_datasource_interface.dart';
