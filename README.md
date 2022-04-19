@@ -6,6 +6,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/828678c44517445fa4eec790fa8cb58d)](https://www.codacy.com/gh/rafaelmeteoro/omdb-flutter/dashboard?utm_source=github.com&utm_medium=referral&utm_content=rafaelmeteoro/omdb-flutter&utm_campaign=Badge_Coverage)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rafaelmeteoro_omdb-flutter&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rafaelmeteoro_omdb-flutter)
 [![codebeat badge](https://codebeat.co/badges/bcedc732-e83d-4b66-86cc-7784917c27a2)](https://codebeat.co/projects/github-com-rafaelmeteoro-omdb-flutter-main)
+[![Coverage Status](https://coveralls.io/repos/github/rafaelmeteoro/omdb-flutter/badge.svg?branch=main)](https://coveralls.io/github/rafaelmeteoro/omdb-flutter?branch=main)
 
 A new Flutter project.
 
