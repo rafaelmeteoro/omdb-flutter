@@ -1,2 +1,4 @@
 ignore:
-  - "./lib/app/modules/home/presentation/cubit/states.dart"
+  - "./infrastructure/core/lib/failures/failures.dart"
+  - "./features/search/lib/src/domain/entities/result_search.dart"
+  - "./features/search/lib/src/domain/entities/movie.dart"
