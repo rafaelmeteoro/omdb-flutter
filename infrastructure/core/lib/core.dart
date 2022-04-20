@@ -13,4 +13,4 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:rxdart/rxdart.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:bloc_test/bloc_test.dart';
-export 'package:dartz/dartz.dart' hide Bind;
+export 'package:dartz/dartz.dart' hide Bind, State;
