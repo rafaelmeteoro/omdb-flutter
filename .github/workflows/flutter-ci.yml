@@ -59,3 +59,4 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          base-path: infrastructure/core,infrastructure/dev_core,features/search,features/movie,.
