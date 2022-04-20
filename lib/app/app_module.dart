@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:movie/movie.dart';
 import 'package:omdb_flutter/app/core/api_config.dart';
 import 'package:omdb_flutter/app/core/token_interceptor.dart';
 import 'package:search/search.dart';
@@ -33,5 +34,6 @@ class AppModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ModuleRoute('/', module: SearchModule()),
+        ModuleRoute('/movie', module: MovieModule()),
       ];
 }
