@@ -17,9 +17,9 @@ class SearchMovieRepository implements SearchMovieRepositoryContract {
   }) async {
     try {
       final result = await _remoteDataSource.searchMovies(title: title);
-      return Right(result);
+      return right(result);
     } on CustomException catch (error, stackTrace) {
-      return Left(
+      return left(
         SearchDataSourceFailure(
           message: error.message,
           stackTrace: stackTrace,
@@ -28,7 +28,7 @@ class SearchMovieRepository implements SearchMovieRepositoryContract {
         ),
       );
     } on TypeError catch (error, stackTrace) {
-      return Left(
+      return left(
         SearchParseFailure(
           message: 'Erro inesperado. Por favor tente novamente.',
           stackTrace: stackTrace,
@@ -36,7 +36,7 @@ class SearchMovieRepository implements SearchMovieRepositoryContract {
         ),
       );
     } on FormatException catch (error, stackTrace) {
-      return Left(
+      return left(
         SearchParseFailure(
           message: 'Erro inesperado. Por favor tente novamente.',
           stackTrace: stackTrace,
@@ -44,7 +44,7 @@ class SearchMovieRepository implements SearchMovieRepositoryContract {
         ),
       );
     } catch (error, stackTrace) {
-      return Left(
+      return left(
         SearchUnknownFailure(
           message: 'Error inesperado. Por favor tente novamente',
           stackTrace: stackTrace,
