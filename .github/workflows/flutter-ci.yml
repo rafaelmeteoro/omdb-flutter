@@ -59,4 +59,4 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "../../coverage/lcov.info,../../../infrastructure/core/coverage/lcov.info,../../../../dev_core/coverage/lcov.info,../../../../../features/movie/coverage/lcov.info,../../../../search/coverage/lcov.info"
+          path-to-lcov: "./coverage/lcov.info,./infrastructure/core/coverage/lcov.info,./infrastructure/dev_core/coverage/lcov.info,./features/movie/coverage/lcov.info,./features/search/coverage/lcov.info"
