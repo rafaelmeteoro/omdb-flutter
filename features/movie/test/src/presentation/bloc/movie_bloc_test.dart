@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/domain/entities/movie_detail.dart';
+import 'package:movie/src/domain/entities/rating.dart';
 import 'package:movie/src/domain/errors/failures.dart';
 import 'package:movie/src/domain/usecase/get_movie_detail.dart';
 import 'package:movie/src/presentation/bloc/movie_bloc.dart';
@@ -47,7 +48,12 @@ void main() {
               type: 'type',
               dvd: 'dvd',
               boxOffice: 'boxOffice',
-              ratings: [],
+              ratings: [
+                Rating(
+                  source: 'source',
+                  value: 'value',
+                ),
+              ],
             ),
           ),
         );
