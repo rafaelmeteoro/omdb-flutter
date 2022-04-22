@@ -91,7 +91,10 @@ class _SearchPageState extends State<SearchPage> {
                         return ItemCard(
                           movie: movie,
                           onPressed: (movie) {
-                            Modular.to.pushNamed('/movie');
+                            Modular.to.pushNamed(
+                              '/movie',
+                              arguments: movie.imdbId,
+                            );
                           },
                         );
                       },
