@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+find . -name 'lcov.info' -exec cat {} \; > ./coverage/lcov.base.info
+find . -name 'lcov.base.info' -exec cat {} \; > ./coverage/lcov.info
