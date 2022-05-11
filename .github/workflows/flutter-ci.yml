@@ -41,10 +41,13 @@ jobs:
         run: make build-modules        
 
       - name: Run Flutter Analyse
-        run: make analyze-modules        
+        run: make analyze-modules
+
+      - name: Run Danger
+        run: scripts/run-danger
 
       - name: Run Flutter Test
-        run: make test-modules        
+        run: make test-modules
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
