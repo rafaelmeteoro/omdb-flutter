@@ -30,6 +30,9 @@ jobs:
       - name: Flutter Version
         run: flutter --version
 
+      - name: Install dependencies
+        run: scripts/install-ci-dependencies
+
       - name: Get all Flutter Packages
         run: make build-modules        
 
