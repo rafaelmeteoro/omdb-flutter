@@ -21,6 +21,10 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '11'
+      # Setup Ruby environment
+      # - uses: actions/setup-ruby@v1
+      #   with:
+      #     ruby-version: '2.6'
       # Setup Flutter environment
       - uses: subosito/flutter-action@v2
         with:
@@ -30,14 +34,20 @@ jobs:
       - name: Flutter Version
         run: flutter --version
 
+      # - name: Install dependencies
+      #   run: scripts/install-ci-dependencies
+
       - name: Get all Flutter Packages
         run: make build-modules        
 
       - name: Run Flutter Analyse
-        run: make analyze-modules        
+        run: make analyze-modules
+
+      # - name: Run Danger
+      #   run: scripts/run-danger
 
       - name: Run Flutter Test
-        run: make test-modules        
+        run: make test-modules
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
