@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 import 'package:movie/src/domain/errors/failures.dart';
 import 'package:movie/src/domain/entities/movie_detail.dart';
 import 'package:movie/src/domain/repositories/movie_detail_repository_interface.dart';

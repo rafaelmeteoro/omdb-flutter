@@ -10,11 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  mocktail: ^0.3.0
+  freezed: ^1.1.0
+  fpdart: ^0.0.14
   bloc_test: ^9.0.3
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  lints: ^1.0.1
   flutter_lints: ^1.0.0
   
 flutter:

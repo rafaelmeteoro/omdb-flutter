@@ -1,4 +1,5 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
+import 'package:core/presentation.dart';
 import 'package:movie/movie.dart';
 import 'package:omdb_flutter/app/core/api_config.dart';
 import 'package:omdb_flutter/app/core/token_interceptor.dart';

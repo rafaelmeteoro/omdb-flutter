@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 
 abstract class MovieEvent extends Equatable {}
 

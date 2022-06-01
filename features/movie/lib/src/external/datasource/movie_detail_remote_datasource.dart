@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 import 'package:movie/src/domain/entities/movie_detail.dart';
 import 'package:movie/src/external/adapter/movie_detail_adapter.dart';
 import 'package:movie/src/infra/datasource/movie_detail_remote_datasource_interface.dart';

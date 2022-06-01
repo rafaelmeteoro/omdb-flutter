@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 
 import 'movie_entity.dart';
 

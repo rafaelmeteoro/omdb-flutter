@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {

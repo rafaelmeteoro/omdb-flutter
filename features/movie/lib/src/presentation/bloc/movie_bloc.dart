@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/presentation.dart';
 import 'package:movie/src/domain/usecase/get_movie_detail.dart';
 import 'package:movie/src/presentation/bloc/movie_event.dart';
 import 'package:movie/src/presentation/bloc/movie_state.dart';

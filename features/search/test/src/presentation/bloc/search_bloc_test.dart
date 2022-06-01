@@ -1,7 +1,5 @@
-import 'package:bloc_test/bloc_test.dart';
-import 'package:dartz/dartz.dart';
+import 'package:dev_core/dev_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:search/src/domain/entities/movie.dart';
 import 'package:search/src/domain/entities/result_search.dart';
 import 'package:search/src/domain/errors/failures.dart';
