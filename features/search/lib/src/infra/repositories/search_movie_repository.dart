@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 import 'package:search/src/domain/errors/failures.dart';
 import 'package:search/src/domain/entities/result_search.dart';
 import 'package:search/src/domain/repositories/search_movie_repository_interface.dart';

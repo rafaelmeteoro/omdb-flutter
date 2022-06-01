@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 import 'package:search/src/domain/entities/result_search.dart';
 import 'package:search/src/external/adapter/search_result_adapter.dart';
 import 'package:search/src/infra/datasource/search_remote_datasource_interface.dart';

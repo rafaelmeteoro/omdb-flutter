@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/src/domain/entities/movie_detail.dart';
 import 'package:movie/src/presentation/widgets/movie_detail_app_bar.dart';

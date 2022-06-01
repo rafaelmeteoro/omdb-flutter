@@ -1,4 +1,5 @@
-import 'package:core/core.dart';
+import 'package:core/exceptions/exceptions.dart';
+import 'package:dev_core/dev_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:search/src/domain/entities/movie.dart';
 import 'package:search/src/domain/entities/result_search.dart';

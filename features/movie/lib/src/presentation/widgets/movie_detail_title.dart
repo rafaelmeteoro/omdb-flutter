@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/src/domain/entities/movie_detail.dart';
 

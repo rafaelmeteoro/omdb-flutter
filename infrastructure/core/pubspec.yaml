@@ -10,23 +10,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  fpdart: ^0.0.14
   cupertino_icons: ^1.0.2
-  flutter_modular: ^4.5.1+1
-  mocktail: ^0.3.0
+  flutter_modular: ^5.0.2
+  freezed_annotation: ^1.1.0
   dio: ^4.0.6
   equatable: ^2.0.3
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
   rxdart: ^0.27.3
   cached_network_image: ^3.2.0
-  dartz: ^0.10.1
   animate_do: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
   flutter_lints: ^1.0.0
   bloc_test: ^9.0.3
+
+  dev_core:
+    path: "../../infrastructure/dev_core"
 
 flutter:
   uses-material-design: true

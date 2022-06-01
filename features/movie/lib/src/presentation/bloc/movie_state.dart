@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 import 'package:movie/src/domain/entities/movie_detail.dart';
 
 abstract class MovieState extends Equatable {

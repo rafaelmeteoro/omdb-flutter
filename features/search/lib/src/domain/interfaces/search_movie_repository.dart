@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:core/domain.dart';
 
 import '../entities/result_search_entity.dart';
 import '../errors/failures.dart';
