@@ -21,10 +21,6 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '11'
-      # Setup Ruby environment
-      # - uses: actions/setup-ruby@v1
-      #   with:
-      #     ruby-version: '2.6'
       # Setup Flutter environment
       - uses: subosito/flutter-action@v2
         with:
@@ -34,17 +30,11 @@ jobs:
       - name: Flutter Version
         run: flutter --version
 
-      # - name: Install dependencies
-      #   run: scripts/install-ci-dependencies
-
-      - name: Get all Flutter Packages
+      - name: Run Flutter Packages
         run: make build-modules        
 
       - name: Run Flutter Analyse
         run: make analyze-modules
-
-      # - name: Run Danger
-      #   run: scripts/run-danger
 
       - name: Run Flutter Test
         run: make test-modules
@@ -58,12 +48,6 @@ jobs:
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
