@@ -8,6 +8,16 @@ fi
 directory=$2
 cd $directory
 
+if [ ! -d test ]; then
+  echo " => project $directory don't have test"
+  exit 0
+fi
+
+if [[ -z $(find test/ -type f -iname '*_test.dart') ]]; then
+  echo " => project $directory don't have test"
+  exit 0
+fi
+
 case "$1" in
   test)
     flutter test --coverage
