@@ -2,5 +2,12 @@
 
 set -e
 
-find . -name 'lcov.info' -exec cat {} \; > ./coverage/lcov.base.info
-find . -name 'lcov.base.info' -exec cat {} \; > ./coverage/lcov.info
+# find . -name 'lcov.info' -exec cat {} \; > ./coverage/lcov.base.info
+# find . -name 'lcov.base.info' -exec cat {} \; > ./coverage/lcov.info
+
+## Test all infrastructure
+for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo "merge project $directory"
+  root_infrastructure_directory='../../coverage/lcov.info'
+  scripts/merge-lcov merge $directory $root_infrastructure_directory
+done

@@ -11,7 +11,13 @@ cd $directory
 
 case "$1" in
   merge) 
-    cat ./coverage/lcov.info > $root_directory
+    cat ./coverage/lcov.info > $root_directory    
+    # sed "$seed_directory" ./coverage/lcov.info >> $root_directory
+    echo "directory $directory"
+    file='coverage/lcov.info'
+    bash_directory="$directory$file"
+    echo "bash $bash_directory"
+    # sed "s/^SF:.*lib/SF:bash_package\/lib/g" $bash_directory >> $root_directory
     sed "s/^SF:.*lib/SF:bash_package\/lib/g" ./coverage/lcov.info >> $root_directory
     ;;
   *)
