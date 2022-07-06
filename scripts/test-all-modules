@@ -2,8 +2,19 @@
 
 set -e
 
-## Test all project
-for directory in $(find . -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+## Test all infrastructure
+for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
   echo "testing project $directory"
   scripts/test-module test $directory
 done
+
+## Test all features
+for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo "testing project $directory"
+  scripts/test-module test $directory
+done
+
+## Test app
+echo "testing app"
+app_directory='app'
+scripts/test-module test $app_directory
