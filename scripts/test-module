@@ -20,6 +20,7 @@ fi
 
 case "$1" in
   test)
+    dart pub global run full_coverage
     flutter test --coverage
     ;;
   *)

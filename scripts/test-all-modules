@@ -2,6 +2,8 @@
 
 set -e
 
+dart pub global activate full_coverage
+
 ## Test all infrastructure
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
   echo "testing project $directory"
