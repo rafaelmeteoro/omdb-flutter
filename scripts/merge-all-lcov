@@ -5,9 +5,17 @@ set -e
 # find . -name 'lcov.info' -exec cat {} \; > ./coverage/lcov.base.info
 # find . -name 'lcov.base.info' -exec cat {} \; > ./coverage/lcov.info
 
+if [ -f coverage/lcov.info ]; then
+  rm coverage/lcov.info
+fi
+
 ## Test all infrastructure
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-  echo "merge project $directory"
-  root_infrastructure_directory='../../coverage/lcov.info'
-  scripts/merge-lcov merge $directory $root_infrastructure_directory
+  echo "merge project ${directory}coverage/lcov.info"
+  # cat "${directory}coverage/lcov.info" >> coverage/lcov.info
+
+  sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${directory}coverage/lcov.info >> coverage/lcov.info
+  # sed "s/^SF:.*lib/SF:infrastructure\/dev_core\/lib/g" ${directory}coverage/lcov.info >> coverage/lcov.info
+  # root_infrastructure_directory='../../coverage/lcov.info'
+  # scripts/merge-lcov merge $directory $root_infrastructure_directory
 done
