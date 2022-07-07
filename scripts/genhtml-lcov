@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+## Merge all lcov
+scripts/merge-all-lcov
+
+## Gera html
+genhtml coverage/lcov.info --output=./coverage -o coverage
+
+## Aber arquivo
+open coverage/index.html
