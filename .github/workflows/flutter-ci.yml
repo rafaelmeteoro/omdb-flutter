@@ -45,10 +45,10 @@ jobs:
       - name: Run Coverage Report
         uses: zgosalvez/github-actions-report-lcov@v1
         with:
-          coverage-files: ./coverage/lcov.info
+          coverage-files: coverage/lcov.info
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ./coverage
+          working-directory: coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
