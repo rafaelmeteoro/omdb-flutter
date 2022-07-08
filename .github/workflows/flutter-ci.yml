@@ -42,6 +42,12 @@ jobs:
       - name: Run Flutter Merge Lcov
         run: make merge-modules
 
+      - name: Archive code coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: ./coverage
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:

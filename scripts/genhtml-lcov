@@ -6,7 +6,7 @@ set -e
 scripts/merge-all-lcov
 
 ## Gera html
-genhtml coverage/lcov.info --output=./coverage -o coverage
+genhtml coverage/lcov.info -o coverage -p `pwd` --legend --precision=2
 
 ## Aber arquivo
 open coverage/index.html
