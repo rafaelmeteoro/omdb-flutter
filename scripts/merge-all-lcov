@@ -2,9 +2,11 @@
 
 set -e
 
-if [ -f coverage/lcov.info ]; then
-  rm coverage/lcov.info
+if [ -d coverage ]; then
+  rm -rf coverage
 fi
+
+mkdir coverage
 
 ## Merge all infrastructure
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do  
