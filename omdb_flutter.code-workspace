@@ -6,7 +6,7 @@
     },
     {
       "name": "Application",
-      "path": "./lib"
+      "path": "./app"
     },
     {
       "name": "Dependencies",
@@ -30,6 +30,7 @@
     "files.insertFinalNewline": true,
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
+    "dart.renameFilesWithClasses": "prompt",
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
@@ -38,7 +39,8 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "infrastructure": true,
-      "features": true
+      "features": true,
+      "app": true
     }
   }
 }
