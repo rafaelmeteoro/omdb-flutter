@@ -9,24 +9,36 @@ fi
 mkdir coverage
 
 ## Merge all infrastructure
-for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do  
-  if [ -f ${directory}coverage/lcov.info ]; then
-    echo "merge project ${directory}coverage/lcov.info"
-    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${directory}coverage/lcov.info >> coverage/lcov.info
+for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do 
+  path_coverage="${directory}coverage/lcov.info"
+  if [ -f ${path_coverage} ]; then
+    echo "merge ${path_coverage}"
+    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
+
+    scripts/coverage-percent $path_coverage    
   fi  
 done
 
 ## Merge all features
 for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-  if [ -f ${directory}coverage/lcov.info ]; then
-    echo "merge project ${directory}coverage/lcov.info"
-    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${directory}coverage/lcov.info >> coverage/lcov.info
+  path_coverage="${directory}coverage/lcov.info"
+  if [ -f ${path_coverage} ]; then
+    echo "merge ${path_coverage}"
+    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
+
+    scripts/coverage-percent $path_coverage
   fi
 done
 
 ## Merge app
 app_directory='app'
-if [ -f ${app_directory}/coverage/lcov.info ]; then
-  echo "merge project $app_directory"
-  sed "s/^SF:.*lib/SF:${app_directory//\//\\/}\/lib/g" ${app_directory}/coverage/lcov.info >> coverage/lcov.info
+path_coverage="${app_directory}/coverage/lcov.info"
+if [ -f ${path_coverage} ]; then
+  echo "merge $app_directory"
+  sed "s/^SF:.*lib/SF:${app_directory//\//\\/}\/lib/g" ${path_coverage} >> coverage/lcov.info
+
+  scripts/coverage-percent $path_coverage
 fi
+
+echo "General percent ----"
+scripts/coverage-percent ./coverage/lcov.info
