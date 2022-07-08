@@ -1,3 +1,3 @@
 library search;
 
-export 'package:search/src/search_module.dart';
+export './src/search_module.dart';
