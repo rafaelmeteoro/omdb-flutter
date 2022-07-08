@@ -40,7 +40,7 @@ jobs:
         run: make test-modules
 
       - name: Run Flutter Merge Lcov
-        run: make genhtml
+        run: make merge-modules
 
       - name: Archive code coverage
         uses: actions/upload-artifact@v3
