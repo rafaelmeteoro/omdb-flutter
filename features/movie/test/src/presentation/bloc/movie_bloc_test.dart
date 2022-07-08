@@ -76,7 +76,7 @@ void main() {
       'should emit [MovieLoadingState, MovieErrorState] when usecase return a subclass os MovieFailure',
       build: () {
         when(() => getMovieDetailUseCase.execute(id: 'test')).thenAnswer(
-          (_) async => left(MovieDataSourceFailure(message: '')),
+          (_) async => left(const MovieDataSourceFailure(message: '')),
         );
         return movieBloc;
       },

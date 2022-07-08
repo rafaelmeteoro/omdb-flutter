@@ -1,49 +1,25 @@
-import 'package:core/failures/failures.dart';
+import 'package:app_core/failures.dart';
 
 abstract class MovieFailure extends Failure {
-  MovieFailure({
+  const MovieFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message);
 }
 
 class MovieDataSourceFailure extends MovieFailure {
-  MovieDataSourceFailure({
+  const MovieDataSourceFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message: message);
 }
 
 class MovieParseFailure extends MovieFailure {
-  MovieParseFailure({
+  const MovieParseFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message: message);
 }
 
 class MovieUnknownFailure extends MovieFailure {
-  MovieUnknownFailure({
+  const MovieUnknownFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message: message);
 }

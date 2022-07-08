@@ -20,7 +20,7 @@ class SearchMoviesUseCase implements SearchMoviesUseCaseContract {
   }) async {
     final bool isShortQuery = query.replaceAll(' ', '').length < 3;
     if (isShortQuery) {
-      return left(SearchShortTitleFailure(
+      return left(const SearchShortTitleFailure(
         message: 'Search title must be more than 3 characters.',
       ));
     }

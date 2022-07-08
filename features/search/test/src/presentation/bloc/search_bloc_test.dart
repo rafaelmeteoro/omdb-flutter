@@ -89,7 +89,7 @@ void main() {
       'should emit [SearchLoadingState, SearchErrorState] when usecase return a subclass of SearchFailure',
       build: () {
         when(() => searchUseCase.execute(query: 'test')).thenAnswer(
-          (_) async => left(SearchShortTitleFailure(message: '')),
+          (_) async => left(const SearchShortTitleFailure(message: '')),
         );
         return searchBloc;
       },

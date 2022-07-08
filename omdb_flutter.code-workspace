@@ -17,6 +17,10 @@
       "path": "./infrastructure/dev_core"
     },
     {
+      "name": "App Core",
+      "path": "./infrastructure/app_core"
+    },
+    {
       "name": "Search",
       "path": "./features/search"
     },

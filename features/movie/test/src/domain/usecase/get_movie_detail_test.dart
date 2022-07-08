@@ -75,8 +75,8 @@ void main() {
         () async {
       // Arrange
       const String id = 'abcdefg';
-      when(() => movieDetailRepository.getMovieDetail(id: id))
-          .thenAnswer((_) async => left(MovieDataSourceFailure(message: '')));
+      when(() => movieDetailRepository.getMovieDetail(id: id)).thenAnswer(
+          (_) async => left(const MovieDataSourceFailure(message: '')));
 
       // Act
       final result = await getMovieDetailUseCase.execute(id: id);
@@ -93,7 +93,7 @@ void main() {
       // Arrange
       const String id = 'abcdefg';
       when(() => movieDetailRepository.getMovieDetail(id: id))
-          .thenAnswer((_) async => left(MovieParseFailure(message: '')));
+          .thenAnswer((_) async => left(const MovieParseFailure(message: '')));
 
       // Act
       final result = await getMovieDetailUseCase.execute(id: id);
@@ -109,8 +109,8 @@ void main() {
         () async {
       // Arrange
       const String id = 'abcdefg';
-      when(() => movieDetailRepository.getMovieDetail(id: id))
-          .thenAnswer((_) async => left(MovieUnknownFailure(message: '')));
+      when(() => movieDetailRepository.getMovieDetail(id: id)).thenAnswer(
+          (_) async => left(const MovieUnknownFailure(message: '')));
 
       // Act
       final result = await getMovieDetailUseCase.execute(id: id);

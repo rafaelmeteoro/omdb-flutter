@@ -18,37 +18,27 @@ class MovieDetailRepository implements MovieDetailRepositoryContract {
     try {
       final result = await _remoteDataSource.getMovieDetail(id: id);
       return right(result);
-    } on CustomException catch (error, stackTrace) {
+    } on CustomException catch (error) {
       return left(
-        MovieDataSourceFailure(
-            message: error.message,
-            stackTrace: stackTrace,
-            label:
-                'MovieDetailRepository: getMovideDetail() - MovieDetailSourceFailure'),
+        MovieDataSourceFailure(message: error.message),
       );
-    } on TypeError catch (error, stackTrace) {
+    } on TypeError {
       return left(
-        MovieParseFailure(
-            message: 'Erro inesperado. Por favor tente novamente.',
-            stackTrace: stackTrace,
-            label:
-                'MovieDetailRepository: getMovideDetail() - MovieParseFailure'),
+        const MovieParseFailure(
+          message: 'Erro inesperado. Por favor tente novamente.',
+        ),
       );
-    } on FormatException catch (error, stackTrace) {
+    } on FormatException {
       return left(
-        MovieParseFailure(
-            message: 'Erro inesperado. Por favor tente novamente.',
-            stackTrace: stackTrace,
-            label:
-                'MovieDetailRepository: getMovideDetail() - MovieParseFailure'),
+        const MovieParseFailure(
+          message: 'Erro inesperado. Por favor tente novamente.',
+        ),
       );
-    } catch (error, stackTrace) {
+    } catch (error) {
       return left(
-        MovieUnknownFailure(
-            message: 'Erro inesperado. Por favor tente novamente.',
-            stackTrace: stackTrace,
-            label:
-                'MovieDetailRepository: getMovideDetail() - MovieUnknownFailure'),
+        const MovieUnknownFailure(
+          message: 'Erro inesperado. Por favor tente novamente.',
+        ),
       );
     }
   }
