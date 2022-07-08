@@ -8,6 +8,10 @@ fi
 directory=$2
 cd $directory
 
+if [ -f coverage/lcov.info ]; then
+  rm coverage/lcov.info
+fi
+
 if [ ! -d test ]; then
   echo " => project $directory don't have test"
   exit 0

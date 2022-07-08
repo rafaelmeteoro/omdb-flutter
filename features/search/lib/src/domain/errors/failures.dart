@@ -1,61 +1,31 @@
-import 'package:core/failures/failures.dart';
+import 'package:app_core/failures.dart';
 
 abstract class SearchFailure extends Failure {
-  SearchFailure({
+  const SearchFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message);
 }
 
 class SearchShortTitleFailure extends SearchFailure {
-  SearchShortTitleFailure({
+  const SearchShortTitleFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message: message);
 }
 
 class SearchDataSourceFailure extends SearchFailure {
-  SearchDataSourceFailure({
+  const SearchDataSourceFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message: message);
 }
 
 class SearchParseFailure extends SearchFailure {
-  SearchParseFailure({
+  const SearchParseFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message: message);
 }
 
 class SearchUnknownFailure extends SearchFailure {
-  SearchUnknownFailure({
+  const SearchUnknownFailure({
     required String message,
-    StackTrace? stackTrace,
-    String? label,
-  }) : super(
-          message: message,
-          stackTrace: stackTrace,
-          label: label,
-        );
+  }) : super(message: message);
 }

@@ -6,7 +6,7 @@
     },
     {
       "name": "Application",
-      "path": "./lib"
+      "path": "./app"
     },
     {
       "name": "Dependencies",
@@ -15,6 +15,10 @@
     {
       "name": "Dev Dependencies",
       "path": "./infrastructure/dev_core"
+    },
+    {
+      "name": "App Core",
+      "path": "./infrastructure/app_core"
     },
     {
       "name": "Search",
@@ -30,6 +34,7 @@
     "files.insertFinalNewline": true,
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
+    "dart.renameFilesWithClasses": "prompt",
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
@@ -38,7 +43,9 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "infrastructure": true,
-      "features": true
-    }
+      "features": true,
+      "app": true
+    },
+    "makefile.extensionOutputFolder": "./.vscode"
   }
 }

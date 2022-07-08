@@ -24,7 +24,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final result = await _searchMoviesUseCase.execute(query: query);
 
     result.fold((failure) {
-      emit(SearchErrorState(message: failure.message));
+      emit(SearchErrorState(message: failure.message ?? ""));
     }, (data) {
       if (data.search.isEmpty) {
         emit(SearchEmptyState());

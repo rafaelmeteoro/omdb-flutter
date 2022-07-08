@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   core:
     path: "../../infrastructure/core"
+  app_core:
+    path: "../../infrastructure/app_core"
 
 dev_dependencies:
   flutter_test:

@@ -1,1 +1,0 @@
-Pasta utilizada para agregar o coverage

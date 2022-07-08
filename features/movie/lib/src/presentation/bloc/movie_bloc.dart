@@ -22,7 +22,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     final result = await _getMovieDetailUseCase.execute(id: id);
 
     result.fold(
-      (failure) => emit(MovieErrorState(message: failure.message)),
+      (failure) => emit(MovieErrorState(message: failure.message ?? "")),
       (data) => emit(MovieSuccessState(movie: data)),
     );
   }

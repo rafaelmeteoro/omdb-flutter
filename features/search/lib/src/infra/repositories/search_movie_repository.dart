@@ -18,37 +18,28 @@ class SearchMovieRepository implements SearchMovieRepositoryContract {
     try {
       final result = await _remoteDataSource.searchMovies(title: title);
       return right(result);
-    } on CustomException catch (error, stackTrace) {
+    } on CustomException catch (error) {
       return left(
         SearchDataSourceFailure(
           message: error.message,
-          stackTrace: stackTrace,
-          label:
-              'SearchMovieRepository: searchMovies() - SearchDataSourceFailure',
         ),
       );
-    } on TypeError catch (error, stackTrace) {
+    } on TypeError {
       return left(
-        SearchParseFailure(
+        const SearchParseFailure(
           message: 'Erro inesperado. Por favor tente novamente.',
-          stackTrace: stackTrace,
-          label: 'SearchMovieRepository: searchMovies() - SearchParseFailure',
         ),
       );
-    } on FormatException catch (error, stackTrace) {
+    } on FormatException {
       return left(
-        SearchParseFailure(
+        const SearchParseFailure(
           message: 'Erro inesperado. Por favor tente novamente.',
-          stackTrace: stackTrace,
-          label: 'SearchMovieRepository: searchMovies() - SearchParseFailure',
         ),
       );
-    } catch (error, stackTrace) {
+    } catch (error) {
       return left(
-        SearchUnknownFailure(
+        const SearchUnknownFailure(
           message: 'Error inesperado. Por favor tente novamente',
-          stackTrace: stackTrace,
-          label: 'SearchMovieRepository: searchMovies() - SearchUnknownFailure',
         ),
       );
     }

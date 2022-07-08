@@ -4,5 +4,10 @@ import 'package:omdb_flutter/app/app_module.dart';
 import 'package:omdb_flutter/app/app_widget.dart';
 
 void main() {
-  return runApp(ModularApp(module: AppModule(), child: const AppWidget()));
+  return runApp(
+    ModularApp(
+      module: AppModule(),
+      child: const AppWidget(),
+    ),
+  );
 }
