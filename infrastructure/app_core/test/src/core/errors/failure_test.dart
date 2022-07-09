@@ -22,7 +22,15 @@ void main() {
       final custom = CustomFailure('failure message');
 
       // Assert
-      expect(custom == CustomFailure('failure message'), true);
+      expect(custom == CustomFailure('failure message'), equals(true));
+    });
+
+    test('server failure', () {
+      // Arrange
+      final server = ServerFailure(message: 'server message');
+
+      // Assert
+      expect(server == ServerFailure(message: 'server message'), equals(true));
     });
   });
 }
