@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:search/src/domain/repositories/search_movie_repository_interface.dart';
-import 'package:search/src/domain/usecase/search_movies.dart';
-import 'package:search/src/external/datasource/search_remote_datasource.dart';
-import 'package:search/src/infra/datasource/search_remote_datasource_interface.dart';
-import 'package:search/src/infra/repositories/search_movie_repository.dart';
-import 'package:search/src/presentation/bloc/search_bloc.dart';
-import 'package:search/src/presentation/pages/search_page.dart';
+import 'package:search/src/features/search/domain/usecase/search_movies.dart';
+import 'package:search/src/features/search/infra/repositories/search_movie_repository.dart';
+import 'package:search/src/features/search/presentation/bloc/search_bloc.dart';
+import 'package:search/src/features/search/presentation/pages/search_page.dart';
+
+import 'features/search/domain/repositories/search_movie_repository_interface.dart';
+import 'features/search/external/datasource/search_remote_datasource.dart';
+import 'features/search/infra/datasource/search_remote_datasource_interface.dart';
 
 class SearchModule extends Module {
   @override

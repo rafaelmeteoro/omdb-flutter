@@ -1,15 +1,15 @@
 import 'package:dev_core/dev_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search/src/domain/entities/movie.dart';
-import 'package:search/src/domain/entities/result_search.dart';
-import 'package:search/src/domain/errors/failures.dart';
-import 'package:search/src/domain/repositories/search_movie_repository_interface.dart';
-import 'package:search/src/domain/usecase/search_movies.dart';
+import 'package:search/src/features/search/domain/entities/movie_entity.dart';
+import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
+import 'package:search/src/features/search/domain/errors/failures.dart';
+import 'package:search/src/features/search/domain/repositories/search_movie_repository_interface.dart';
+import 'package:search/src/features/search/domain/usecase/search_movies.dart';
 
 class SearchMovieRepositoryMock extends Mock
     implements SearchMovieRepositoryContract {}
 
-const searchMovie = Movie(
+const searchMovie = MovieEntity(
   imdbId: 'imdbId',
   title: 'title',
   year: 'year',
@@ -17,7 +17,7 @@ const searchMovie = Movie(
   poster: 'poster',
 );
 
-const resultSearch = ResultSearch(
+const resultSearch = ResultSearchEntity(
   search: [searchMovie],
   totalResults: '0',
   response: 'True',
@@ -47,8 +47,8 @@ void main() {
       final result = await searchMoviesUseCase.execute(query: query);
 
       // Assert
-      expect(result.fold((l) => l, (r) => r), isA<ResultSearch>());
-      expect(result.fold((l) => l, (r) => r.search), isA<List<Movie>>());
+      expect(result.fold((l) => l, (r) => r), isA<ResultSearchEntity>());
+      expect(result.fold((l) => l, (r) => r.search), isA<List<MovieEntity>>());
       verify(() => searchRepository.searchMovies(title: query)).called(1);
       verifyNoMoreInteractions(searchRepository);
     });
@@ -65,8 +65,8 @@ void main() {
       final result = await searchMoviesUseCase.execute(query: query);
 
       // Assert
-      expect(result.fold((l) => l, (r) => r), isA<ResultSearch>());
-      expect(result.fold((l) => l, (r) => r.search), isA<List<Movie>>());
+      expect(result.fold((l) => l, (r) => r), isA<ResultSearchEntity>());
+      expect(result.fold((l) => l, (r) => r.search), isA<List<MovieEntity>>());
       verify(() => searchRepository.searchMovies(title: query)).called(1);
       verifyNoMoreInteractions(searchRepository);
     });

@@ -1,12 +1,12 @@
 import 'package:dev_core/dev_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search/src/domain/entities/movie.dart';
-import 'package:search/src/domain/entities/result_search.dart';
-import 'package:search/src/domain/errors/failures.dart';
-import 'package:search/src/domain/usecase/search_movies.dart';
-import 'package:search/src/presentation/bloc/search_bloc.dart';
-import 'package:search/src/presentation/bloc/search_event.dart';
-import 'package:search/src/presentation/bloc/search_state.dart';
+import 'package:search/src/features/search/domain/entities/movie_entity.dart';
+import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
+import 'package:search/src/features/search/domain/errors/failures.dart';
+import 'package:search/src/features/search/domain/usecase/search_movies.dart';
+import 'package:search/src/features/search/presentation/bloc/search_bloc.dart';
+import 'package:search/src/features/search/presentation/bloc/search_event.dart';
+import 'package:search/src/features/search/presentation/bloc/search_state.dart';
 
 class SearchMoviesUseCaseMock extends Mock
     implements SearchMoviesUseCaseContract {}
@@ -26,9 +26,9 @@ void main() {
       build: () {
         when(() => searchUseCase.execute(query: 'test')).thenAnswer(
           (_) async => right(
-            const ResultSearch(
+            const ResultSearchEntity(
               search: [
-                Movie(
+                MovieEntity(
                   imdbId: 'imdbId',
                   title: 'title',
                   year: 'year',
@@ -62,7 +62,7 @@ void main() {
       build: () {
         when(() => searchUseCase.execute(query: 'test')).thenAnswer(
           (_) async => right(
-            const ResultSearch(
+            const ResultSearchEntity(
               search: [],
               totalResults: '0',
               response: '',

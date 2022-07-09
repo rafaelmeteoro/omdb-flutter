@@ -81,6 +81,6 @@ const Map<String, dynamic> searchMoviesResponseMock = {
           "https://m.media-amazon.com/images/M/MV5BNmY4ZDZjY2UtOWFiYy00MjhjLThmMjctOTQ2NjYxZGRjYmNlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
     }
   ],
-  "totalResults": "501",
+  "TotalResult": "501",
   "Response": "True"
 };
