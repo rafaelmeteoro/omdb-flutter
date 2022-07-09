@@ -1,9 +1,9 @@
 import 'package:core/domain.dart';
 import 'package:dev_core/dev_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search/src/domain/entities/result_search.dart';
-import 'package:search/src/external/datasource/search_remote_datasource.dart';
-import 'package:search/src/infra/datasource/search_remote_datasource_interface.dart';
+import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
+import 'package:search/src/features/search/external/datasource/search_remote_datasource.dart';
+import 'package:search/src/features/search/infra/datasource/search_remote_datasource_interface.dart';
 
 import '../../mocks/search_movies_response_mock.dart';
 
@@ -36,7 +36,7 @@ void main() {
       final result = await dataSourceContract.searchMovies(title: title);
 
       // Assert
-      expect(result, isA<ResultSearch>());
+      expect(result, isA<ResultSearchEntity>());
       verify(() => dioMock.get('/', queryParameters: {'s': title})).called(1);
       verifyNoMoreInteractions(dioMock);
     });

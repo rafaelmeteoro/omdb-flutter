@@ -1,17 +1,17 @@
 import 'package:core/exceptions/exceptions.dart';
 import 'package:dev_core/dev_core.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search/src/domain/entities/movie.dart';
-import 'package:search/src/domain/entities/result_search.dart';
-import 'package:search/src/domain/errors/failures.dart';
-import 'package:search/src/domain/repositories/search_movie_repository_interface.dart';
-import 'package:search/src/infra/datasource/search_remote_datasource_interface.dart';
-import 'package:search/src/infra/repositories/search_movie_repository.dart';
+import 'package:search/src/features/search/domain/entities/movie_entity.dart';
+import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
+import 'package:search/src/features/search/domain/errors/failures.dart';
+import 'package:search/src/features/search/domain/repositories/search_movie_repository_interface.dart';
+import 'package:search/src/features/search/infra/datasource/search_remote_datasource_interface.dart';
+import 'package:search/src/features/search/infra/repositories/search_movie_repository.dart';
 
 class SearchRemoteDataSourceMock extends Mock
     implements SearchRemoteDataSourceContract {}
 
-const movieMock = Movie(
+const movieMock = MovieEntity(
   imdbId: 'imdbId',
   title: 'title',
   year: 'year',
@@ -19,7 +19,7 @@ const movieMock = Movie(
   poster: 'poster',
 );
 
-const resultSearchMock = ResultSearch(
+const resultSearchMock = ResultSearchEntity(
   search: [movieMock],
   totalResults: '0',
   response: 'True',
@@ -52,11 +52,11 @@ void main() {
       // Assert
       expect(
         result.fold((left) => left, (right) => right),
-        isA<ResultSearch>(),
+        isA<ResultSearchEntity>(),
       );
       expect(
         result.fold((left) => left, (right) => right.search),
-        isA<List<Movie>>(),
+        isA<List<MovieEntity>>(),
       );
       verify(() => remoteDataSource.searchMovies(title: any(named: 'title')))
           .called(1);
