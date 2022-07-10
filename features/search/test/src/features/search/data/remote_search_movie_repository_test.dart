@@ -6,6 +6,7 @@ import 'package:search/src/core/errors/failure.dart';
 import 'package:search/src/features/search/data/remote_search_movie_repository.dart';
 import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
 
+import '../../../mocks/search_movies_response_broken_mock.dart';
 import '../../../mocks/search_movies_response_mock.dart';
 
 class DioMock extends Mock implements Dio {}
@@ -39,6 +40,27 @@ void main() {
       // Assert
       expect(result.match((failure) => failure, (value) => value),
           isA<ResultSearchEntity>());
+    });
+
+    test(
+        'should return ServerFailure when call to http client returns a Response with status code = 200 and json broken',
+        () async {
+      // Arrange
+      const title = '12345';
+      when(() => dioMock.get('/', queryParameters: {'s': title})).thenAnswer(
+        (_) async => Response(
+          statusCode: 200,
+          data: searchMoviesResponseBrokenMock,
+          requestOptions: RequestOptions(path: '/'),
+        ),
+      );
+
+      // Act
+      final result = await remoteRepository.call(title: title);
+
+      // Assert
+      expect(result.match((failure) => failure, (value) => value),
+          isA<ServerFailure>());
     });
 
     test(

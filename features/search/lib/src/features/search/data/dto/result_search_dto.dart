@@ -6,8 +6,8 @@ import 'movie_dto.dart';
 class ResultSearchDto extends ResultSearchEntity {
   const ResultSearchDto({
     required List<MovieDto> search,
-    required String totalResults,
-    String? response,
+    required String? totalResults,
+    required String response,
   }) : super(
           search: search,
           totalResults: totalResults,
