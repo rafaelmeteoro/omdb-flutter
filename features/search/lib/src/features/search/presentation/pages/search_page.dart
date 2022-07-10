@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
-import 'package:search/src/features/search/presentation/controller/search_page_controller.dart';
-import 'package:search/src/features/search/presentation/controller/search_page_state.dart';
-import 'package:search/src/features/search/presentation/widgets/item_card_list.dart';
-import 'package:search/src/features/search/presentation/widgets/search_text_field.dart';
+
+import '../controller/search_page_controller.dart';
+import '../controller/search_page_state.dart';
+import '../widgets/item_card_list.dart';
+import '../widgets/search_text_field.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({

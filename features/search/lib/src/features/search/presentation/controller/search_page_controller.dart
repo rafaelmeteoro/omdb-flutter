@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:search/src/features/search/domain/interfaces/search_movie_use_case.dart';
-import 'package:search/src/features/search/presentation/controller/search_page_state.dart';
+
+import '../../domain/interfaces/search_movie_use_case.dart';
+import 'search_page_state.dart';
 
 class SearchPageController extends ValueNotifier<SearchPageState> {
   final SearchMovieUseCase _searchMovieUseCase;
