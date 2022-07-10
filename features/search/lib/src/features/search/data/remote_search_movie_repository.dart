@@ -1,9 +1,10 @@
 import 'package:app_core/app_core.dart';
 import 'package:core/domain.dart';
-import 'package:search/src/core/errors/failure.dart';
-import 'package:search/src/core/typdef/signatures.dart';
-import 'package:search/src/features/search/data/dto/result_search_dto.dart';
-import 'package:search/src/features/search/domain/interfaces/search_movie_repository.dart';
+
+import '../../../core/errors/failure.dart';
+import '../../../core/typdef/signatures.dart';
+import '../domain/interfaces/search_movie_repository.dart';
+import 'dto/result_search_dto.dart';
 
 class RemoteSearchMovieRepository implements SearchMovieRepository {
   final Dio _dio;
@@ -23,7 +24,13 @@ class RemoteSearchMovieRepository implements SearchMovieRepository {
       if (response.statusCode == 200) {
         final responseMap = response.data as JsonFormat;
         final resultDto = ResultSearchDto.fromJson(responseMap);
-        return ResultSearch.right(resultDto);
+        if (resultDto.response == 'False') {
+          return ResultSearch.left(
+            const ServerFailure(message: 'Filme não encontrado'),
+          );
+        } else {
+          return ResultSearch.right(resultDto);
+        }
       } else {
         return ResultSearch.left(
           ServerFailure(message: response.data['message']),

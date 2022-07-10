@@ -1,9 +1,10 @@
 import 'package:core/domain.dart';
 import 'package:core/presentation.dart';
 import 'package:movie/movie.dart';
-import 'package:omdb_flutter/app/core/api_config.dart';
-import 'package:omdb_flutter/app/core/token_interceptor.dart';
 import 'package:search/search.dart';
+
+import 'core/api_config.dart';
+import 'core/token_interceptor.dart';
 
 class AppModule extends Module {
   @override

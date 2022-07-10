@@ -1,6 +1,7 @@
 import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
-import 'package:search/src/features/search/domain/entities/movie_entity.dart';
+
+import '../../domain/entities/movie_entity.dart';
 
 class ItemCard extends StatelessWidget {
   final MovieEntity _movie;

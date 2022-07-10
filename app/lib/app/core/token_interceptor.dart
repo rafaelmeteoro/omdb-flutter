@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:omdb_flutter/app/core/api_config.dart';
+
+import 'api_config.dart';
 
 class TokenInterceptor extends Interceptor {
   final ApiConfig _apiConfig;
