@@ -10,6 +10,13 @@ class MovieDetailWishlistButton extends StatelessWidget {
     return ElevatedButton(
       key: const Key('movieToWatchlist'),
       onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        primary: Colors.white,
+        minimumSize: Size(
+          MediaQuery.of(context).size.width,
+          42.0,
+        ),
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: const [
@@ -22,13 +29,6 @@ class MovieDetailWishlistButton extends StatelessWidget {
             ),
           ),
         ],
-      ),
-      style: ElevatedButton.styleFrom(
-        primary: Colors.white,
-        minimumSize: Size(
-          MediaQuery.of(context).size.width,
-          42.0,
-        ),
       ),
     );
   }

@@ -22,5 +22,5 @@ done
 echo "building app"
 app_directory='app'
 scripts/build-module clean $app_directory
-  scripts/build-module build $app_directory
-  scripts/build-module generate $app_directory
+scripts/build-module build $app_directory
+scripts/build-module generate $app_directory
