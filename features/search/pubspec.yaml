@@ -18,9 +18,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
   flutter_lints: ^1.0.0
   dev_core:
     path: "../../infrastructure/dev_core"
-  
+  freezed: ^1.1.0
+  build_runner: ^2.1.11
+
 flutter:
   uses-material-design: true

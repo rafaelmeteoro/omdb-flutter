@@ -17,7 +17,7 @@ class ResultSearchDto extends ResultSearchEntity {
   factory ResultSearchDto.fromJson(JsonFormat json) {
     return ResultSearchDto(
       search: _parseMovies(json),
-      totalResults: json['TotalResult'],
+      totalResults: json['totalResults'],
       response: json['Response'],
     );
   }

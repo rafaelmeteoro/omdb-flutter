@@ -1,17 +1,15 @@
+import 'dart:async';
+
 import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
-import 'package:search/src/features/search/presentation/bloc/search_bloc.dart';
-import 'package:search/src/features/search/presentation/bloc/search_event.dart';
-import 'package:search/src/features/search/presentation/bloc/search_state.dart';
+import 'package:search/src/features/search/presentation/controller/search_page_controller.dart';
+import 'package:search/src/features/search/presentation/controller/search_page_state.dart';
 import 'package:search/src/features/search/presentation/widgets/item_card_list.dart';
 import 'package:search/src/features/search/presentation/widgets/search_text_field.dart';
 
 class SearchPage extends StatefulWidget {
-  final SearchBloc searchBloc;
-
   const SearchPage({
     Key? key,
-    required this.searchBloc,
   }) : super(key: key);
 
   @override
@@ -19,6 +17,16 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final pageController = Modular.get<SearchPageController>();
+
+  Timer? _debounce;
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,62 +40,57 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             SearchTextField(
               onQueryChanged: (query) {
-                widget.searchBloc.add(OnQueryChanged(query: query));
+                if (_debounce?.isActive ?? false) _debounce?.cancel();
+                _debounce = Timer(const Duration(milliseconds: 700), () {
+                  pageController.searchMovie(query: query);
+                });
               },
             ),
-            BlocBuilder<SearchBloc, SearchState>(
-              bloc: widget.searchBloc,
-              builder: (context, state) {
-                if (state is SearchSuccessState) {
-                  return const Padding(
+            ValueListenableBuilder<SearchPageState>(
+              valueListenable: pageController,
+              builder: (context, state, _) {
+                return state.maybeWhen(
+                  success: (result) => const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     child: Text(
-                      'Search result',
+                      'Search Result',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
-                  );
-                } else {
-                  return const SizedBox();
-                }
+                  ),
+                  orElse: () => const SizedBox(),
+                );
               },
             ),
-            BlocBuilder<SearchBloc, SearchState>(
-              bloc: widget.searchBloc,
-              builder: (context, state) {
-                if (state is SearchLoadingState) {
-                  return const Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                  );
-                } else if (state is SearchErrorState) {
-                  return Expanded(
-                    child: Center(
-                      child: Text(
-                        state.message,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  );
-                } else if (state is SearchEmptyState) {
-                  return const Expanded(
+            ValueListenableBuilder<SearchPageState>(
+              valueListenable: pageController,
+              builder: (context, state, _) {
+                return state.when(
+                  empty: () => const Expanded(
                     child: Center(
                       child: Text(
                         'Nenhum resultado encontrado. Faça uma pesquisa.',
                         textAlign: TextAlign.center,
                       ),
                     ),
-                  );
-                } else if (state is SearchSuccessState) {
-                  final result = state.result.search;
-                  return Expanded(
+                  ),
+                  loading: () => const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                  ),
+                  error: (message) => Expanded(
+                    child: Center(
+                      child: Text(message),
+                    ),
+                  ),
+                  success: (result) => Expanded(
                     child: ListView.builder(
-                      itemCount: result.length,
+                      itemCount: result.search.length,
                       itemBuilder: (context, index) {
-                        final movie = result[index];
+                        final movie = result.search[index];
                         return ItemCard(
                           movie: movie,
                           onPressed: (movie) {
@@ -99,12 +102,8 @@ class _SearchPageState extends State<SearchPage> {
                         );
                       },
                     ),
-                  );
-                } else {
-                  return Expanded(
-                    child: Container(),
-                  );
-                }
+                  ),
+                );
               },
             ),
           ],

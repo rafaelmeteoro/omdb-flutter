@@ -6,7 +6,7 @@ void main() {
     test('result search dto from json', () {
       // Arrange
       const json = {
-        'TotalResult': '0',
+        'totalResults': '0',
         'Response': 'Response',
       };
 
