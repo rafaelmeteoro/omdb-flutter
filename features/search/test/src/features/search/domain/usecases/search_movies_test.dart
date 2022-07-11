@@ -46,7 +46,10 @@ void main() {
       final result = await useCase.call(query: query);
 
       // Assert
-      expect(result.match((failure) => failure, (value) => value), searchMock);
+      expect(
+        result.match((failure) => failure, (value) => value),
+        searchMock,
+      );
       verify(() => repository.call(title: query)).called(1);
       verifyNoMoreInteractions(repository);
     });
@@ -63,7 +66,10 @@ void main() {
       final result = await useCase.call(query: query);
 
       // Assert
-      expect(result.match((failure) => failure, (value) => value), searchMock);
+      expect(
+        result.match((failure) => failure, (value) => value),
+        searchMock,
+      );
       verify(() => repository.call(title: query)).called(1);
       verifyNoMoreInteractions(repository);
     });
