@@ -24,8 +24,6 @@ class MovieDetailDto extends MovieDetailEntity {
     required String imdbVotes,
     required String imdbId,
     required String type,
-    required String dvd,
-    required String boxOffice,
     required List<RatingDto> ratings,
   }) : super(
           title: title,
@@ -47,8 +45,6 @@ class MovieDetailDto extends MovieDetailEntity {
           imdbVotes: imdbVotes,
           imdbId: imdbId,
           type: type,
-          dvd: dvd,
-          boxOffice: boxOffice,
           ratings: ratings,
         );
 
@@ -73,8 +69,6 @@ class MovieDetailDto extends MovieDetailEntity {
       imdbVotes: json['imdbVotes'],
       imdbId: json['imdbID'],
       type: json['Type'],
-      dvd: json['DVD'],
-      boxOffice: json['BoxOffice'],
       ratings: (json['Ratings'] as List)
           .map((rating) => RatingDto.fromJson(rating))
           .toList(),

@@ -24,7 +24,7 @@ class SearchModule extends Module {
           ),
         ),
         // Controller
-        Bind.lazySingleton(
+        Bind.lazySingleton<SearchPageController>(
           (i) => SearchPageController(
             searchMovieUseCase: i.get<SearchMovieUseCase>(),
           ),

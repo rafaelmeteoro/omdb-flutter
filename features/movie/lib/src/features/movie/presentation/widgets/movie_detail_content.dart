@@ -1,12 +1,13 @@
 import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
-import 'package:movie/src/domain/entities/movie_detail.dart';
-import 'package:movie/src/presentation/widgets/movie_detail_app_bar.dart';
-import 'package:movie/src/presentation/widgets/movie_detail_info_list.dart';
-import 'package:movie/src/presentation/widgets/movie_detail_infos.dart';
-import 'package:movie/src/presentation/widgets/movie_detail_plot.dart';
-import 'package:movie/src/presentation/widgets/movie_detail_title.dart';
-import 'package:movie/src/presentation/widgets/movie_detail_wishlist_button.dart';
+
+import '../../domain/entities/movie_detail_entity.dart';
+import 'movie_detail_app_bar.dart';
+import 'movie_detail_info_list.dart';
+import 'movie_detail_infos.dart';
+import 'movie_detail_plot.dart';
+import 'movie_detail_title.dart';
+import 'movie_detail_wishlist_button.dart';
 
 class MovieDetailContent extends StatelessWidget {
   const MovieDetailContent({
@@ -14,7 +15,7 @@ class MovieDetailContent extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final MovieDetail movie;
+  final MovieDetailEntity movie;
 
   @override
   Widget build(BuildContext context) {
