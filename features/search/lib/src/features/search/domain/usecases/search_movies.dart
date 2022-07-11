@@ -1,5 +1,5 @@
 import '../../../../core/errors/failure.dart';
-import '../../../../core/typdef/signatures.dart';
+import '../../../../core/typedef/signatures.dart';
 import '../interfaces/search_movie_repository.dart';
 import '../interfaces/search_movie_use_case.dart';
 

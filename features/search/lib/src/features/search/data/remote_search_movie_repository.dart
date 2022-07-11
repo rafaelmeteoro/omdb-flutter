@@ -2,7 +2,7 @@ import 'package:app_core/app_core.dart';
 import 'package:core/domain.dart';
 
 import '../../../core/errors/failure.dart';
-import '../../../core/typdef/signatures.dart';
+import '../../../core/typedef/signatures.dart';
 import '../domain/interfaces/search_movie_repository.dart';
 import 'dto/result_search_dto.dart';
 

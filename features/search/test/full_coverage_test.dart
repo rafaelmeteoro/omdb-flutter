@@ -1,6 +1,5 @@
 // ignore_for_file: unused_import
 import 'package:search/search.dart';
-import 'package:search/src/core/typdef/signatures.dart';
 import 'package:search/src/core/errors/failure.dart';
 import 'package:search/src/search_module.dart';
 import 'package:search/src/features/search/data/dto/result_search_dto.dart';
