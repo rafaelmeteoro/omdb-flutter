@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie/src/features/movie/domain/interfaces/get_movie_detail_use_case.dart';
-import 'package:movie/src/features/movie/presentation/controller/movie_page_state.dart';
+
+import '../../domain/interfaces/get_movie_detail_use_case.dart';
+import 'movie_page_state.dart';
 
 class MoviePageController extends ValueNotifier<MoviePageState> {
   final GetMovieDetailUseCase _getMovieDetailUseCase;
