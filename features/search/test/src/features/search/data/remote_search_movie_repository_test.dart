@@ -38,8 +38,12 @@ void main() {
       final result = await remoteRepository.call(title: title);
 
       // Assert
-      expect(result.match((failure) => failure, (value) => value),
-          isA<ResultSearchEntity>());
+      expect(
+        result.match((failure) => failure, (value) => value),
+        isA<ResultSearchEntity>(),
+      );
+      verify(() => dioMock.get('/', queryParameters: {'s': title})).called(1);
+      verifyNoMoreInteractions(dioMock);
     });
 
     test(
@@ -59,8 +63,12 @@ void main() {
       final result = await remoteRepository.call(title: title);
 
       // Assert
-      expect(result.match((failure) => failure, (value) => value),
-          isA<ServerFailure>());
+      expect(
+        result.match((failure) => failure, (value) => value),
+        isA<ServerFailure>(),
+      );
+      verify(() => dioMock.get('/', queryParameters: {'s': title})).called(1);
+      verifyNoMoreInteractions(dioMock);
     });
 
     test(
@@ -80,8 +88,12 @@ void main() {
       final result = await remoteRepository.call(title: title);
 
       // Assert
-      expect(result.match((failure) => failure, (value) => value),
-          isA<ServerFailure>());
+      expect(
+        result.match((failure) => failure, (value) => value),
+        isA<ServerFailure>(),
+      );
+      verify(() => dioMock.get('/', queryParameters: {'s': title})).called(1);
+      verifyNoMoreInteractions(dioMock);
     });
 
     test(
@@ -100,8 +112,12 @@ void main() {
       final result = await remoteRepository.call(title: title);
 
       // Assert
-      expect(result.match((failure) => failure, (value) => value),
-          isA<ServerFailure>());
+      expect(
+        result.match((failure) => failure, (value) => value),
+        isA<ServerFailure>(),
+      );
+      verify(() => dioMock.get('/', queryParameters: {'s': title})).called(1);
+      verifyNoMoreInteractions(dioMock);
     });
 
     test(
@@ -119,8 +135,12 @@ void main() {
       final result = await remoteRepository.call(title: title);
 
       // Assert
-      expect(result.match((failure) => failure, (value) => value),
-          isA<ResultSearchFailure>());
+      expect(
+        result.match((failure) => failure, (value) => value),
+        isA<ResultSearchFailure>(),
+      );
+      verify(() => dioMock.get('/', queryParameters: {'s': title})).called(1);
+      verifyNoMoreInteractions(dioMock);
     });
   });
 }
