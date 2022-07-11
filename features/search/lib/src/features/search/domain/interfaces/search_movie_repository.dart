@@ -1,4 +1,4 @@
-import '../../../../core/typdef/signatures.dart';
+import '../../../../core/typedef/signatures.dart';
 
 abstract class SearchMovieRepository {
   Future<ResultSearch> call({
