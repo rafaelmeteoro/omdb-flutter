@@ -16,12 +16,13 @@ class SearchPageController extends ValueNotifier<SearchPageState> {
 
     final result = await _searchMovieUseCase.call(query: query);
 
-    value = result.fold((failure) {
-      return SearchPageState.error(message: failure.message ?? '');
-    }, (value) {
-      return value.search.isEmpty
-          ? const SearchPageState.empty()
-          : SearchPageState.success(result: value);
-    });
+    value = result.fold(
+      (failure) => SearchPageState.error(message: failure.message ?? ''),
+      (value) {
+        return value.search.isEmpty
+            ? const SearchPageState.empty()
+            : SearchPageState.success(result: value);
+      },
+    );
   }
 }

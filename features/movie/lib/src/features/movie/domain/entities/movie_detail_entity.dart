@@ -21,8 +21,6 @@ class MovieDetailEntity extends Equatable {
   final String imdbVotes;
   final String imdbId;
   final String type;
-  final String dvd;
-  final String boxOffice;
   final List<RatingEntity> ratings;
 
   const MovieDetailEntity({
@@ -45,8 +43,6 @@ class MovieDetailEntity extends Equatable {
     required this.imdbVotes,
     required this.imdbId,
     required this.type,
-    required this.dvd,
-    required this.boxOffice,
     required this.ratings,
   });
 
@@ -71,8 +67,6 @@ class MovieDetailEntity extends Equatable {
         imdbVotes,
         imdbId,
         type,
-        dvd,
-        boxOffice,
         ratings
       ];
 }

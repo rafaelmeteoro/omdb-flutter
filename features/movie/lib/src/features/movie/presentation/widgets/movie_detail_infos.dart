@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie/src/domain/entities/movie_detail.dart';
+
+import '../../domain/entities/movie_detail_entity.dart';
 
 class MovideDetailInfos extends StatelessWidget {
   const MovideDetailInfos({
@@ -7,7 +8,7 @@ class MovideDetailInfos extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final MovieDetail movie;
+  final MovieDetailEntity movie;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +74,7 @@ class MovideDetailInfos extends StatelessWidget {
   }
 
   String _showDuration(String runtime) {
+    if (runtime == 'N/A') return runtime;
     final timeMinutesString = runtime.split(' ')[0];
     final timeMinutes = int.parse(timeMinutesString);
     final int hours = timeMinutes ~/ 60;

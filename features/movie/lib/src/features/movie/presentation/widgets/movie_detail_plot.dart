@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie/src/domain/entities/movie_detail.dart';
+
+import '../../domain/entities/movie_detail_entity.dart';
 
 class MoviedetailPlot extends StatelessWidget {
   const MoviedetailPlot({
@@ -7,7 +8,7 @@ class MoviedetailPlot extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final MovieDetail movie;
+  final MovieDetailEntity movie;
 
   @override
   Widget build(BuildContext context) {
