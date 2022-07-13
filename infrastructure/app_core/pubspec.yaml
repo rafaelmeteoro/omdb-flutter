@@ -10,13 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   core:
     path: "../../infrastructure/core"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+
   dev_core:
     path: "../../infrastructure/dev_core"
 

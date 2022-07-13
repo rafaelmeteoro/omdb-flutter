@@ -1,5 +1,6 @@
 import 'package:app_core/app_core.dart';
-import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
+
+import '../../domain/entities/rating_entity.dart';
 
 class RatingDto extends RatingEntity {
   const RatingDto({

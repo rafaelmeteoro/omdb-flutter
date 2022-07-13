@@ -6,17 +6,23 @@ dart pub global activate full_coverage
 
 ## Test all infrastructure
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-  echo "testing project $directory"
+  echo "####################################"
+  echo "Testing project $directory"
+  echo "####################################"
   scripts/test-module test $directory
 done
 
 ## Test all features
 for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-  echo "testing project $directory"
+  echo "####################################"
+  echo "Testing project $directory"
+  echo "####################################"
   scripts/test-module test $directory
 done
 
 ## Test app
-echo "testing app"
+echo "####################################"
+echo "Testing app"
+echo "####################################"
 app_directory='app'
 scripts/test-module test $app_directory

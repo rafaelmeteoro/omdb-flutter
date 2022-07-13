@@ -35,3 +35,6 @@ if [ -f ${path_coverage} ]; then
   percentage_rate=$(lcov --summary "$path_coverage" | grep "lines......" | cut -d ' ' -f 4 | cut -d '%' -f 1)
   echo "Percent => $percentage_rate%"
 fi
+
+code_coverage=$(lcov --list ${path_coverage} | sed -n "s/.*Total:|\([^%]*\)%.*/\1/p")
+echo "Current Code Coverage: ${code_coverage}"

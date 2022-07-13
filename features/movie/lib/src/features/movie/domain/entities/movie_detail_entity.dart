@@ -1,5 +1,6 @@
 import 'package:core/domain.dart';
-import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
+
+import 'rating_entity.dart';
 
 class MovieDetailEntity extends Equatable {
   final String title;
