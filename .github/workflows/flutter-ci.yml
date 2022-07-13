@@ -5,33 +5,36 @@ name: Flutter CI
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
     branches:
-    - main
+      - main
 
 jobs:
   build:
     name: Flutter Build
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
-    steps:      
+    steps:
       - uses: actions/checkout@v2
       # Setup Java environment
       - uses: actions/setup-java@v1
         with:
-          java-version: '11'
+          java-version: "11"
       # Setup Flutter environment
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.2'
-          channel: 'stable'
+          flutter-version: "2.10.2"
+          channel: "stable"
+
+      - name: Install Lcov
+        run: sudo apt-get install lcov
 
       - name: Flutter Version
         run: flutter --version
 
       - name: Run Flutter Packages
-        run: make build-modules        
+        run: make build-modules
 
       - name: Run Flutter Analyse
         run: make analyze-modules
@@ -47,7 +50,7 @@ jobs:
         with:
           coverage-files: coverage/lcov.info
           artifact-name: code-coverage-report
-          github-token: ${{ secrets.GITHUB_TOKEN }}          
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
