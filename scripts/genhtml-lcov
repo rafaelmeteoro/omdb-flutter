@@ -2,8 +2,10 @@
 
 set -e
 
-## Merge all lcov
-scripts/merge-all-lcov
+if [ ! -f coverage/lcov.info ]; then
+  echo "Arquivo lcov.info não encontrado. Rode o comando \`make merge-modules\`"
+  exit 0
+fi
 
 ## Gera html
 genhtml coverage/lcov.info -o coverage -p `pwd` --legend --precision=2

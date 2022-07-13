@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dart';
+import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
 
 void main() {
   group('MovieDetailEntity', () {
@@ -25,7 +26,12 @@ void main() {
         imdbRating: 'imdbgRating',
         imdbId: 'imdbId',
         imdbVotes: 'imdbVotes',
-        ratings: [],
+        ratings: [
+          RatingEntity(
+            source: 'source',
+            value: 'value',
+          ),
+        ],
       );
 
       // Assert
@@ -52,7 +58,12 @@ void main() {
               imdbRating: 'imdbgRating',
               imdbId: 'imdbId',
               imdbVotes: 'imdbVotes',
-              ratings: [],
+              ratings: [
+                RatingEntity(
+                  source: 'source',
+                  value: 'value',
+                )
+              ],
             ),
         equals(true),
       );

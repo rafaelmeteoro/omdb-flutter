@@ -13,12 +13,12 @@ if [ -f coverage/lcov.info ]; then
 fi
 
 if [ ! -d test ]; then
-  echo " => project $directory don't have test"
+  echo " => Project $directory don't have test"
   exit 0
 fi
 
 if [[ -z $(find test/ -type f -iname '*_test.dart') ]]; then
-  echo " => project $directory don't have test"
+  echo " => Project $directory don't have test"
   exit 0
 fi
 
