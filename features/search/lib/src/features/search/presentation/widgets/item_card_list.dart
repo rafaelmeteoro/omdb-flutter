@@ -18,6 +18,7 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: const Key('itemCard'),
       onTap: () {
         _onPressed(_movie);
       },
