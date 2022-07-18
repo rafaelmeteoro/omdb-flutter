@@ -19,9 +19,9 @@ void main() {
   });
 
   group('Movie Page Controller', () {
-    test('should return state MoviePageStateEmpty when create', () async {
+    test('should return state MoviePageStateLoading when create', () async {
       // Assert
-      expect(controller.value, isA<MoviePageStateEmpty>());
+      expect(controller.value, isA<MoviePageStateLoading>());
     });
 
     test(

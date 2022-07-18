@@ -6,7 +6,6 @@ part 'movie_page_state.freezed.dart';
 
 @freezed
 class MoviePageState with _$MoviePageState {
-  const factory MoviePageState.empty() = MoviePageStateEmpty;
   const factory MoviePageState.loading() = MoviePageStateLoading;
   const factory MoviePageState.error({
     required String message,

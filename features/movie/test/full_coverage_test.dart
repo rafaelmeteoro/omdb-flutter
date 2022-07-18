@@ -20,6 +20,7 @@ import 'package:movie/src/features/movie/presentation/widgets/movie_detail_infos
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_info_list.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_content.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_wishlist_button.dart';
+import 'package:movie/src/features/movie/presentation/widgets/movie_detail_error.dart';
 import 'package:movie/src/movie_module.dart';
 
 void main() {}
