@@ -9,7 +9,7 @@ class MoviePageController extends ValueNotifier<MoviePageState> {
   MoviePageController({
     required GetMovieDetailUseCase getMovieDetailUseCase,
   })  : _getMovieDetailUseCase = getMovieDetailUseCase,
-        super(const MoviePageState.empty());
+        super(const MoviePageState.loading());
 
   Future<void> getMovieDetail({required String id}) async {
     value = const MoviePageState.loading();

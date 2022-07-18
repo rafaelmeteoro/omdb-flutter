@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../controller/movie_page_controller.dart';
 import '../controller/movie_page_state.dart';
 import '../widgets/movie_detail_content.dart';
+import '../widgets/movie_detail_error.dart';
 
 class MoviePage extends StatefulWidget {
   final String id;
@@ -32,18 +33,14 @@ class _MoviePageState extends State<MoviePage> {
       body: ValueListenableBuilder<MoviePageState>(
         valueListenable: pageController,
         builder: (context, state, _) {
-          return state.maybeWhen(
+          return state.when(
             loading: () => const Center(
               child: CircularProgressIndicator.adaptive(),
             ),
             error: (message) => Center(
-              child: Text(
-                message,
-                textAlign: TextAlign.center,
-              ),
+              child: MovieDetailError(message: message),
             ),
             success: (movie) => MovieDetailContent(movie: movie),
-            orElse: () => const SizedBox(),
           );
         },
       ),
