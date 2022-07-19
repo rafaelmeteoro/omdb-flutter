@@ -1,7 +1,6 @@
 import 'package:app_core/app_core.dart';
 import 'package:core/domain.dart';
 import 'package:dev_core/dev_core.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/core/errors/failure.dart';
 import 'package:movie/src/features/movie/data/remote_movie_detail_repository.dart';
 import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dart';

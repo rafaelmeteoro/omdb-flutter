@@ -1,5 +1,4 @@
 import 'package:dev_core/dev_core.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:search/src/core/errors/failure.dart';
 import 'package:search/src/features/search/domain/entities/movie_entity.dart';
 import 'package:search/src/features/search/domain/entities/result_search_entity.dart';

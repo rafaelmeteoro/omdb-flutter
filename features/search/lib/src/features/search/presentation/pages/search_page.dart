@@ -40,6 +40,7 @@ class _SearchPageState extends State<SearchPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SearchTextField(
+              key: const Key('search_text_field'),
               onQueryChanged: (query) {
                 if (_debounce?.isActive ?? false) _debounce?.cancel();
                 _debounce = Timer(const Duration(milliseconds: 700), () {
