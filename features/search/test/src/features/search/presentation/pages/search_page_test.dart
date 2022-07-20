@@ -45,5 +45,14 @@ void main() {
         findsOneWidget,
       );
     });
+
+    testWidgets('show text input text', (tester) async {
+      // Act
+      await tester.pumpWidget(searchPageApp());
+      await tester.enterText(find.byKey(Key('search_text_field')), 'query');
+
+      // Assert
+      expect(find.text('query'), findsOneWidget);
+    });
   });
 }
