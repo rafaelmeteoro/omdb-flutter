@@ -1,5 +1,4 @@
 import 'package:dev_core/dev_core.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/core/typedef/signatures.dart';
 import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dart';
 import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
