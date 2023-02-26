@@ -61,7 +61,10 @@ void main() {
 
       // Act
       await tester.pumpWidget(searchPageApp());
-      await tester.enterText(find.byKey(Key('search_text_field')), 'query');
+      var textField = find.byKey(Key('search_text_field'));
+      await tester.tap(textField);
+      await tester.enterText(textField, 'query');
+      await tester.pump(Duration(milliseconds: 700));
 
       // Assert
       expect(find.text('query'), findsOneWidget);
