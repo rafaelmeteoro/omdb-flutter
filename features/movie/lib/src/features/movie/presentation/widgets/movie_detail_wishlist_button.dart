@@ -11,7 +11,7 @@ class MovieDetailWishlistButton extends StatelessWidget {
       key: const Key('movieToWatchlist'),
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        backgroundColor: Colors.white,
         minimumSize: Size(
           MediaQuery.of(context).size.width,
           42.0,
