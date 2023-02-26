@@ -1,5 +1,6 @@
 import 'package:dev_core/dev_core.dart';
 import 'package:flutter/material.dart';
+import 'package:search/src/core/errors/failure.dart';
 import 'package:search/src/core/typedef/signatures.dart';
 import 'package:search/src/features/search/domain/entities/movie_entity.dart';
 import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
@@ -68,6 +69,24 @@ void main() {
 
       // Assert
       expect(find.text('query'), findsOneWidget);
+    });
+
+    testWidgets('show error message', (tester) async {
+      // Arrange
+      when(() => mockUseCase.call(query: 'query')).thenAnswer(
+        (_) async => Future.value(
+            ResultSearch.left(ShortTitleFailure(message: 'short title'))),
+      );
+
+      // Act
+      await tester.pumpWidget(searchPageApp());
+      var textField = find.byKey(Key('search_text_field'));
+      await tester.tap(textField);
+      await tester.enterText(textField, 'query');
+      await tester.pump(Duration(milliseconds: 700));
+
+      // Assert
+      expect(find.text('short title'), findsOneWidget);
     });
   });
 }
