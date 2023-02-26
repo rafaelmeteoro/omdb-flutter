@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
+import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 
 import '../controller/search_page_controller.dart';
 import '../controller/search_page_state.dart';
@@ -12,9 +12,11 @@ class SearchPage extends StatefulWidget {
   const SearchPage({
     Key? key,
     required this.controller,
+    required this.navigate,
   }) : super(key: key);
 
   final SearchPageController controller;
+  final SearchPageDelegate navigate;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -22,6 +24,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   SearchPageController get _controller => widget.controller;
+  SearchPageDelegate get _navigate => widget.navigate;
 
   Timer? _debounce;
 
@@ -99,9 +102,8 @@ class _SearchPageState extends State<SearchPage> {
                         return ItemCard(
                           movie: movie,
                           onPressed: (movie) {
-                            Modular.to.pushNamed(
-                              '/movie',
-                              arguments: movie.imdbId,
+                            _navigate.onItemSearchSelected(
+                              movieId: movie.imdbId,
                             );
                           },
                         );

@@ -7,15 +7,20 @@ import 'package:search/src/features/search/domain/entities/result_search_entity.
 import 'package:search/src/features/search/domain/interfaces/search_movie_use_case.dart';
 import 'package:search/src/features/search/presentation/controller/search_page_controller.dart';
 import 'package:search/src/features/search/presentation/pages/search_page.dart';
+import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 
 class SearchMovieUseCaseMock extends Mock implements SearchMovieUseCase {}
 
+class SearchPageDelegateMock extends Mock implements SearchPageDelegate {}
+
 void main() {
-  late SearchMovieUseCase mockUseCase;
+  late SearchMovieUseCaseMock mockUseCase;
+  late SearchPageDelegateMock mockNavigate;
   late SearchPageController controller;
 
   setUp(() {
     mockUseCase = SearchMovieUseCaseMock();
+    mockNavigate = SearchPageDelegateMock();
     controller = SearchPageController(searchMovieUseCase: mockUseCase);
   });
 
@@ -25,6 +30,7 @@ void main() {
         home: Material(
           child: SearchPage(
             controller: controller,
+            navigate: mockNavigate,
           ),
         ),
       );
