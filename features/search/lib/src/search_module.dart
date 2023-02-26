@@ -1,5 +1,6 @@
 import 'package:core/domain.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 
 import 'features/search/data/remote_search_movie_repository.dart';
 import 'features/search/domain/interfaces/search_movie_repository.dart';
@@ -29,6 +30,10 @@ class SearchModule extends Module {
             searchMovieUseCase: i.get<SearchMovieUseCase>(),
           ),
         ),
+        // Delegate
+        Bind.factory<SearchPageDelegate>(
+          (i) => SearchPageFlow(),
+        )
       ];
 
   @override
@@ -36,7 +41,8 @@ class SearchModule extends Module {
         ChildRoute(
           '/',
           child: (context, args) => SearchPage(
-            controller: Modular.get<SearchPageController>(),
+            controller: context.read<SearchPageController>(),
+            navigate: context.read<SearchPageDelegate>(),
           ),
         ),
       ];
