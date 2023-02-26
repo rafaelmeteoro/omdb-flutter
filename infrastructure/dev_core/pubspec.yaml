@@ -1,27 +1,27 @@
 name: dev_core
 description: A new Flutter package project.
 publish_to: none
-version: 0.0.1
+version: 0.0.2
 
 environment:
-  sdk: ">=2.16.1 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
   mocktail: ^0.3.0
-  freezed: ^1.1.0
-  build_runner: ^2.1.11
-  fpdart: ^0.0.14
+  freezed: ^2.1.0+1
+  build_runner: ^2.2.0
+  fpdart: ^0.3.0
   modular_test: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  lints: ^1.0.1
-  flutter_lints: ^1.0.0
+  lints: ^2.0.0
+  flutter_lints: ^2.0.0
 
 flutter:

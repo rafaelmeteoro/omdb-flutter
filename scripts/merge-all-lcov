@@ -14,9 +14,10 @@ exclude_files=$1
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do 
   path_coverage="${directory}coverage/lcov.info"
   if [ -f ${path_coverage} ]; then
-    echo "####################################"
+    echo ""
+    echo "########################################################################"
     echo "Merge ${path_coverage}"
-    echo "####################################"
+    echo "########################################################################"
     sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
     
     if [ ! -z "$exclude_files" ]; then
@@ -31,9 +32,10 @@ done
 for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
   path_coverage="${directory}coverage/lcov.info"
   if [ -f ${path_coverage} ]; then
-    echo "####################################"
+    echo ""
+    echo "########################################################################"
     echo "Merge ${path_coverage}"
-    echo "####################################"
+    echo "########################################################################"
     sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
 
     if [ ! -z "$exclude_files" ]; then
@@ -48,9 +50,10 @@ done
 app_directory='app'
 path_coverage="${app_directory}/coverage/lcov.info"
 if [ -f ${path_coverage} ]; then
-  echo "####################################"
+  echo ""
+  echo "########################################################################"
   echo "Merge $app_directory"
-  echo "####################################"
+  echo "########################################################################"
   sed "s/^SF:.*lib/SF:${app_directory//\//\\/}\/lib/g" ${path_coverage} >> coverage/lcov.info
 
   if [ ! -z "$exclude_files" ]; then
