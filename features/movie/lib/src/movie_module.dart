@@ -37,6 +37,7 @@ class MovieModule extends Module {
           '/',
           child: (context, args) => MoviePage(
             id: args.data as String,
+            controller: Modular.get<MoviePageController>(),
           ),
         ),
       ];
