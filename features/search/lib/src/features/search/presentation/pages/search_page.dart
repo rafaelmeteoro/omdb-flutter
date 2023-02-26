@@ -11,14 +11,17 @@ import '../widgets/search_text_field.dart';
 class SearchPage extends StatefulWidget {
   const SearchPage({
     Key? key,
+    required this.controller,
   }) : super(key: key);
+
+  final SearchPageController controller;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final pageController = Modular.get<SearchPageController>();
+  SearchPageController get _controller => widget.controller;
 
   Timer? _debounce;
 
@@ -44,12 +47,12 @@ class _SearchPageState extends State<SearchPage> {
               onQueryChanged: (query) {
                 if (_debounce?.isActive ?? false) _debounce?.cancel();
                 _debounce = Timer(const Duration(milliseconds: 700), () {
-                  pageController.searchMovie(query: query);
+                  _controller.searchMovie(query: query);
                 });
               },
             ),
             ValueListenableBuilder<SearchPageState>(
-              valueListenable: pageController,
+              valueListenable: _controller,
               builder: (context, state, _) {
                 return state.maybeWhen(
                   success: (result) => const Padding(
@@ -67,7 +70,7 @@ class _SearchPageState extends State<SearchPage> {
               },
             ),
             ValueListenableBuilder<SearchPageState>(
-              valueListenable: pageController,
+              valueListenable: _controller,
               builder: (context, state, _) {
                 return state.when(
                   empty: () => const Expanded(

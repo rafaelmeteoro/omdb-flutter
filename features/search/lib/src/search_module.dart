@@ -35,7 +35,9 @@ class SearchModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (context, args) => const SearchPage(),
+          child: (context, args) => SearchPage(
+            controller: Modular.get<SearchPageController>(),
+          ),
         ),
       ];
 }
