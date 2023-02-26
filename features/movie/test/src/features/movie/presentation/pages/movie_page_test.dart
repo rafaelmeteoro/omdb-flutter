@@ -1,8 +1,5 @@
-import 'package:core/presentation.dart';
 import 'package:dev_core/dev_core.dart';
 import 'package:flutter/material.dart';
-import 'package:modular_test/modular_test.dart';
-import 'package:movie/movie.dart';
 import 'package:movie/src/core/errors/failure.dart';
 import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dart';
 import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
@@ -14,20 +11,12 @@ import 'package:movie/src/features/movie/presentation/widgets/movie_detail_conte
 class GetMovieDetailUseCaseMock extends Mock implements GetMovieDetailUseCase {}
 
 void main() {
-  late GetMovieDetailUseCase useCase;
+  late GetMovieDetailUseCase mockUseCase;
   late MoviePageController controller;
 
   setUp(() {
-    useCase = GetMovieDetailUseCaseMock();
-    controller = MoviePageController(getMovieDetailUseCase: useCase);
-
-    initModule(
-      MovieModule(),
-      replaceBinds: [
-        Bind.instance<GetMovieDetailUseCase>(useCase),
-        Bind.instance<MoviePageController>(controller),
-      ],
-    );
+    mockUseCase = GetMovieDetailUseCaseMock();
+    controller = MoviePageController(getMovieDetailUseCase: mockUseCase);
   });
 
   group('MoviePage', () {
@@ -36,6 +25,7 @@ void main() {
         home: Material(
           child: MoviePage(
             id: 'some-id',
+            controller: controller,
           ),
         ),
       );
@@ -71,8 +61,9 @@ void main() {
 
     testWidgets('show progress indicator when state is loading',
         (tester) async {
-      when(() => useCase.call(id: any(named: 'id')))
-          .thenAnswer((_) async => right(movieDetailEntity));
+      when(() => mockUseCase.call(id: any(named: 'id'))).thenAnswer(
+        (_) async => right(movieDetailEntity),
+      );
 
       await tester.pumpWidget(moviePageApp());
 
@@ -80,8 +71,9 @@ void main() {
     });
 
     testWidgets('show detail content when state is success', (tester) async {
-      when(() => useCase.call(id: any(named: 'id')))
-          .thenAnswer((_) async => right(movieDetailEntity));
+      when(() => mockUseCase.call(id: any(named: 'id'))).thenAnswer(
+        (_) async => right(movieDetailEntity),
+      );
 
       await tester.pumpWidget(moviePageApp());
       await tester.pumpAndSettle();
@@ -90,8 +82,9 @@ void main() {
     });
 
     testWidgets('show text when state is error', (tester) async {
-      when(() => useCase.call(id: any(named: 'id'))).thenAnswer(
-          (_) async => left(MovieDetailFailure(message: 'server failure')));
+      when(() => mockUseCase.call(id: any(named: 'id'))).thenAnswer(
+        (_) async => left(MovieDetailFailure(message: 'server failure')),
+      );
 
       await tester.pumpWidget(moviePageApp());
       await tester.pumpAndSettle();

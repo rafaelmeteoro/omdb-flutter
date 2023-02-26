@@ -1,4 +1,3 @@
-import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/movie_page_controller.dart';
@@ -12,26 +11,29 @@ class MoviePage extends StatefulWidget {
   const MoviePage({
     Key? key,
     required this.id,
+    required this.controller,
   }) : super(key: key);
+
+  final MoviePageController controller;
 
   @override
   State<MoviePage> createState() => _MoviePageState();
 }
 
 class _MoviePageState extends State<MoviePage> {
-  final pageController = Modular.get<MoviePageController>();
+  MoviePageController get _controller => widget.controller;
 
   @override
   void initState() {
     super.initState();
-    pageController.getMovieDetail(id: widget.id);
+    _controller.getMovieDetail(id: widget.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ValueListenableBuilder<MoviePageState>(
-        valueListenable: pageController,
+        valueListenable: _controller,
         builder: (context, state, _) {
           return state.when(
             loading: () => const Center(
