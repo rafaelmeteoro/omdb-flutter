@@ -4,11 +4,13 @@ set -e
 
 ## Analyze all infrastructure
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo ""
   echo "##########################################################"
   echo "Checking files formart for project $directory"
   echo "##########################################################"
   scripts/analyze-module format $directory
 
+  echo ""
   echo "##########################################################"
   echo "Analyze the project $directory"
   echo "##########################################################"
@@ -17,11 +19,13 @@ done
 
 ## Analyze all features
 for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo ""
   echo "##########################################################"
   echo "Checking files formart for project $directory"
   echo "##########################################################"
   scripts/analyze-module format $directory
 
+  echo ""
   echo "##########################################################"
   echo "Analyze the project $directory"
   echo "##########################################################"
@@ -30,11 +34,13 @@ done
 
 ## Analyze app
 app_directory='app'
+echo ""
 echo "##########################################################"
 echo "Checking files formart for project $app_directory"
 echo "##########################################################"
 scripts/analyze-module format $app_directory
 
+echo ""
 echo "##########################################################"
 echo "Analyze the project $app_directory"
 echo "##########################################################"

@@ -9,25 +9,13 @@
       "path": "./app"
     },
     {
-      "name": "Dependencies",
-      "path": "./infrastructure/core"
+      "name": "Features",
+      "path": "./features"
     },
     {
-      "name": "Dev Dependencies",
-      "path": "./infrastructure/dev_core"
+      "name": "Infrastructure",
+      "path": "./infrastructure"
     },
-    {
-      "name": "App Core",
-      "path": "./infrastructure/app_core"
-    },
-    {
-      "name": "Search",
-      "path": "./features/search"
-    },
-    {
-      "name": "Movie",
-      "path": "./features/movie"
-    }
   ],
   "settings": {
     "editor.tabSize": 2,
@@ -46,6 +34,13 @@
       "features": true,
       "app": true
     },
-    "makefile.extensionOutputFolder": "./.vscode"
+    "makefile.extensionOutputFolder": "./.vscode",
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.renderFinalNewline": "on",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
+    },
   }
 }

@@ -12,6 +12,10 @@ if [ -f coverage/lcov.info ]; then
   rm coverage/lcov.info
 fi
 
+if [ -f test/full_coverage_test.dart ]; then
+  rm test/full_coverage_test.dart
+fi
+
 if [ ! -d test ]; then
   echo " => Project $directory don't have test"
   exit 0

@@ -4,9 +4,10 @@ set -e
 
 ## Rebuild all infrastructure
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-  echo "################################"
+  echo ""
+  echo "################################################################"
   echo "Building $directory"
-  echo "################################"
+  echo "################################################################"
   scripts/build-module clean $directory
   scripts/build-module build $directory
   scripts/build-module generate $directory
@@ -14,18 +15,20 @@ done
 
 ## Rebuild all features
 for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-  echo "################################"
+  echo ""
+  echo "################################################################"
   echo "Building $directory"
-  echo "################################"
+  echo "################################################################"
   scripts/build-module clean $directory
   scripts/build-module build $directory
   scripts/build-module generate $directory
 done
 
 ## Rebuild app
-echo "################################"
+echo ""
+echo "################################################################"
 echo "Building app"
-echo "################################"
+echo "################################################################"
 app_directory='app'
 scripts/build-module clean $app_directory
 scripts/build-module build $app_directory
