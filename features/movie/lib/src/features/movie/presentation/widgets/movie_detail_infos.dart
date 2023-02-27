@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie_detail_entity.dart';
 
-class MovideDetailInfos extends StatelessWidget {
-  const MovideDetailInfos({
+class MovieDetailInfos extends StatelessWidget {
+  const MovieDetailInfos({
     Key? key,
     required this.movie,
   }) : super(key: key);

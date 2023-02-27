@@ -3,7 +3,7 @@ import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dar
 import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
 
 void main() {
-  group('MovieDetailEntity', () {
+  group(MovieDetailEntity, () {
     test('movie detail has same parameters', () {
       // Arrange
       const movieDetail = MovieDetailEntity(

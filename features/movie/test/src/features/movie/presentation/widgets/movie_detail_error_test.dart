@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_error.dart';
 
 void main() {
-  group('MovieDetailError', () {
+  group(MovieDetailError, () {
     Widget detailErrorApp() {
       return MaterialApp(
         home: Material(

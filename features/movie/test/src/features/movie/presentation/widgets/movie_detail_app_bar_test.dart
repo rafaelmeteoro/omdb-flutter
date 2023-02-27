@@ -26,7 +26,7 @@ void main() {
     type: 'type',
     ratings: [],
   );
-  group('MovieDetailAppBar', () {
+  group(MovieDetailAppBar, () {
     Widget appBarApp() {
       return MaterialApp(
         home: Material(

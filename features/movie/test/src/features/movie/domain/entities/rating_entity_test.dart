@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
 
 void main() {
-  group('rating entity', () {
+  group(RatingEntity, () {
     test('rating has same parameters', () {
       // Arrange
       const rating = RatingEntity(

@@ -18,7 +18,7 @@ void main() {
     remoteRepository = RemoteMovieDetailRepository(dio: dioMock);
   });
 
-  group('Remote Movie Detail Repository', () {
+  group(RemoteMovieDetailRepository, () {
     test(
         'should return MovieDetail.right when call to http client return a Response with status code = 200',
         () async {

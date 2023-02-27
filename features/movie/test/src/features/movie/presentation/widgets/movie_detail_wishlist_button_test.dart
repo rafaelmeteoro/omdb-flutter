@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_wishlist_button.dart';
 
 void main() {
-  group('MoviedetailWishlistButton', () {
+  group(MovieDetailWishlistButton, () {
     Widget detailButtonApp() {
       return MaterialApp(
         home: Material(

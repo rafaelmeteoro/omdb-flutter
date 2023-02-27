@@ -21,14 +21,16 @@ void main() {
     interceptor = TokenInterceptor(apiConfig: apiConfig);
   });
 
-  test('Request parameter header should not be null', () async {
-    // Arrange
-    when(() => apiConfig.apiToken).thenReturn('apiToken');
+  group(TokenInterceptor, () {
+    test('Request parameter header should not be null', () async {
+      // Arrange
+      when(() => apiConfig.apiToken).thenReturn('apiToken');
 
-    // Act
-    interceptor.onRequest(options, handler);
+      // Act
+      interceptor.onRequest(options, handler);
 
-    // Assert
-    expect(options.queryParameters['apiKey'], equals('apiToken'));
+      // Assert
+      expect(options.queryParameters['apiKey'], equals('apiToken'));
+    });
   });
 }

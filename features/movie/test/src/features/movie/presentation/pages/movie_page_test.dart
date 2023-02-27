@@ -19,7 +19,7 @@ void main() {
     controller = MoviePageController(getMovieDetailUseCase: mockUseCase);
   });
 
-  group('MoviePage', () {
+  group(MoviePage, () {
     Widget moviePageApp() {
       return MaterialApp(
         home: Material(
