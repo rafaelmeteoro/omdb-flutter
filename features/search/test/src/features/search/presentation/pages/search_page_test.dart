@@ -77,6 +77,41 @@ void main() {
       expect(find.text('query'), findsOneWidget);
     });
 
+    testWidgets('click item when receive success', (tester) async {
+      // Arrange
+      final resultEntity = ResultSearchEntity(
+        search: [
+          MovieEntity(
+            imdbId: 'imdbId',
+            title: 'title',
+            year: 'year',
+            type: 'type',
+            poster: 'poster',
+          )
+        ],
+        totalResults: '1',
+        response: 'True',
+      );
+      when(() => mockUseCase.call(query: 'query')).thenAnswer(
+        (_) async => Future.value(ResultSearch.right(resultEntity)),
+      );
+      when(() => mockNavigate.onItemSearchSelected(movieId: 'imdbId'))
+          .thenAnswer((_) async => Future.value());
+
+      // Act
+      await tester.pumpWidget(searchPageApp());
+      var textField = find.byKey(Key('search_text_field'));
+      await tester.tap(textField);
+      await tester.enterText(textField, 'query');
+      await tester.pump(Duration(milliseconds: 700));
+      var itemCard = find.byKey(Key('itemCard'));
+      await tester.tap(itemCard);
+
+      // Assert
+      verify(() => mockNavigate.onItemSearchSelected(movieId: 'imdbId'))
+          .called(1);
+    });
+
     testWidgets('show error message', (tester) async {
       // Arrange
       when(() => mockUseCase.call(query: 'query')).thenAnswer(
