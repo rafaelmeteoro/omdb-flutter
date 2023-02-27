@@ -13,6 +13,7 @@ import 'package:search/src/features/search/domain/interfaces/search_movie_reposi
 import 'package:search/src/features/search/domain/interfaces/search_movie_use_case.dart';
 import 'package:search/src/features/search/presentation/controller/search_page_controller.dart';
 import 'package:search/src/features/search/presentation/controller/search_page_state.dart';
+import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 import 'package:search/src/features/search/presentation/pages/search_page.dart';
 import 'package:search/src/features/search/presentation/widgets/search_text_field.dart';
 import 'package:search/src/features/search/presentation/widgets/item_card_list.dart';
