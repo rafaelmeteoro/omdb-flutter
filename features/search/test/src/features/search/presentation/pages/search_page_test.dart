@@ -6,6 +6,7 @@ import 'package:search/src/features/search/domain/entities/movie_entity.dart';
 import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
 import 'package:search/src/features/search/domain/interfaces/search_movie_use_case.dart';
 import 'package:search/src/features/search/presentation/controller/search_page_controller.dart';
+import 'package:search/src/features/search/presentation/controller/search_page_state.dart';
 import 'package:search/src/features/search/presentation/pages/search_page.dart';
 import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 
@@ -45,6 +46,16 @@ void main() {
         find.text('Nenhum resultado encontrado. Faça uma pesquisa.'),
         findsOneWidget,
       );
+    });
+
+    testWidgets('show loading', (tester) async {
+      // Act
+      await tester.pumpWidget(searchPageApp());
+      controller.value = SearchPageState.loading();
+      await tester.pump();
+
+      // Assert
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
 
     testWidgets('show text input text', (tester) async {
