@@ -26,7 +26,7 @@ void main() {
     type: 'type',
     ratings: [],
   );
-  group('MovieDetailTitle', () {
+  group(MovieDetailTitle, () {
     Widget detailTitleApp() {
       return MaterialApp(
         home: Material(

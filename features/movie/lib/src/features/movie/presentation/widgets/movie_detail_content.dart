@@ -34,11 +34,11 @@ class MovieDetailContent extends StatelessWidget {
                 children: [
                   MovieDetailTitle(movie: movie),
                   const SizedBox(height: 8.0),
-                  MovideDetailInfos(movie: movie),
+                  MovieDetailInfos(movie: movie),
                   const SizedBox(height: 16.0),
                   const MovieDetailWishlistButton(),
                   const SizedBox(height: 16.0),
-                  MoviedetailPlot(movie: movie),
+                  MovieDetailPlot(movie: movie),
                   const SizedBox(height: 8.0),
                   MovieDetailInfoList(
                     title: 'Directors',

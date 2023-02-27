@@ -26,11 +26,11 @@ void main() {
     type: 'type',
     ratings: [],
   );
-  group('MovieDetailPlot', () {
+  group(MovieDetailPlot, () {
     Widget detailPlotApp() {
       return MaterialApp(
         home: Material(
-          child: MoviedetailPlot(
+          child: MovieDetailPlot(
             movie: movieDetailEntity,
           ),
         ),
@@ -40,7 +40,7 @@ void main() {
     testWidgets('show info detail plot', (tester) async {
       await tester.pumpWidget(detailPlotApp());
 
-      expect(find.byType(MoviedetailPlot), findsOneWidget);
+      expect(find.byType(MovieDetailPlot), findsOneWidget);
       expect(find.text('plot'), findsOneWidget);
     });
   });

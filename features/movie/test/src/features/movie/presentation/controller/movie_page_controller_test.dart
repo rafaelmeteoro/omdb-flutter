@@ -17,7 +17,7 @@ void main() {
     controller = MoviePageController(getMovieDetailUseCase: useCase);
   });
 
-  group('Movie Page Controller', () {
+  group(MoviePageController, () {
     test('should return state MoviePageStateLoading when create', () async {
       // Assert
       expect(controller.value, isA<MoviePageStateLoading>());

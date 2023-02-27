@@ -47,7 +47,7 @@ void main() {
     useCase = GetMovieDetail(repository: repository);
   });
 
-  group('Movie Detail UseCase', () {
+  group(GetMovieDetail, () {
     test('should return MovieDetailEntity when repository is successfull',
         () async {
       // Arrange

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_info_list.dart';
 
 void main() {
-  group('MovieDetailInfoList', () {
+  group(MovieDetailInfoList, () {
     Widget detailInfoApp() {
       return MaterialApp(
         home: Material(

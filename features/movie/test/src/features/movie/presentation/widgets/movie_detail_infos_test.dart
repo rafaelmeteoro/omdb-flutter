@@ -71,12 +71,12 @@ void main() {
     ratings: [],
   );
 
-  group('MovieDetailInfos', () {
+  group(MovieDetailInfos, () {
     testWidgets('show info movie detail runtime N/A', (tester) async {
       Widget itemCardListApp() {
         return MaterialApp(
           home: Material(
-            child: MovideDetailInfos(
+            child: MovieDetailInfos(
               movie: movieDetailEntity,
             ),
           ),
@@ -85,7 +85,7 @@ void main() {
 
       await tester.pumpWidget(itemCardListApp());
 
-      expect(find.byType(MovideDetailInfos), findsOneWidget);
+      expect(find.byType(MovieDetailInfos), findsOneWidget);
       expect(find.text('year'), findsOneWidget);
       expect(find.text('imdbRating'), findsNWidgets(2));
       expect(find.text('N/A'), findsOneWidget);
@@ -95,7 +95,7 @@ void main() {
       Widget itemCardListApp() {
         return MaterialApp(
           home: Material(
-            child: MovideDetailInfos(
+            child: MovieDetailInfos(
               movie: movieRuntimeWithMinutes,
             ),
           ),
@@ -104,7 +104,7 @@ void main() {
 
       await tester.pumpWidget(itemCardListApp());
 
-      expect(find.byType(MovideDetailInfos), findsOneWidget);
+      expect(find.byType(MovieDetailInfos), findsOneWidget);
       expect(find.text('year'), findsOneWidget);
       expect(find.text('imdbRating'), findsNWidgets(2));
       expect(find.text('N/A'), findsNothing);
@@ -115,7 +115,7 @@ void main() {
       Widget itemCardListApp() {
         return MaterialApp(
           home: Material(
-            child: MovideDetailInfos(
+            child: MovieDetailInfos(
               movie: movieRuntimeWithoutMinutes,
             ),
           ),
@@ -124,7 +124,7 @@ void main() {
 
       await tester.pumpWidget(itemCardListApp());
 
-      expect(find.byType(MovideDetailInfos), findsOneWidget);
+      expect(find.byType(MovieDetailInfos), findsOneWidget);
       expect(find.text('year'), findsOneWidget);
       expect(find.text('imdbRating'), findsNWidgets(2));
       expect(find.text('N/A'), findsNothing);

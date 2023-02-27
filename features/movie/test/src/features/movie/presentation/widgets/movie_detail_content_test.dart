@@ -32,7 +32,7 @@ void main() {
     type: 'type',
     ratings: [],
   );
-  group('MovieDetailContent', () {
+  group(MovieDetailContent, () {
     Widget detailContentApp() {
       return MaterialApp(
         home: Material(
@@ -50,9 +50,9 @@ void main() {
       expect(find.byType(MovieDetailContent), findsOneWidget);
       expect(find.byType(MovieDetailAppBar), findsOneWidget);
       expect(find.byType(MovieDetailTitle), findsOneWidget);
-      expect(find.byType(MovideDetailInfos), findsOneWidget);
+      expect(find.byType(MovieDetailInfos), findsOneWidget);
       expect(find.byType(MovieDetailWishlistButton), findsOneWidget);
-      expect(find.byType(MoviedetailPlot), findsOneWidget);
+      expect(find.byType(MovieDetailPlot), findsOneWidget);
       expect(find.byType(MovieDetailInfoList), findsNWidgets(6));
     });
   });

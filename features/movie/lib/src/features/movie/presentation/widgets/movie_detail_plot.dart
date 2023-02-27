@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie_detail_entity.dart';
 
-class MoviedetailPlot extends StatelessWidget {
-  const MoviedetailPlot({
+class MovieDetailPlot extends StatelessWidget {
+  const MovieDetailPlot({
     Key? key,
     required this.movie,
   }) : super(key: key);

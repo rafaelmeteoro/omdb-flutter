@@ -6,7 +6,7 @@ class CustomFailure extends Failure {
 }
 
 void main() {
-  group('failure', () {
+  group(Failure, () {
     test('custom failure', () {
       // Arrange
       final exception = CustomFailure('custom failure');

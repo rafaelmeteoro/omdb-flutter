@@ -6,6 +6,7 @@ import 'package:search/src/features/search/domain/entities/movie_entity.dart';
 import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
 import 'package:search/src/features/search/domain/interfaces/search_movie_use_case.dart';
 import 'package:search/src/features/search/presentation/controller/search_page_controller.dart';
+import 'package:search/src/features/search/presentation/controller/search_page_state.dart';
 import 'package:search/src/features/search/presentation/pages/search_page.dart';
 import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 
@@ -47,6 +48,16 @@ void main() {
       );
     });
 
+    testWidgets('show loading', (tester) async {
+      // Act
+      await tester.pumpWidget(searchPageApp());
+      controller.value = SearchPageState.loading();
+      await tester.pump();
+
+      // Assert
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    });
+
     testWidgets('show text input text', (tester) async {
       // Arrange
       final resultEntity = ResultSearchEntity(
@@ -75,6 +86,41 @@ void main() {
 
       // Assert
       expect(find.text('query'), findsOneWidget);
+    });
+
+    testWidgets('click item when receive success', (tester) async {
+      // Arrange
+      final resultEntity = ResultSearchEntity(
+        search: [
+          MovieEntity(
+            imdbId: 'imdbId',
+            title: 'title',
+            year: 'year',
+            type: 'type',
+            poster: 'poster',
+          )
+        ],
+        totalResults: '1',
+        response: 'True',
+      );
+      when(() => mockUseCase.call(query: 'query')).thenAnswer(
+        (_) async => Future.value(ResultSearch.right(resultEntity)),
+      );
+      when(() => mockNavigate.onItemSearchSelected(movieId: 'imdbId'))
+          .thenAnswer((_) async => Future.value());
+
+      // Act
+      await tester.pumpWidget(searchPageApp());
+      var textField = find.byKey(Key('search_text_field'));
+      await tester.tap(textField);
+      await tester.enterText(textField, 'query');
+      await tester.pump(Duration(milliseconds: 700));
+      var itemCard = find.byKey(Key('itemCard'));
+      await tester.tap(itemCard);
+
+      // Assert
+      verify(() => mockNavigate.onItemSearchSelected(movieId: 'imdbId'))
+          .called(1);
     });
 
     testWidgets('show error message', (tester) async {
