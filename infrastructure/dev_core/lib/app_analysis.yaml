@@ -1,9 +1,14 @@
 #
 
 analyzer:
+  errors:
+    camel_case_types: error
+
   exclude:
     - lib/**/*.g.dart
-    - lib/**/*.freezed.dart    
+    - lib/**/*.freezed.dart
+    - lib/i18n/**
+    - lib/src/generated/**
 
 linter:
   rules:
