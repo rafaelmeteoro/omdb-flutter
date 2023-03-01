@@ -49,7 +49,8 @@ class MovieDetailDto extends MovieDetailEntity {
       imdbId: json['imdbID'],
       type: json['Type'],
       ratings: (json['Ratings'] as List)
-          .map((rating) => RatingDto.fromJson(rating))
+          .map((e) => e as JsonFormat)
+          .map(RatingDto.fromJson)
           .toList(),
     );
   }

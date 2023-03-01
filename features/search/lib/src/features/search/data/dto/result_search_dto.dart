@@ -25,7 +25,7 @@ class ResultSearchDto extends ResultSearchEntity {
 
     return (json['Search'] as List<dynamic>)
         .map((e) => e as JsonFormat)
-        .map((e) => MovieDto.fromJson(e))
+        .map(MovieDto.fromJson)
         .toList();
   }
 }

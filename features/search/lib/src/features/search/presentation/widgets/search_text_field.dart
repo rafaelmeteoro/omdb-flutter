@@ -12,9 +12,7 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       key: const Key('enterMovieQuery'),
-      onChanged: (query) {
-        _onQueryChanged(query);
-      },
+      onChanged: _onQueryChanged,
       decoration: InputDecoration(
         hintText: 'Search Movies',
         prefixIcon: const Icon(
