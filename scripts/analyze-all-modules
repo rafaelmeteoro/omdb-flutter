@@ -2,54 +2,54 @@
 
 set -e
 
-# if [ $CI ]; then
+if [ $CI ]; then
   echo "Realizando analise do Lint no código"
   pwd
   flutter analyze . > flutter_analyze_report.txt
   cat flutter_analyze_report.txt
   exit 0
-# fi
+fi
 
-# ## Analyze all infrastructure
-# for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-#   echo ""
-#   echo "##########################################################"
-#   echo "Checking files formart for project $directory"
-#   echo "##########################################################"
-#   scripts/analyze-module format $directory
+## Analyze all infrastructure
+for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo ""
+  echo "##########################################################"
+  echo "Checking files formart for project $directory"
+  echo "##########################################################"
+  scripts/analyze-module format $directory
 
-#   echo ""
-#   echo "##########################################################"
-#   echo "Analyze the project $directory"
-#   echo "##########################################################"
-#   scripts/analyze-module analyze $directory
-# done
+  echo ""
+  echo "##########################################################"
+  echo "Analyze the project $directory"
+  echo "##########################################################"
+  scripts/analyze-module analyze $directory
+done
 
-# ## Analyze all features
-# for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
-#   echo ""
-#   echo "##########################################################"
-#   echo "Checking files formart for project $directory"
-#   echo "##########################################################"
-#   scripts/analyze-module format $directory
+## Analyze all features
+for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
+  echo ""
+  echo "##########################################################"
+  echo "Checking files formart for project $directory"
+  echo "##########################################################"
+  scripts/analyze-module format $directory
 
-#   echo ""
-#   echo "##########################################################"
-#   echo "Analyze the project $directory"
-#   echo "##########################################################"
-#   scripts/analyze-module analyze $directory
-# done
+  echo ""
+  echo "##########################################################"
+  echo "Analyze the project $directory"
+  echo "##########################################################"
+  scripts/analyze-module analyze $directory
+done
 
-# ## Analyze app
-# app_directory='app'
-# echo ""
-# echo "##########################################################"
-# echo "Checking files formart for project $app_directory"
-# echo "##########################################################"
-# scripts/analyze-module format $app_directory
+## Analyze app
+app_directory='app'
+echo ""
+echo "##########################################################"
+echo "Checking files formart for project $app_directory"
+echo "##########################################################"
+scripts/analyze-module format $app_directory
 
-# echo ""
-# echo "##########################################################"
-# echo "Analyze the project $app_directory"
-# echo "##########################################################"
-# scripts/analyze-module analyze $app_directory
+echo ""
+echo "##########################################################"
+echo "Analyze the project $app_directory"
+echo "##########################################################"
+scripts/analyze-module analyze $app_directory
