@@ -1,8 +1,20 @@
 #
 
 analyzer:
+  #
+  #
   errors:
     camel_case_types: error
+    camel_case_extensions: error
+    library_names: error
+    file_names: error
+    library_prefixes: error
+    non_constant_identifier_names: error
+    directives_ordering: info
+    prefer_relative_imports: error
+    avoid_dynamic_calls: error
+    eol_at_end_of_file: error
+    implementation_imports: error
 
   exclude:
     - lib/**/*.g.dart
@@ -12,6 +24,16 @@ analyzer:
 
 linter:
   rules:
+    # Effective Dart Style
+    - camel_case_types
+    - camel_case_extensions
+    - library_names
+    - file_names
+    - library_prefixes
+    - non_constant_identifier_names
+    - constant_identifier_names
+    - directives_ordering
+
     - avoid_print
     - avoid_unnecessary_containers
     - avoid_web_libraries_in_flutter
