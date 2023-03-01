@@ -7,16 +7,16 @@ import '../domain/interfaces/search_movie_repository.dart';
 import 'dto/result_search_dto.dart';
 
 class RemoteSearchMovieRepository implements SearchMovieRepository {
-  final Dio _dio;
-
   RemoteSearchMovieRepository({
     required Dio dio,
   }) : _dio = dio;
 
+  final Dio _dio;
+
   @override
   Future<ResultSearch> call({required String title}) async {
     try {
-      final Response response = await _dio.get(
+      final response = await _dio.get(
         '/',
         queryParameters: {'s': title},
       );
@@ -32,8 +32,9 @@ class RemoteSearchMovieRepository implements SearchMovieRepository {
           return ResultSearch.right(resultDto);
         }
       } else {
+        final responseMap = response.data as JsonFormat;
         return ResultSearch.left(
-          ServerFailure(message: response.data['message']),
+          ServerFailure(message: responseMap['message']),
         );
       }
     } on DioError catch (error, stackTrace) {

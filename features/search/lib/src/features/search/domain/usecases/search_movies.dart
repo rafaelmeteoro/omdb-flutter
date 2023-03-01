@@ -4,15 +4,15 @@ import '../interfaces/search_movie_repository.dart';
 import '../interfaces/search_movie_use_case.dart';
 
 class SearchMovie implements SearchMovieUseCase {
-  final SearchMovieRepository _repository;
-
   SearchMovie({
     required SearchMovieRepository repository,
   }) : _repository = repository;
 
+  final SearchMovieRepository _repository;
+
   @override
   Future<ResultSearch> call({required String query}) async {
-    final bool isShortQuery = query.replaceAll(' ', '').length < 3;
+    final isShortQuery = query.replaceAll(' ', '').length < 3;
     if (isShortQuery) {
       return ResultSearch.left(
         const ShortTitleFailure(

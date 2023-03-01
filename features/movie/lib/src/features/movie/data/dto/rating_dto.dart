@@ -4,12 +4,9 @@ import '../../domain/entities/rating_entity.dart';
 
 class RatingDto extends RatingEntity {
   const RatingDto({
-    required String source,
-    required String value,
-  }) : super(
-          source: source,
-          value: value,
-        );
+    required super.source,
+    required super.value,
+  });
 
   factory RatingDto.fromJson(JsonFormat json) {
     return RatingDto(

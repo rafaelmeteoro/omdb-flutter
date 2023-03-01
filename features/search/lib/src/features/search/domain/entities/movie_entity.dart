@@ -1,12 +1,6 @@
 import 'package:core/domain.dart';
 
 class MovieEntity extends Equatable {
-  final String imdbId;
-  final String title;
-  final String year;
-  final String type;
-  final String poster;
-
   const MovieEntity({
     required this.imdbId,
     required this.title,
@@ -14,6 +8,12 @@ class MovieEntity extends Equatable {
     required this.type,
     required this.poster,
   });
+
+  final String imdbId;
+  final String title;
+  final String year;
+  final String type;
+  final String poster;
 
   @override
   List<Object?> get props => [

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class MovieDetailError extends StatelessWidget {
   const MovieDetailError({
-    Key? key,
+    super.key,
     required this.message,
-  }) : super(key: key);
+  });
 
   final String message;
 

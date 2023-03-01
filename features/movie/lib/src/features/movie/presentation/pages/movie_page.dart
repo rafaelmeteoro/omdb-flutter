@@ -6,14 +6,13 @@ import '../widgets/movie_detail_content.dart';
 import '../widgets/movie_detail_error.dart';
 
 class MoviePage extends StatefulWidget {
-  final String id;
-
   const MoviePage({
-    Key? key,
+    super.key,
     required this.id,
     required this.controller,
-  }) : super(key: key);
+  });
 
+  final String id;
   final MoviePageController controller;
 
   @override

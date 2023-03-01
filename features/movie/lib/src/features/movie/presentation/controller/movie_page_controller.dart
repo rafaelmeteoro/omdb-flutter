@@ -4,12 +4,12 @@ import '../../domain/interfaces/get_movie_detail_use_case.dart';
 import 'movie_page_state.dart';
 
 class MoviePageController extends ValueNotifier<MoviePageState> {
-  final GetMovieDetailUseCase _getMovieDetailUseCase;
-
   MoviePageController({
     required GetMovieDetailUseCase getMovieDetailUseCase,
   })  : _getMovieDetailUseCase = getMovieDetailUseCase,
         super(const MoviePageState.loading());
+
+  final GetMovieDetailUseCase _getMovieDetailUseCase;
 
   Future<void> getMovieDetail({required String id}) async {
     value = const MoviePageState.loading();

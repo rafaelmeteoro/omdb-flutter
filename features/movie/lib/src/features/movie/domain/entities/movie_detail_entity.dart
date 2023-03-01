@@ -3,27 +3,6 @@ import 'package:core/domain.dart';
 import 'rating_entity.dart';
 
 class MovieDetailEntity extends Equatable {
-  final String title;
-  final String year;
-  final String rated;
-  final String released;
-  final String runtime;
-  final List<String> genre;
-  final List<String> director;
-  final List<String> writer;
-  final List<String> actors;
-  final String plot;
-  final List<String> language;
-  final List<String> country;
-  final String awards;
-  final String poster;
-  final String metascore;
-  final String imdbRating;
-  final String imdbVotes;
-  final String imdbId;
-  final String type;
-  final List<RatingEntity> ratings;
-
   const MovieDetailEntity({
     required this.title,
     required this.year,
@@ -47,6 +26,27 @@ class MovieDetailEntity extends Equatable {
     required this.ratings,
   });
 
+  final String title;
+  final String year;
+  final String rated;
+  final String released;
+  final String runtime;
+  final List<String> genre;
+  final List<String> director;
+  final List<String> writer;
+  final List<String> actors;
+  final String plot;
+  final List<String> language;
+  final List<String> country;
+  final String awards;
+  final String poster;
+  final String metascore;
+  final String imdbRating;
+  final String imdbVotes;
+  final String imdbId;
+  final String type;
+  final List<RatingEntity> ratings;
+
   @override
   List<Object?> get props => [
         title,
@@ -68,6 +68,6 @@ class MovieDetailEntity extends Equatable {
         imdbVotes,
         imdbId,
         type,
-        ratings
+        ratings,
       ];
 }

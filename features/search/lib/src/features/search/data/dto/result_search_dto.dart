@@ -5,14 +5,10 @@ import 'movie_dto.dart';
 
 class ResultSearchDto extends ResultSearchEntity {
   const ResultSearchDto({
-    required List<MovieDto> search,
-    required String? totalResults,
-    required String response,
-  }) : super(
-          search: search,
-          totalResults: totalResults,
-          response: response,
-        );
+    required List<MovieDto> super.search,
+    required super.totalResults,
+    required super.response,
+  });
 
   factory ResultSearchDto.fromJson(JsonFormat json) {
     return ResultSearchDto(
@@ -23,7 +19,9 @@ class ResultSearchDto extends ResultSearchEntity {
   }
 
   static List<MovieDto> _parseMovies(JsonFormat json) {
-    if (json['Search'] == null) return [];
+    if (json['Search'] == null) {
+      return [];
+    }
 
     return (json['Search'] as List<dynamic>)
         .map((e) => e as JsonFormat)

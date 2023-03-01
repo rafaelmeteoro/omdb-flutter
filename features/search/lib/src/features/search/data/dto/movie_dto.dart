@@ -4,18 +4,12 @@ import '../../domain/entities/movie_entity.dart';
 
 class MovieDto extends MovieEntity {
   const MovieDto({
-    required String imdbId,
-    required String title,
-    required String year,
-    required String type,
-    required String poster,
-  }) : super(
-          imdbId: imdbId,
-          title: title,
-          year: year,
-          type: type,
-          poster: poster,
-        );
+    required super.imdbId,
+    required super.title,
+    required super.year,
+    required super.type,
+    required super.poster,
+  });
 
   factory MovieDto.fromJson(JsonFormat json) {
     return MovieDto(
