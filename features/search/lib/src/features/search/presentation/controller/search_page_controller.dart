@@ -4,12 +4,12 @@ import '../../domain/interfaces/search_movie_use_case.dart';
 import 'search_page_state.dart';
 
 class SearchPageController extends ValueNotifier<SearchPageState> {
-  final SearchMovieUseCase _searchMovieUseCase;
-
   SearchPageController({
     required SearchMovieUseCase searchMovieUseCase,
   })  : _searchMovieUseCase = searchMovieUseCase,
         super(const SearchPageState.empty());
+
+  final SearchMovieUseCase _searchMovieUseCase;
 
   Future<void> searchMovie({required String query}) async {
     value = const SearchPageState.loading();

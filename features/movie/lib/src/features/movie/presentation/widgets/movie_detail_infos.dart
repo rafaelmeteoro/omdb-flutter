@@ -4,9 +4,9 @@ import '../../domain/entities/movie_detail_entity.dart';
 
 class MovieDetailInfos extends StatelessWidget {
   const MovieDetailInfos({
-    Key? key,
+    super.key,
     required this.movie,
-  }) : super(key: key);
+  });
 
   final MovieDetailEntity movie;
 
@@ -74,11 +74,13 @@ class MovieDetailInfos extends StatelessWidget {
   }
 
   String _showDuration(String runtime) {
-    if (runtime == 'N/A') return runtime;
+    if (runtime == 'N/A') {
+      return runtime;
+    }
     final timeMinutesString = runtime.split(' ')[0];
     final timeMinutes = int.parse(timeMinutesString);
-    final int hours = timeMinutes ~/ 60;
-    final int minutes = timeMinutes % 60;
+    final hours = timeMinutes ~/ 60;
+    final minutes = timeMinutes % 60;
 
     if (hours > 0) {
       return '${hours}h ${minutes}m';

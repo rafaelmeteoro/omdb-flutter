@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class MovieDetailWishlistButton extends StatelessWidget {
   const MovieDetailWishlistButton({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

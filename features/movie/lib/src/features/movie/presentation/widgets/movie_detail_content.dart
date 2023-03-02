@@ -11,9 +11,9 @@ import 'movie_detail_wishlist_button.dart';
 
 class MovieDetailContent extends StatelessWidget {
   const MovieDetailContent({
-    Key? key,
+    super.key,
     required this.movie,
-  }) : super(key: key);
+  });
 
   final MovieDetailEntity movie;
 

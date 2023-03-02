@@ -7,16 +7,16 @@ import '../domain/interfaces/movie_detail_repository.dart';
 import 'dto/movie_detail_dto.dart';
 
 class RemoteMovieDetailRepository implements MovieDetailRepository {
-  final Dio _dio;
-
   RemoteMovieDetailRepository({
     required Dio dio,
   }) : _dio = dio;
 
+  final Dio _dio;
+
   @override
   Future<MovieDetail> call({required String id}) async {
     try {
-      final Response response = await _dio.get(
+      final response = await _dio.get(
         '/',
         queryParameters: {'i': id},
       );
@@ -26,8 +26,9 @@ class RemoteMovieDetailRepository implements MovieDetailRepository {
         final movieDetailDto = MovieDetailDto.fromJson(responseMap);
         return MovieDetail.right(movieDetailDto);
       } else {
+        final responseMap = response.data as JsonFormat;
         return MovieDetail.left(
-          ServerFailure(message: response.data['message']),
+          ServerFailure(message: responseMap['message']),
         );
       }
     } on DioError catch (error, stackStrace) {

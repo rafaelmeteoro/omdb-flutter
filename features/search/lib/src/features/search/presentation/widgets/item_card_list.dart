@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import '../../domain/entities/movie_entity.dart';
 
 class ItemCard extends StatelessWidget {
-  final MovieEntity _movie;
-  final Function(MovieEntity movie) _onPressed;
-
   const ItemCard({
-    Key? key,
+    super.key,
     required MovieEntity movie,
     required Function(MovieEntity movie) onPressed,
   })  : _movie = movie,
-        _onPressed = onPressed,
-        super(key: key);
+        _onPressed = onPressed;
+
+  final MovieEntity _movie;
+  final Function(MovieEntity movie) _onPressed;
 
   @override
   Widget build(BuildContext context) {

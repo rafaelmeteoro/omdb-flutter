@@ -1,19 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 
 import '../controller/search_page_controller.dart';
 import '../controller/search_page_state.dart';
 import '../widgets/item_card_list.dart';
 import '../widgets/search_text_field.dart';
+import 'search_page_delegate.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({
-    Key? key,
+    super.key,
     required this.controller,
     required this.navigate,
-  }) : super(key: key);
+  });
 
   final SearchPageController controller;
   final SearchPageDelegate navigate;
@@ -48,7 +48,9 @@ class _SearchPageState extends State<SearchPage> {
             SearchTextField(
               key: const Key('search_text_field'),
               onQueryChanged: (query) {
-                if (_debounce?.isActive ?? false) _debounce?.cancel();
+                if (_debounce?.isActive ?? false) {
+                  _debounce?.cancel();
+                }
                 _debounce = Timer(const Duration(milliseconds: 700), () {
                   _controller.searchMovie(query: query);
                 });

@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatelessWidget {
-  final Function(String query) _onQueryChanged;
-
   const SearchTextField({
-    Key? key,
+    super.key,
     required Function(String query) onQueryChanged,
-  })  : _onQueryChanged = onQueryChanged,
-        super(key: key);
+  }) : _onQueryChanged = onQueryChanged;
+
+  final Function(String query) _onQueryChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       key: const Key('enterMovieQuery'),
-      onChanged: (query) {
-        _onQueryChanged(query);
-      },
+      onChanged: _onQueryChanged,
       decoration: InputDecoration(
         hintText: 'Search Movies',
         prefixIcon: const Icon(

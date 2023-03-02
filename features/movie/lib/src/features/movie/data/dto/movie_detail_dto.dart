@@ -5,48 +5,27 @@ import 'rating_dto.dart';
 
 class MovieDetailDto extends MovieDetailEntity {
   const MovieDetailDto({
-    required String title,
-    required String year,
-    required String rated,
-    required String released,
-    required String runtime,
-    required List<String> genre,
-    required List<String> director,
-    required List<String> writer,
-    required List<String> actors,
-    required String plot,
-    required List<String> language,
-    required List<String> country,
-    required String awards,
-    required String poster,
-    required String metascore,
-    required String imdbRating,
-    required String imdbVotes,
-    required String imdbId,
-    required String type,
-    required List<RatingDto> ratings,
-  }) : super(
-          title: title,
-          year: year,
-          rated: rated,
-          released: released,
-          runtime: runtime,
-          genre: genre,
-          director: director,
-          writer: writer,
-          actors: actors,
-          plot: plot,
-          language: language,
-          country: country,
-          awards: awards,
-          poster: poster,
-          metascore: metascore,
-          imdbRating: imdbRating,
-          imdbVotes: imdbVotes,
-          imdbId: imdbId,
-          type: type,
-          ratings: ratings,
-        );
+    required super.title,
+    required super.year,
+    required super.rated,
+    required super.released,
+    required super.runtime,
+    required super.genre,
+    required super.director,
+    required super.writer,
+    required super.actors,
+    required super.plot,
+    required super.language,
+    required super.country,
+    required super.awards,
+    required super.poster,
+    required super.metascore,
+    required super.imdbRating,
+    required super.imdbVotes,
+    required super.imdbId,
+    required super.type,
+    required List<RatingDto> super.ratings,
+  });
 
   factory MovieDetailDto.fromJson(JsonFormat json) {
     return MovieDetailDto(
@@ -70,7 +49,8 @@ class MovieDetailDto extends MovieDetailEntity {
       imdbId: json['imdbID'],
       type: json['Type'],
       ratings: (json['Ratings'] as List)
-          .map((rating) => RatingDto.fromJson(rating))
+          .map((e) => e as JsonFormat)
+          .map(RatingDto.fromJson)
           .toList(),
     );
   }

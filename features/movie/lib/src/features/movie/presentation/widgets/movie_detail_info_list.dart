@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class MovieDetailInfoList extends StatelessWidget {
   const MovieDetailInfoList({
-    Key? key,
+    super.key,
     required this.title,
     required this.values,
-  }) : super(key: key);
+  });
 
   final String title;
   final List<String> values;
@@ -24,13 +24,15 @@ class MovieDetailInfoList extends StatelessWidget {
   }
 
   String _showValues(List<String> genres) {
-    String result = '';
-    for (var genre in genres) {
-      result += genre + ', ';
+    final result = StringBuffer();
+    for (final genre in genres) {
+      result.write('$genre, ');
     }
 
-    if (result.isEmpty) return result;
+    if (result.isEmpty) {
+      return result.toString();
+    }
 
-    return result.substring(0, result.length - 2);
+    return result.toString().substring(0, result.length - 2);
   }
 }

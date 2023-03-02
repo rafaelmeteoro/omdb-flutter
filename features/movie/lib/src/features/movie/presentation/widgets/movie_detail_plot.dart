@@ -4,9 +4,9 @@ import '../../domain/entities/movie_detail_entity.dart';
 
 class MovieDetailPlot extends StatelessWidget {
   const MovieDetailPlot({
-    Key? key,
+    super.key,
     required this.movie,
-  }) : super(key: key);
+  });
 
   final MovieDetailEntity movie;
 

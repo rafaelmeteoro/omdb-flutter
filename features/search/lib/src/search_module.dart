@@ -1,6 +1,5 @@
 import 'package:core/domain.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:search/src/features/search/presentation/pages/search_page_delegate.dart';
 
 import 'features/search/data/remote_search_movie_repository.dart';
 import 'features/search/domain/interfaces/search_movie_repository.dart';
@@ -8,6 +7,7 @@ import 'features/search/domain/interfaces/search_movie_use_case.dart';
 import 'features/search/domain/usecases/search_movies.dart';
 import 'features/search/presentation/controller/search_page_controller.dart';
 import 'features/search/presentation/pages/search_page.dart';
+import 'features/search/presentation/pages/search_page_delegate.dart';
 
 class SearchModule extends Module {
   @override
