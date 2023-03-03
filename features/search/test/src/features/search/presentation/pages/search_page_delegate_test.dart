@@ -28,5 +28,18 @@ void main() {
       // Assert
       verify(() => navigate.pushNamed('/movie/', arguments: 'movieId'));
     });
+
+    test('call favorites page when onActionClick is called', () async {
+      // Arrange
+      when(
+        () => navigate.pushNamed(any()),
+      ).thenAnswer((_) async => Future.value());
+
+      // Act
+      await delegate.onActionClick();
+
+      // Assert
+      verify(() => navigate.pushNamed('/favorites/'));
+    });
   });
 }

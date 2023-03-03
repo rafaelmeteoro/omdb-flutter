@@ -1,5 +1,6 @@
 import 'package:core/domain.dart';
 import 'package:core/presentation.dart';
+import 'package:favorites/favorites.dart';
 import 'package:movie/movie.dart';
 import 'package:search/search.dart';
 
@@ -35,5 +36,6 @@ class AppModule extends Module {
   List<ModularRoute> get routes => [
         ModuleRoute('/', module: SearchModule()),
         ModuleRoute('/movie', module: MovieModule()),
+        ModuleRoute('/favorites', module: FavoritesModule()),
       ];
 }
