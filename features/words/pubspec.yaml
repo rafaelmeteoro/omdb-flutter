@@ -1,4 +1,4 @@
-name: favorites
+name: words
 description: A new Flutter package project.
 publish_to: none
 version: 0.0.2
@@ -15,8 +15,6 @@ dependencies:
     path: "../../infrastructure/core"
   app_core:
     path: "../../infrastructure/app_core"
-  words:
-    path: "../words"
 
 dev_dependencies:
   flutter_test:

@@ -1,24 +1,24 @@
+import 'package:favorites/favorites.dart';
 import 'package:flutter/material.dart';
+import 'package:words/words.dart';
 
-import '../../../list/presentation/pages/movie_list_page.dart';
-import '../../../words/presentation/pages/words_page.dart';
-
-class FavoritesPage extends StatefulWidget {
-  const FavoritesPage({super.key});
+class BoardPage extends StatefulWidget {
+  const BoardPage({super.key});
 
   @override
-  State<FavoritesPage> createState() => _FavoritesPageState();
+  State<BoardPage> createState() => _BoardPageState();
 }
 
-class _FavoritesPageState extends State<FavoritesPage> {
+class _BoardPageState extends State<BoardPage> {
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorites'),
       ),
-      body: _FavoritesBoardBody(selectedBody: _selectedIndex),
+      body: _BoardBody(selectedBody: _selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         onTap: _onSelectedItem,
@@ -47,8 +47,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
   }
 }
 
-class _FavoritesBoardBody extends StatelessWidget {
-  const _FavoritesBoardBody({
+class _BoardBody extends StatelessWidget {
+  const _BoardBody({
     required this.selectedBody,
   });
 
@@ -58,9 +58,9 @@ class _FavoritesBoardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return IndexedStack(
       index: selectedBody,
-      children: const [
-        MovieListPage(),
-        WordsPage(),
+      children: [
+        FavoritesWidgetModule(),
+        WordsWidgetModule(),
       ],
     );
   }

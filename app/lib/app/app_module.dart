@@ -1,8 +1,10 @@
+import 'package:board/board.dart';
 import 'package:core/domain.dart';
 import 'package:core/presentation.dart';
 import 'package:favorites/favorites.dart';
 import 'package:movie/movie.dart';
 import 'package:search/search.dart';
+import 'package:words/words.dart';
 
 import 'core/api_config.dart';
 import 'core/token_interceptor.dart';
@@ -37,5 +39,7 @@ class AppModule extends Module {
         ModuleRoute('/', module: SearchModule()),
         ModuleRoute('/movie', module: MovieModule()),
         ModuleRoute('/favorites', module: FavoritesModule()),
+        ModuleRoute('/words', module: WordsModule()),
+        ModuleRoute('/board', module: BoardModule()),
       ];
 }

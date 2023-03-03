@@ -39,7 +39,7 @@ void main() {
       await delegate.onActionClick();
 
       // Assert
-      verify(() => navigate.pushNamed('/favorites/'));
+      verify(() => navigate.pushNamed('/board/'));
     });
   });
 }

@@ -18,6 +18,10 @@ dependencies:
     path: "../features/movie"
   favorites:
     path: "../features/favorites"
+  words:
+    path: "../features/words"
+  board:
+    path: "../features/board"
 
 dev_dependencies:
   flutter_test:
