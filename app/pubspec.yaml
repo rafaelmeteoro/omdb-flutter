@@ -16,6 +16,8 @@ dependencies:
     path: "../features/search"
   movie:
     path: "../features/movie"
+  favorites:
+    path: "../features/favorites"
 
 dev_dependencies:
   flutter_test:

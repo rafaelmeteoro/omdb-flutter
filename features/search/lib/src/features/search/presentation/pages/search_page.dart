@@ -39,6 +39,15 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Search Movie'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.favorite),
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
