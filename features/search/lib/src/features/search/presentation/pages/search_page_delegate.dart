@@ -4,6 +4,7 @@ abstract class SearchPageDelegate {
   Future<void> onItemSearchSelected({
     required String movieId,
   });
+  Future<void> onActionClick();
 }
 
 class SearchPageFlow implements SearchPageDelegate {
@@ -13,5 +14,10 @@ class SearchPageFlow implements SearchPageDelegate {
       '/movie/',
       arguments: movieId,
     );
+  }
+
+  @override
+  Future<void> onActionClick() async {
+    await Modular.to.pushNamed('/favorites/');
   }
 }

@@ -43,7 +43,10 @@ class _SearchPageState extends State<SearchPage> {
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: IconButton(
-              onPressed: () {},
+              key: const Key('favorite_icon'),
+              onPressed: () {
+                _navigate.onActionClick();
+              },
               icon: const Icon(Icons.favorite),
             ),
           ),

@@ -48,6 +48,22 @@ void main() {
       );
     });
 
+    testWidgets('show icon favorites and click', (tester) async {
+      // Arrange
+      when(() => mockNavigate.onActionClick()).thenAnswer(
+        (_) async => Future.value(),
+      );
+
+      // Act
+      await tester.pumpWidget(searchPageApp());
+      var favoriteIcon = find.byKey(Key('favorite_icon'));
+      await tester.tap(favoriteIcon);
+
+      // Assert
+      expect(favoriteIcon, findsOneWidget);
+      verify(() => mockNavigate.onActionClick()).called(1);
+    });
+
     testWidgets('show loading', (tester) async {
       // Act
       await tester.pumpWidget(searchPageApp());
@@ -106,8 +122,9 @@ void main() {
       when(() => mockUseCase.call(query: 'query')).thenAnswer(
         (_) async => Future.value(ResultSearch.right(resultEntity)),
       );
-      when(() => mockNavigate.onItemSearchSelected(movieId: 'imdbId'))
-          .thenAnswer((_) async => Future.value());
+      when(
+        () => mockNavigate.onItemSearchSelected(movieId: 'imdbId'),
+      ).thenAnswer((_) async => Future.value());
 
       // Act
       await tester.pumpWidget(searchPageApp());
@@ -119,15 +136,17 @@ void main() {
       await tester.tap(itemCard);
 
       // Assert
-      verify(() => mockNavigate.onItemSearchSelected(movieId: 'imdbId'))
-          .called(1);
+      verify(
+        () => mockNavigate.onItemSearchSelected(movieId: 'imdbId'),
+      ).called(1);
     });
 
     testWidgets('show error message', (tester) async {
       // Arrange
       when(() => mockUseCase.call(query: 'query')).thenAnswer(
         (_) async => Future.value(
-            ResultSearch.left(ShortTitleFailure(message: 'short title'))),
+          ResultSearch.left(ShortTitleFailure(message: 'short title')),
+        ),
       );
 
       // Act
