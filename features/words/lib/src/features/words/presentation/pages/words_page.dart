@@ -6,7 +6,7 @@ class WordsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Words'),
+      child: Text('Words Module'),
     );
   }
 }

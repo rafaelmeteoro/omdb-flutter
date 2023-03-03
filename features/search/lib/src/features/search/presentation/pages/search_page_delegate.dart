@@ -18,6 +18,6 @@ class SearchPageFlow implements SearchPageDelegate {
 
   @override
   Future<void> onActionClick() async {
-    await Modular.to.pushNamed('/favorites/');
+    await Modular.to.pushNamed('/board/');
   }
 }
