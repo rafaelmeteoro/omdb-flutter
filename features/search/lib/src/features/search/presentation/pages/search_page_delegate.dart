@@ -10,7 +10,7 @@ class SearchPageFlow implements SearchPageDelegate {
   @override
   Future<void> onItemSearchSelected({required String movieId}) async {
     await Modular.to.pushNamed(
-      '/movie',
+      '/movie/',
       arguments: movieId,
     );
   }

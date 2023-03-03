@@ -38,7 +38,7 @@ class RemoteSearchMovieRepository implements SearchMovieRepository {
         );
       }
     } on DioError catch (error, stackTrace) {
-      if (error.type == DioErrorType.connectTimeout) {
+      if (error.type == DioErrorType.connectionTimeout) {
         return ResultSearch.left(
           const ServerFailure(message: 'No internet connection. Try again.'),
         );

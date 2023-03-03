@@ -32,7 +32,7 @@ class RemoteMovieDetailRepository implements MovieDetailRepository {
         );
       }
     } on DioError catch (error, stackStrace) {
-      if (error.type == DioErrorType.connectTimeout) {
+      if (error.type == DioErrorType.connectionTimeout) {
         return MovieDetail.left(
           const ServerFailure(message: 'No internet connection. Try again.'),
         );
