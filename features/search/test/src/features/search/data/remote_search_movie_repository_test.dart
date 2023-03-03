@@ -102,7 +102,7 @@ void main() {
       const title = '12345';
       when(() => dioMock.get('/', queryParameters: {'s': title})).thenThrow(
         DioError(
-          type: DioErrorType.connectTimeout,
+          type: DioErrorType.connectionTimeout,
           requestOptions: RequestOptions(path: '/'),
         ),
       );

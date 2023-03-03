@@ -26,7 +26,7 @@ void main() {
       await delegate.onItemSearchSelected(movieId: 'movieId');
 
       // Assert
-      verify(() => navigate.pushNamed('/movie', arguments: 'movieId'));
+      verify(() => navigate.pushNamed('/movie/', arguments: 'movieId'));
     });
   });
 }

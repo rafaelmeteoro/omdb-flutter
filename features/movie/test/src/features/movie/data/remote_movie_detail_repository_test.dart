@@ -76,7 +76,7 @@ void main() {
       const id = '1234';
       when(() => dioMock.get('/', queryParameters: {'i': id})).thenThrow(
         DioError(
-          type: DioErrorType.connectTimeout,
+          type: DioErrorType.connectionTimeout,
           requestOptions: RequestOptions(path: '/'),
         ),
       );

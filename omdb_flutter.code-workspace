@@ -20,9 +20,17 @@
   "settings": {
     "editor.tabSize": 2,
     "files.insertFinalNewline": true,
+    "dart.lineLength": 120,
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
     "dart.renameFilesWithClasses": "prompt",
+    "[dart]": {
+      "editor.formatOnSave": true,
+      "editor.formatOnType": true,
+      "editor.rulers": [
+        120
+      ]
+    },
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
@@ -35,7 +43,7 @@
       "app": true
     },
     "makefile.extensionOutputFolder": "./.vscode",
-    "editor.insertSpaces": false,
+    "editor.insertSpaces": true,
     "editor.formatOnSave": true,
     "editor.renderFinalNewline": "on",
     "editor.codeActionsOnSave": {
