@@ -32,14 +32,12 @@ void main() {
     useCase = SearchMovie(repository: repository);
   });
 
-  group('Search Movies UseCase', () {
-    test(
-        'should return ResultSearchEntity when execute to repository is successfull and when query.lenght > 3',
+  group(SearchMovieUseCase, () {
+    test('should return ResultSearchEntity when execute to repository is successfull and when query.lenght > 3',
         () async {
       // Arrange
       const String query = 'anything more than 3 characters';
-      when(() => repository.call(title: query))
-          .thenAnswer((_) async => ResultSearch.right(searchMock));
+      when(() => repository.call(title: query)).thenAnswer((_) async => ResultSearch.right(searchMock));
 
       // Act
       final result = await useCase.call(query: query);
@@ -53,13 +51,11 @@ void main() {
       verifyNoMoreInteractions(repository);
     });
 
-    test(
-        'should return ResultSearchEntity when execute to repository is successfull and when query.lenght = 3',
+    test('should return ResultSearchEntity when execute to repository is successfull and when query.lenght = 3',
         () async {
       // Arrange
       const String query = '123';
-      when(() => repository.call(title: query))
-          .thenAnswer((_) async => ResultSearch.right(searchMock));
+      when(() => repository.call(title: query)).thenAnswer((_) async => ResultSearch.right(searchMock));
 
       // Act
       final result = await useCase.call(query: query);

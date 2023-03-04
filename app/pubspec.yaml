@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   core:
     path: "../infrastructure/core"
+  words_storage_manager:
+    path: "../infrastructure/words_storage_manager"
   search:
     path: "../features/search"
   movie:
