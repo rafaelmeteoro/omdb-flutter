@@ -62,7 +62,7 @@ void main() {
     test('put() must not storage same value more than once', () async {
       // Arrange
       final key = 'put_test';
-      sut.setBox(name: 'put_tb');
+      sut.setBox(name: 'put_once_tb');
 
       // Act
       final result1 = await sut.put(key, 'banana');
