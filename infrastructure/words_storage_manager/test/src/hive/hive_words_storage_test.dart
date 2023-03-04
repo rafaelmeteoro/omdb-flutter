@@ -32,13 +32,25 @@ void main() {
   });
 
   group(HiveWordsStorage, () {
+    test('open box catch exception', () async {
+      // Arrange
+      final key = 'read_box_exception';
+      when(() => mockHiveInterface.openBox(any())).thenThrow(Exception());
+
+      // Act
+      try {
+        await sut.read(key);
+      } catch (e) {
+        // Assert
+        expect(e, isA<WordsStorageException>());
+      }
+    });
+
     test('read() must retrieve empty list from key without previews data', () async {
       // Arrange
       final key = 'read_test_empty';
       when(() => mockHiveInterface.openBox(any())).thenAnswer((_) async => mockHiveBox);
       when(() => mockHiveBox.get(key)).thenAnswer((_) => null);
-
-      sut.setBox(name: 'read_empty_tb');
 
       // Act
       final data = await sut.read(key);
@@ -52,7 +64,6 @@ void main() {
       final key = 'read_exception_test';
       when(() => mockHiveInterface.openBox(any())).thenAnswer((_) async => mockHiveBox);
       when(() => mockHiveBox.get(key)).thenThrow(Exception());
-      sut.setBox(name: 'read_exception_tb');
 
       // Act
       try {
@@ -68,7 +79,6 @@ void main() {
       final key = 'put_test';
       // Testando com a instância do hive e verificando a unicidade da persistência
       sut = HiveWordsStorage(hive: Hive);
-      sut.setBox(name: 'put_tb');
 
       // Act
       final result1 = await sut.put(key, 'banana');
@@ -92,7 +102,6 @@ void main() {
       final key = 'put_exception_test';
       when(() => mockHiveInterface.openBox(any())).thenAnswer((_) async => mockHiveBox);
       when(() => mockHiveBox.get(key)).thenThrow(Exception());
-      sut.setBox(name: 'put_exception_tb');
 
       // Act
       try {
@@ -108,7 +117,6 @@ void main() {
       final key = 'delete_test';
       // Testando com a instância do hive e verificando a remoção do value
       sut = HiveWordsStorage(hive: Hive);
-      sut.setBox(name: 'delete_tb');
 
       // Act
       await sut.put(key, 'banana');
@@ -128,7 +136,6 @@ void main() {
       final key = 'delete_exception_test';
       when(() => mockHiveInterface.openBox(any())).thenAnswer((_) async => mockHiveBox);
       when(() => mockHiveBox.get(key)).thenThrow(Exception());
-      sut.setBox(name: 'delete_exception_tb');
 
       // Act
       try {

@@ -10,7 +10,6 @@ import '../interfaces/words_storage.dart';
 ///
 /// ```dart
 /// final wordsStorage = HiveWordsStorage(Hive);
-/// wordsStorage.setBox(name: 'my_box_name');
 ///
 /// try {
 ///   final result = await wordsStorage.read('my_key');
@@ -23,26 +22,17 @@ class HiveWordsStorage implements WordsStorage {
     required HiveInterface hive,
   }) : _hive = hive;
 
+  static const String wordsBox = 'words_box';
   final HiveInterface _hive;
-  final Completer<Box> _completer = Completer<Box>();
-  String? _boxName;
 
-  /// Define o nome do tablesspace que será utilizado no [HiveWordsStorage]
-  ///
-  /// ```dart
-  /// final wordsStorage = HiveWordsStorage(Hive);
-  /// wordsStorage.setBox(name: 'my_box_name');
-  /// ```
-  @override
-  void setBox({required String name}) {
-    _boxName = name;
-    _init();
-  }
-
-  Future<void> _init() async {
-    await _hive.initFlutter();
-    final box = await _hive.openBox('$_boxName');
-    _completer.complete(box);
+  Future<Box> _openBox(String name) async {
+    try {
+      await _hive.initFlutter();
+      final box = await _hive.openBox(name);
+      return box;
+    } catch (e) {
+      throw WordsStorageException(message: '$e');
+    }
   }
 
   /// Recupera a estrutura de dados na chame [key]
@@ -56,9 +46,8 @@ class HiveWordsStorage implements WordsStorage {
   /// ```
   @override
   Future<List<String>> read(String key) async {
-    final box = await _completer.future;
-
     try {
+      final box = await _openBox(wordsBox);
       final response = await box.get(key);
       return response ?? [];
     } catch (e) {
@@ -76,9 +65,8 @@ class HiveWordsStorage implements WordsStorage {
   /// }
   @override
   Future<Unit> put(String key, String value) async {
-    final box = await _completer.future;
-
     try {
+      final box = await _openBox(wordsBox);
       final wordsStorage = await read(key);
       final wordsSet = wordsStorage.toSet()..add(value);
       await box.put(key, wordsSet.toList());
@@ -98,9 +86,8 @@ class HiveWordsStorage implements WordsStorage {
   /// }
   @override
   Future<Unit> delete(String key, String value) async {
-    final box = await _completer.future;
-
     try {
+      final box = await _openBox(wordsBox);
       final wordsStorage = await read(key);
       final wordsSet = wordsStorage.toSet()..remove(value);
       await box.put(key, wordsSet.toList());
