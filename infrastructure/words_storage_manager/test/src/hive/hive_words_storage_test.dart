@@ -76,5 +76,23 @@ void main() {
       expect(result3, isA<Unit>());
       expect(data, ['banana']);
     });
+
+    test('delete() must remove value', () async {
+      // Arrange
+      final key = 'delete_test';
+      sut.setBox(name: 'delete_tb');
+
+      // Act
+      await sut.put(key, 'banana');
+      await sut.put(key, 'maça');
+      await sut.put(key, 'mamão');
+
+      final result = await sut.delete(key, 'maça');
+      final data = await sut.read(key);
+
+      // Assert
+      expect(result, isA<Unit>());
+      expect(data, ['banana', 'mamão']);
+    });
   });
 }

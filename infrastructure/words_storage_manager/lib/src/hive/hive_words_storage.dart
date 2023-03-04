@@ -87,4 +87,26 @@ class HiveWordsStorage implements WordsStorage {
       throw WordsStorageException(message: '$e');
     }
   }
+
+  /// Apaga o dado [value] na chave [key]
+  ///
+  /// ```dart
+  /// try {
+  ///   final result = await wordsStorage.delete('mey_key', value);
+  /// } catch (e) {
+  ///   ...
+  /// }
+  @override
+  Future<Unit> delete(String key, String value) async {
+    final box = await _completer.future;
+
+    try {
+      final wordsStorage = await read(key);
+      final wordsSet = wordsStorage.toSet()..remove(value);
+      await box.put(key, wordsSet.toList());
+      return unit;
+    } catch (e) {
+      throw WordsStorageException(message: '$e');
+    }
+  }
 }

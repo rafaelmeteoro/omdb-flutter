@@ -4,4 +4,5 @@ abstract class WordsStorage {
   void setBox({required String name});
   Future<List<String>> read(String key);
   Future<Unit> put(String key, String value);
+  Future<Unit> delete(String key, String value);
 }

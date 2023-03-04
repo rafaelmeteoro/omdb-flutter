@@ -1,7 +1,4 @@
 library words_storage_manager;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/hive/hive_words_storage.dart';
+export 'src/interfaces.dart';
