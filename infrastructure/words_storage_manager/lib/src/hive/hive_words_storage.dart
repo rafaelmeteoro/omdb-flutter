@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:core/domain.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../errors/words_storage_exception.dart';
@@ -60,6 +61,28 @@ class HiveWordsStorage implements WordsStorage {
     try {
       final response = await box.get(key);
       return response ?? [];
+    } catch (e) {
+      throw WordsStorageException(message: '$e');
+    }
+  }
+
+  /// Armazena a estrutura de dados [value] na chave [key]
+  ///
+  /// ```dart
+  /// try {
+  ///   final result = await wordsStorage.put('my_key', value);
+  /// } catch (e) {
+  ///   ...
+  /// }
+  @override
+  Future<Unit> put(String key, String value) async {
+    final box = await _completer.future;
+
+    try {
+      final wordsStorage = await read(key);
+      final wordsSet = wordsStorage.toSet()..add(value);
+      await box.put(key, wordsSet.toList());
+      return unit;
     } catch (e) {
       throw WordsStorageException(message: '$e');
     }

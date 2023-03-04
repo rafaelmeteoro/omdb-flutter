@@ -16,6 +16,7 @@ class FakePathProviderPlatform extends Fake with MockPlatformInterfaceMixin impl
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   late WordsStorage sut;
 
   setUp(() {
@@ -30,11 +31,50 @@ void main() {
       sut.setBox(name: 'read_empty_tb');
 
       // Act
-
       final data = await sut.read(key);
 
       // Assert
       expect(data, []);
+    });
+
+    test('put() must storage the valid data in the given key', () async {
+      // Arrange
+      final key = 'put_test';
+      sut.setBox(name: 'put_tb');
+
+      // Act
+      final result1 = await sut.put(key, 'banana');
+      final result2 = await sut.put(key, 'maça');
+      final result3 = await sut.put(key, 'mamão');
+      final result4 = await sut.put(key, 'banana');
+      final result5 = await sut.put(key, 'maça');
+      final data = await sut.read(key);
+
+      // Assert
+      expect(result1, isA<Unit>());
+      expect(result2, isA<Unit>());
+      expect(result3, isA<Unit>());
+      expect(result4, isA<Unit>());
+      expect(result5, isA<Unit>());
+      expect(data, ['banana', 'maça', 'mamão']);
+    });
+
+    test('put() must not storage same value more than once', () async {
+      // Arrange
+      final key = 'put_test';
+      sut.setBox(name: 'put_tb');
+
+      // Act
+      final result1 = await sut.put(key, 'banana');
+      final result2 = await sut.put(key, 'banana');
+      final result3 = await sut.put(key, 'banana');
+      final data = await sut.read(key);
+
+      // Assert
+      expect(result1, isA<Unit>());
+      expect(result2, isA<Unit>());
+      expect(result3, isA<Unit>());
+      expect(data, ['banana']);
     });
   });
 }
