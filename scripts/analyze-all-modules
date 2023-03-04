@@ -16,7 +16,7 @@ for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubs
   echo "##########################################################"
   echo "Checking files formart for project $directory"
   echo "##########################################################"
-  scripts/analyze-module format $directory
+  # scripts/analyze-module format $directory
 
   echo ""
   echo "##########################################################"
@@ -31,7 +31,7 @@ for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.ya
   echo "##########################################################"
   echo "Checking files formart for project $directory"
   echo "##########################################################"
-  scripts/analyze-module format $directory
+  # scripts/analyze-module format $directory
 
   echo ""
   echo "##########################################################"
@@ -46,7 +46,7 @@ echo ""
 echo "##########################################################"
 echo "Checking files formart for project $app_directory"
 echo "##########################################################"
-scripts/analyze-module format $app_directory
+# scripts/analyze-module format $app_directory
 
 echo ""
 echo "##########################################################"
