@@ -23,9 +23,7 @@ class SearchPageController extends ValueNotifier<SearchPageState> {
 
     value = result.fold(
       (failure) => SearchPageState.error(message: failure.message ?? ''),
-      (value) {
-        return value.search.isEmpty ? const SearchPageState.empty() : SearchPageState.success(result: value);
-      },
+      (value) => value.search.isEmpty ? const SearchPageState.empty() : SearchPageState.success(result: value),
     );
   }
 }
