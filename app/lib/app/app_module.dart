@@ -5,6 +5,7 @@ import 'package:favorites/favorites.dart';
 import 'package:movie/movie.dart';
 import 'package:search/search.dart';
 import 'package:words/words.dart';
+import 'package:words_storage_manager/words_storage_manager.dart';
 
 import 'core/api_config.dart';
 import 'core/token_interceptor.dart';
@@ -31,6 +32,13 @@ class AppModule extends Module {
             dio.interceptors.add(PrettyDioLogger());
             return dio;
           },
+        ),
+        // Words Storage
+        Bind.factory<HiveInterface>(
+          (i) => Hive,
+        ),
+        Bind.factory<WordsStorage>(
+          (i) => HiveWordsStorage(hive: i.get<HiveInterface>()),
         ),
       ];
 

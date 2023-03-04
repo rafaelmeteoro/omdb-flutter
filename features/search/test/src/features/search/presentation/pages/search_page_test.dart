@@ -5,6 +5,7 @@ import 'package:search/src/core/typedef/signatures.dart';
 import 'package:search/src/features/search/domain/entities/movie_entity.dart';
 import 'package:search/src/features/search/domain/entities/result_search_entity.dart';
 import 'package:search/src/features/search/domain/interfaces/search_movie_use_case.dart';
+import 'package:search/src/features/search/domain/interfaces/words_storage_use_case.dart';
 import 'package:search/src/features/search/presentation/controller/search_page_controller.dart';
 import 'package:search/src/features/search/presentation/controller/search_page_state.dart';
 import 'package:search/src/features/search/presentation/pages/search_page.dart';
@@ -12,17 +13,24 @@ import 'package:search/src/features/search/presentation/pages/search_page_delega
 
 class SearchMovieUseCaseMock extends Mock implements SearchMovieUseCase {}
 
+class WordsStorageUseCaseMock extends Mock implements WordsStorageUseCase {}
+
 class SearchPageDelegateMock extends Mock implements SearchPageDelegate {}
 
 void main() {
-  late SearchMovieUseCaseMock mockUseCase;
-  late SearchPageDelegateMock mockNavigate;
+  late SearchMovieUseCase mockSearchUseCase;
+  late WordsStorageUseCase mockWodsStorageUseCase;
+  late SearchPageDelegate mockNavigate;
   late SearchPageController controller;
 
   setUp(() {
-    mockUseCase = SearchMovieUseCaseMock();
+    mockSearchUseCase = SearchMovieUseCaseMock();
+    mockWodsStorageUseCase = WordsStorageUseCaseMock();
     mockNavigate = SearchPageDelegateMock();
-    controller = SearchPageController(searchMovieUseCase: mockUseCase);
+    controller = SearchPageController(
+      searchMovieUseCase: mockSearchUseCase,
+      wordsStorageUseCase: mockWodsStorageUseCase,
+    );
   });
 
   group('SearchPage', () {
@@ -89,8 +97,11 @@ void main() {
         totalResults: '1',
         response: 'True',
       );
-      when(() => mockUseCase.call(query: 'query')).thenAnswer(
+      when(() => mockSearchUseCase.call(query: 'query')).thenAnswer(
         (_) async => Future.value(ResultSearch.right(resultEntity)),
+      );
+      when(() => mockWodsStorageUseCase.call(query: 'query')).thenAnswer(
+        (_) async => right(unit),
       );
 
       // Act
@@ -119,8 +130,11 @@ void main() {
         totalResults: '1',
         response: 'True',
       );
-      when(() => mockUseCase.call(query: 'query')).thenAnswer(
+      when(() => mockSearchUseCase.call(query: 'query')).thenAnswer(
         (_) async => Future.value(ResultSearch.right(resultEntity)),
+      );
+      when(() => mockWodsStorageUseCase.call(query: 'query')).thenAnswer(
+        (_) async => right(unit),
       );
       when(
         () => mockNavigate.onItemSearchSelected(movieId: 'imdbId'),
@@ -143,10 +157,13 @@ void main() {
 
     testWidgets('show error message', (tester) async {
       // Arrange
-      when(() => mockUseCase.call(query: 'query')).thenAnswer(
+      when(() => mockSearchUseCase.call(query: 'query')).thenAnswer(
         (_) async => Future.value(
           ResultSearch.left(ShortTitleFailure(message: 'short title')),
         ),
+      );
+      when(() => mockWodsStorageUseCase.call(query: 'query')).thenAnswer(
+        (_) async => right(unit),
       );
 
       // Act

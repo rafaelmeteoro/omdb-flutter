@@ -1,5 +1,4 @@
 import 'package:dev_core/dev_core.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:words_storage_manager/words_storage_manager.dart';
