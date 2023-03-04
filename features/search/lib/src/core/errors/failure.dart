@@ -7,3 +7,7 @@ class ResultSearchFailure extends Failure {
 class ShortTitleFailure extends Failure {
   const ShortTitleFailure({String? message}) : super(message);
 }
+
+class WordsStorageFailure extends Failure {
+  const WordsStorageFailure({String? message}) : super(message);
+}

@@ -19,9 +19,8 @@ void main() {
     remoteRepository = RemoteSearchMovieRepository(dio: dioMock);
   });
 
-  group('Remote Rearch Movie Repository', () {
-    test(
-        'should return ResultSearch.right when call to http client returns a Response with status code = 200',
+  group(RemoteSearchMovieRepository, () {
+    test('should return ResultSearch.right when call to http client returns a Response with status code = 200',
         () async {
       // Arrange
       const title = '12345';
@@ -70,9 +69,7 @@ void main() {
       verifyNoMoreInteractions(dioMock);
     });
 
-    test(
-        'should return ServerFailure when call to http client returns a Response with status code != 200',
-        () async {
+    test('should return ServerFailure when call to http client returns a Response with status code != 200', () async {
       // Arrange
       const title = '12345';
       when(() => dioMock.get('/', queryParameters: {'s': title})).thenAnswer(
@@ -95,8 +92,7 @@ void main() {
       verifyNoMoreInteractions(dioMock);
     });
 
-    test(
-        'should return ServerFailure when call to http client throws a DioError with type DioErrorType.connectTimeout',
+    test('should return ServerFailure when call to http client throws a DioError with type DioErrorType.connectTimeout',
         () async {
       // Arrange
       const title = '12345';
