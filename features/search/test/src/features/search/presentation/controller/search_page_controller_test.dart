@@ -82,7 +82,7 @@ void main() {
       // Assert
       expect(controller.value, isA<SearchPageStateEmpty>());
       verify(() => searchUseCaseMock.call(query: 'query')).called(1);
-      verify(() => wordsStorageUseCaseMock.call(query: 'query')).called(1);
+      verifyNever(() => wordsStorageUseCaseMock.call(query: 'query'));
     });
 
     test('should return state SearchPageStateError when usecase return failure', () async {
@@ -100,7 +100,7 @@ void main() {
       // Assert
       expect(controller.value, isA<SearchPageStateError>());
       verify(() => searchUseCaseMock.call(query: 'query')).called(1);
-      verify(() => wordsStorageUseCaseMock.call(query: 'query')).called(1);
+      verifyNever(() => wordsStorageUseCaseMock.call(query: 'query'));
     });
   });
 }

@@ -18,12 +18,24 @@ class SearchPageController extends ValueNotifier<SearchPageState> {
   Future<void> searchMovie({required String query}) async {
     value = const SearchPageState.loading();
 
-    await _wordsStorageUseCase.call(query: query);
     final result = await _searchMovieUseCase.call(query: query);
 
     value = result.fold(
       (failure) => SearchPageState.error(message: failure.message ?? ''),
-      (value) => value.search.isEmpty ? const SearchPageState.empty() : SearchPageState.success(result: value),
+      (value) {
+        if (value.search.isEmpty) {
+          return const SearchPageState.empty();
+        } else {
+          _saveQuery(query);
+          return SearchPageState.success(result: value);
+        }
+      },
     );
+  }
+
+  Future<void> _saveQuery(String query) async {
+    if (query.isNotEmpty) {
+      await _wordsStorageUseCase.call(query: query);
+    }
   }
 }
