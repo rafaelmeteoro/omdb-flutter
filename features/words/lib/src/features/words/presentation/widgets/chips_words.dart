@@ -21,6 +21,7 @@ class ChipsWords extends StatelessWidget {
               (word) => Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Chip(
+                  key: Key(word),
                   labelPadding: const EdgeInsets.symmetric(
                     vertical: 2.0,
                     horizontal: 10.0,
