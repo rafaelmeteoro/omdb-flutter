@@ -12,7 +12,7 @@ void main() {
     poster: 'poster',
   );
 
-  group('ItemCard', () {
+  group(ItemCard, () {
     Widget itemCardApp() {
       return MaterialApp(
         home: Material(
