@@ -10,7 +10,7 @@ class GetWords implements GetWordsStorageUseCase {
   final WordsStorageRepository _repository;
 
   @override
-  Future<ResultGetWordsStorage> call() {
+  Future<ResultGetWordsStorage> call() async {
     return _repository.getWords();
   }
 }

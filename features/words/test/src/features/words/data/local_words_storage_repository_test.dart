@@ -77,7 +77,7 @@ void main() {
       );
 
       // Act
-      final result = await localRepository.deleteWord('value');
+      final result = await localRepository.deleteWord(value: 'value');
 
       // Assert
       expect(
@@ -95,7 +95,7 @@ void main() {
       );
 
       // Act
-      final result = await localRepository.deleteWord('value');
+      final result = await localRepository.deleteWord(value: 'value');
 
       // Assert
       expect(
