@@ -15,6 +15,7 @@ void main() {
         home: Material(
           child: ChipsWords(
             words: wordsMock,
+            onDeletePressed: (word) {},
           ),
         ),
       );

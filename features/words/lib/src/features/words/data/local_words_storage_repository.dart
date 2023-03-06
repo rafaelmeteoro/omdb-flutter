@@ -22,4 +22,16 @@ class LocalWordsStorageRepository implements WordsStorageRepository {
       );
     }
   }
+
+  @override
+  Future<ResultDeleteWordsStorage> deleteWord({required String value}) async {
+    try {
+      final result = await _storage.delete('words_of_search', value);
+      return ResultDeleteWordsStorage.right(result);
+    } catch (e) {
+      return ResultDeleteWordsStorage.left(
+        WordsDeleteStorageFailure(message: e.toString()),
+      );
+    }
+  }
 }

@@ -44,7 +44,12 @@ class _WordsPageState extends State<WordsPage> {
             error: (message) => Center(
               child: Text(message),
             ),
-            success: (result) => ChipsWords(words: result),
+            success: (result) => ChipsWords(
+              words: result,
+              onDeletePressed: (word) async {
+                await _controller.deleteWord(word: word);
+              },
+            ),
           );
         },
       ),

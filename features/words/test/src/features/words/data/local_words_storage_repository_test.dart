@@ -16,7 +16,7 @@ void main() {
   });
 
   group(LocalWordsStorageRepository, () {
-    test('return ResultWordsGetStorage.righ with empty list', () async {
+    test('return ResultGetWordsStorage.righ with empty list', () async {
       // Arrange
       when(() => storageMock.read(any())).thenAnswer(
         (_) async => [],
@@ -34,7 +34,7 @@ void main() {
       verifyNoMoreInteractions(storageMock);
     });
 
-    test('return ResultWordsGetStorage.right with list words', () async {
+    test('return ResultGetWordsStorage.right with list words', () async {
       // Arrange
       when(() => storageMock.read(any())).thenAnswer(
         (_) async => ['banana', 'maça', 'mamão'],
@@ -52,7 +52,7 @@ void main() {
       verifyNoMoreInteractions(storageMock);
     });
 
-    test('return ResultWordsGetStorage.left when storage throw exception', () async {
+    test('return ResultGetWordsStorage.left when storage throw exception', () async {
       // Arrange
       when(() => storageMock.read(any())).thenThrow(
         WordsStorageException(message: 'message'),
@@ -67,6 +67,42 @@ void main() {
         isA<WordsGetStorageFailure>(),
       );
       verify(() => storageMock.read(any())).called(1);
+      verifyNoMoreInteractions(storageMock);
+    });
+
+    test('return ResultDeleteWordsStorage.right when stora delete word', () async {
+      // Arrange
+      when(() => storageMock.delete(any(), any())).thenAnswer(
+        (_) async => unit,
+      );
+
+      // Act
+      final result = await localRepository.deleteWord(value: 'value');
+
+      // Assert
+      expect(
+        result.match((failure) => failure, (value) => value),
+        unit,
+      );
+      verify(() => storageMock.delete(any(), any())).called(1);
+      verifyNoMoreInteractions(storageMock);
+    });
+
+    test('return ResultDeleteWordsStorage.left when stora throw exception', () async {
+      // Arrange
+      when(() => storageMock.delete(any(), any())).thenThrow(
+        WordsStorageException(message: 'message'),
+      );
+
+      // Act
+      final result = await localRepository.deleteWord(value: 'value');
+
+      // Assert
+      expect(
+        result.match((failure) => failure, (value) => value),
+        isA<WordsDeleteStorageFailure>(),
+      );
+      verify(() => storageMock.delete(any(), any())).called(1);
       verifyNoMoreInteractions(storageMock);
     });
   });

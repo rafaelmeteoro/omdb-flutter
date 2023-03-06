@@ -33,7 +33,7 @@ void main() {
     );
   });
 
-  group('SearchPage', () {
+  group(SearchPage, () {
     Widget searchPageApp() {
       return MaterialApp(
         home: Material(
