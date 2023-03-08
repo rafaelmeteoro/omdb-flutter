@@ -14,6 +14,8 @@ dependencies:
     path: "../infrastructure/core"
   words_storage_manager:
     path: "../infrastructure/words_storage_manager"
+  movie_storage_manager:
+    path: "../infrastructure/movie_storage_manager"
   search:
     path: "../features/search"
   movie:

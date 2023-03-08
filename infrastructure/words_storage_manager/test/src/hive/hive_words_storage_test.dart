@@ -18,8 +18,8 @@ class MockHiveInterface extends Mock implements HiveInterface {}
 class MockHiveBox extends Mock implements Box {}
 
 void main() {
-  late MockHiveInterface mockHiveInterface;
-  late MockHiveBox mockHiveBox;
+  late HiveInterface mockHiveInterface;
+  late Box mockHiveBox;
   late WordsStorage sut;
 
   setUp(() {
@@ -49,7 +49,7 @@ void main() {
       // Arrange
       final key = 'read_test_empty';
       when(() => mockHiveInterface.openBox(any())).thenAnswer((_) async => mockHiveBox);
-      when(() => mockHiveBox.get(key)).thenAnswer((_) => null);
+      when(() => mockHiveBox.get(key)).thenAnswer((_) async => null);
 
       // Act
       final data = await sut.read(key);

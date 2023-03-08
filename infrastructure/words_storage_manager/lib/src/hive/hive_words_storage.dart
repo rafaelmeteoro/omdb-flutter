@@ -35,7 +35,7 @@ class HiveWordsStorage implements WordsStorage {
     }
   }
 
-  /// Recupera a estrutura de dados na chame [key]
+  /// Recupera a estrutura de dados na chave [key]
   ///
   /// ```dart
   /// try {
