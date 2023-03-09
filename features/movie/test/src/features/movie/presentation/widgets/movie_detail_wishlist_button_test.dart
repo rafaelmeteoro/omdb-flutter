@@ -4,19 +4,28 @@ import 'package:movie/src/features/movie/presentation/widgets/movie_detail_wishl
 
 void main() {
   group(MovieDetailWishlistButton, () {
-    Widget detailButtonApp() {
+    Widget detailButtonApp(bool favorite) {
       return MaterialApp(
         home: Material(
-          child: MovieDetailWishlistButton(),
+          child: MovieDetailWishlistButton(isFavorited: favorite),
         ),
       );
     }
 
-    testWidgets('show info details button', (tester) async {
-      await tester.pumpWidget(detailButtonApp());
+    testWidgets('show info details button with favorite false', (tester) async {
+      await tester.pumpWidget(detailButtonApp(false));
 
       expect(find.byType(MovieDetailWishlistButton), findsOneWidget);
       expect(find.text('Add to watchlist'), findsOneWidget);
+
+      await tester.tap(find.byKey(Key('movieToWatchlist')));
+    });
+
+    testWidgets('show info details button with favorite true', (tester) async {
+      await tester.pumpWidget(detailButtonApp(true));
+
+      expect(find.byType(MovieDetailWishlistButton), findsOneWidget);
+      expect(find.text('Remove to watchlist'), findsOneWidget);
 
       await tester.tap(find.byKey(Key('movieToWatchlist')));
     });

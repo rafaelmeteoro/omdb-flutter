@@ -11,7 +11,7 @@ class MovieDetailContentController extends ValueNotifier<bool> {
 
   final ContainsMovieStorageUseCase _containsMovieStorageUseCase;
 
-  Future<void> toggleFavorite(MovieDetailEntity movie) async {
+  Future<void> isFavorited(MovieDetailEntity movie) async {
     final result = await _containsMovieStorageUseCase.call(movie: movie);
 
     value = result.fold(

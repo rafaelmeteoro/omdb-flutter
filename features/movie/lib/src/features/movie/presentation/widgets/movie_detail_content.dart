@@ -2,6 +2,7 @@ import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie_detail_entity.dart';
+import '../controller/movie_detail_content_controller.dart';
 import 'movie_detail_app_bar.dart';
 import 'movie_detail_info_list.dart';
 import 'movie_detail_infos.dart';
@@ -13,9 +14,11 @@ class MovieDetailContent extends StatelessWidget {
   const MovieDetailContent({
     super.key,
     required this.movie,
+    required this.contentController,
   });
 
   final MovieDetailEntity movie;
+  final MovieDetailContentController contentController;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,14 @@ class MovieDetailContent extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   MovieDetailInfos(movie: movie),
                   const SizedBox(height: 16.0),
-                  const MovieDetailWishlistButton(),
+                  ValueListenableBuilder<bool>(
+                    valueListenable: contentController,
+                    builder: (_, state, __) {
+                      return MovieDetailWishlistButton(
+                        isFavorited: state,
+                      );
+                    },
+                  ),
                   const SizedBox(height: 16.0),
                   MovieDetailPlot(movie: movie),
                   const SizedBox(height: 8.0),

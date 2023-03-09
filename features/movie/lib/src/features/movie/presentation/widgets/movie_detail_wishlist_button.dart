@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class MovieDetailWishlistButton extends StatelessWidget {
   const MovieDetailWishlistButton({
     super.key,
+    required this.isFavorited,
   });
+
+  final bool isFavorited;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +22,15 @@ class MovieDetailWishlistButton extends StatelessWidget {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: const [
-          Icon(Icons.add, color: Colors.black),
-          SizedBox(width: 16.0),
+        children: [
+          Icon(
+            isFavorited ? Icons.check : Icons.add,
+            color: Colors.black,
+          ),
+          const SizedBox(width: 16.0),
           Text(
-            'Add to watchlist',
-            style: TextStyle(
+            isFavorited ? 'Remove to watchlist' : 'Add to watchlist',
+            style: const TextStyle(
               color: Colors.black,
             ),
           ),
