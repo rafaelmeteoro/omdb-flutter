@@ -72,5 +72,40 @@ void main() {
         expect(e, isA<MovieStorageException>());
       }
     });
+
+    test('put() must storage the valid data in the given key', () async {
+      // Arrange
+      final key = 'put_test';
+      // Testando com a instância do hive e verificando a persistência
+      sut = HiveMovieStorage(hive: Hive);
+
+      // Act
+      final movie1 = await sut.put(key, {'title': 'movie1'});
+      final movie2 = await sut.put(key, {'title': 'movie2'});
+      final data = await sut.read(key);
+
+      // Assert
+      expect(movie1, isA<Unit>());
+      expect(movie2, isA<Unit>());
+      expect(data, [
+        {'title': 'movie1'},
+        {'title': 'movie2'}
+      ]);
+    });
+
+    test('put() catch exception from box', () async {
+      // Arrange
+      final key = 'put_exception_test';
+      when(() => mockHiveInterface.openBox(any())).thenAnswer((_) async => mockHiveBox);
+      when(() => mockHiveBox.get(key)).thenThrow(Exception());
+
+      // Act
+      try {
+        await sut.put(key, {});
+      } catch (e) {
+        // Assert
+        expect(e, isA<MovieStorageException>());
+      }
+    });
   });
 }

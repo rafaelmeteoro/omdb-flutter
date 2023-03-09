@@ -1,3 +1,5 @@
+import 'package:core/domain.dart';
+
 import '../../movie_storage_manager.dart';
 
 /// Implementação do [MovieStorage] utilizando o [hivedb](https://docs.hivedb.dev/#/README)
@@ -44,6 +46,28 @@ class HiveMovieStorage implements MovieStorage {
       final box = await _openBox(movieBox);
       final response = await box.get(key);
       return response ?? [];
+    } catch (e) {
+      throw MovieStorageException(message: '$e');
+    }
+  }
+
+  /// Armazena a estrutura de dados [value] na chave [key]
+  ///
+  /// ```dart
+  /// try {
+  ///   final result = await movieStorage.put('my_key', value);
+  /// } catch (e) {
+  ///   ...
+  /// }
+  /// ```
+  @override
+  Future<Unit> put(String key, Map value) async {
+    try {
+      final box = await _openBox(movieBox);
+      final movieStorage = await read(key);
+      movieStorage.add(value);
+      await box.put(key, movieStorage);
+      return unit;
     } catch (e) {
       throw MovieStorageException(message: '$e');
     }

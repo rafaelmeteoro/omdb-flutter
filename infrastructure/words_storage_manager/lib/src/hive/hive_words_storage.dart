@@ -63,6 +63,7 @@ class HiveWordsStorage implements WordsStorage {
   /// } catch (e) {
   ///   ...
   /// }
+  /// ```
   @override
   Future<Unit> put(String key, String value) async {
     try {
@@ -84,6 +85,7 @@ class HiveWordsStorage implements WordsStorage {
   /// } catch (e) {
   ///   ...
   /// }
+  /// ```
   @override
   Future<Unit> delete(String key, String value) async {
     try {
