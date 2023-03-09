@@ -35,7 +35,7 @@ class HiveWordsStorage implements WordsStorage {
     }
   }
 
-  /// Recupera a estrutura de dados na chame [key]
+  /// Recupera a estrutura de dados na chave [key]
   ///
   /// ```dart
   /// try {
@@ -63,6 +63,7 @@ class HiveWordsStorage implements WordsStorage {
   /// } catch (e) {
   ///   ...
   /// }
+  /// ```
   @override
   Future<Unit> put(String key, String value) async {
     try {
@@ -80,10 +81,11 @@ class HiveWordsStorage implements WordsStorage {
   ///
   /// ```dart
   /// try {
-  ///   final result = await wordsStorage.delete('mey_key', value);
+  ///   final result = await wordsStorage.delete('my_key', value);
   /// } catch (e) {
   ///   ...
   /// }
+  /// ```
   @override
   Future<Unit> delete(String key, String value) async {
     try {
