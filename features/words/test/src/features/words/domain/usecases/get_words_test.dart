@@ -36,7 +36,7 @@ void main() {
       verifyNoMoreInteractions(repositoryMock);
     });
 
-    test('return a WordsGetSotrageFailure when execute repository', () async {
+    test('return a WordsGetStrageFailure when execute repository', () async {
       // Arrange
       when(() => repositoryMock.getWords()).thenAnswer(
         (_) async => ResultGetWordsStorage.left(WordsGetStorageFailure()),
