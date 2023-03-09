@@ -72,6 +72,9 @@ void main() {
       when(() => mockUseCase.call(id: any(named: 'id'))).thenAnswer(
         (_) async => right(movieDetailEntity),
       );
+      when(() => mockContainsUseCase.call(movie: movieDetailEntity)).thenAnswer(
+        (_) async => right(false),
+      );
 
       await tester.pumpWidget(moviePageApp());
 
@@ -81,6 +84,9 @@ void main() {
     testWidgets('show detail content when state is success', (tester) async {
       when(() => mockUseCase.call(id: any(named: 'id'))).thenAnswer(
         (_) async => right(movieDetailEntity),
+      );
+      when(() => mockContainsUseCase.call(movie: movieDetailEntity)).thenAnswer(
+        (_) async => right(false),
       );
 
       await tester.pumpWidget(moviePageApp());

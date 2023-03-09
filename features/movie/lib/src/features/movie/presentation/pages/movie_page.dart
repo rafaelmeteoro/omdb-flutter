@@ -29,7 +29,15 @@ class _MoviePageState extends State<MoviePage> {
   @override
   void initState() {
     super.initState();
-    _controller.getMovieDetail(id: widget.id);
+    _controller
+      ..getMovieDetail(id: widget.id)
+      ..addListener(_onStateSuccess);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -53,5 +61,12 @@ class _MoviePageState extends State<MoviePage> {
         },
       ),
     );
+  }
+
+  void _onStateSuccess() {
+    if (_controller.value is MoviePageStateSuccess) {
+      final value = _controller.value as MoviePageStateSuccess;
+      _contentController.isFavorited(value.movie);
+    }
   }
 }

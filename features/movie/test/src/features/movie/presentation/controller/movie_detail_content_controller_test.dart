@@ -54,7 +54,7 @@ void main() {
       when(() => useCase.call(movie: movieDetailEntity)).thenAnswer((_) async => right(true));
 
       // Act
-      await controller.toggleFavorite(movieDetailEntity);
+      await controller.isFavorited(movieDetailEntity);
 
       // Assert
       expect(controller.value, true);
@@ -94,7 +94,7 @@ void main() {
       );
 
       // Act
-      await controller.toggleFavorite(movieDetailEntity);
+      await controller.isFavorited(movieDetailEntity);
 
       // Assert
       expect(controller.value, false);
