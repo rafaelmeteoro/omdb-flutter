@@ -3,6 +3,7 @@ import 'package:core/domain.dart';
 import 'package:core/presentation.dart';
 import 'package:favorites/favorites.dart';
 import 'package:movie/movie.dart';
+import 'package:movie_storage_manager/movie_storage_manager.dart';
 import 'package:search/search.dart';
 import 'package:words/words.dart';
 import 'package:words_storage_manager/words_storage_manager.dart';
@@ -39,6 +40,9 @@ class AppModule extends Module {
         ),
         Bind.factory<WordsStorage>(
           (i) => HiveWordsStorage(hive: i.get<HiveInterface>()),
+        ),
+        Bind.factory<MovieStorage>(
+          (i) => HiveMovieStorage(hive: i.get<HiveInterface>()),
         ),
       ];
 

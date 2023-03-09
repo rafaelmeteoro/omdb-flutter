@@ -3,20 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:movie/src/core/errors/failure.dart';
 import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dart';
 import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
+import 'package:movie/src/features/movie/domain/interfaces/contains_movie_storage_use_case.dart';
 import 'package:movie/src/features/movie/domain/interfaces/get_movie_detail_use_case.dart';
+import 'package:movie/src/features/movie/presentation/controller/movie_detail_content_controller.dart';
 import 'package:movie/src/features/movie/presentation/controller/movie_page_controller.dart';
 import 'package:movie/src/features/movie/presentation/pages/movie_page.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_content.dart';
 
 class GetMovieDetailUseCaseMock extends Mock implements GetMovieDetailUseCase {}
 
+class ContainsMovieStorageUseCaseMock extends Mock implements ContainsMovieStorageUseCase {}
+
 void main() {
   late GetMovieDetailUseCase mockUseCase;
+  late ContainsMovieStorageUseCase mockContainsUseCase;
   late MoviePageController controller;
+  late MovieDetailContentController contentController;
 
   setUp(() {
     mockUseCase = GetMovieDetailUseCaseMock();
+    mockContainsUseCase = ContainsMovieStorageUseCaseMock();
     controller = MoviePageController(getMovieDetailUseCase: mockUseCase);
+    contentController = MovieDetailContentController(containsMovieStorageUseCase: mockContainsUseCase);
   });
 
   group(MoviePage, () {
@@ -26,6 +34,7 @@ void main() {
           child: MoviePage(
             id: 'some-id',
             controller: controller,
+            contentController: contentController,
           ),
         ),
       );
@@ -59,8 +68,7 @@ void main() {
       ],
     );
 
-    testWidgets('show progress indicator when state is loading',
-        (tester) async {
+    testWidgets('show progress indicator when state is loading', (tester) async {
       when(() => mockUseCase.call(id: any(named: 'id'))).thenAnswer(
         (_) async => right(movieDetailEntity),
       );

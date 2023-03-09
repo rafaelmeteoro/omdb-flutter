@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../controller/movie_detail_content_controller.dart';
 import '../controller/movie_page_controller.dart';
 import '../controller/movie_page_state.dart';
 import '../widgets/movie_detail_content.dart';
@@ -10,10 +11,12 @@ class MoviePage extends StatefulWidget {
     super.key,
     required this.id,
     required this.controller,
+    required this.contentController,
   });
 
   final String id;
   final MoviePageController controller;
+  final MovieDetailContentController contentController;
 
   @override
   State<MoviePage> createState() => _MoviePageState();
@@ -21,6 +24,7 @@ class MoviePage extends StatefulWidget {
 
 class _MoviePageState extends State<MoviePage> {
   MoviePageController get _controller => widget.controller;
+  MovieDetailContentController get _contentController => widget.contentController;
 
   @override
   void initState() {
@@ -41,7 +45,10 @@ class _MoviePageState extends State<MoviePage> {
             error: (message) => Center(
               child: MovieDetailError(message: message),
             ),
-            success: (movie) => MovieDetailContent(movie: movie),
+            success: (movie) => MovieDetailContent(
+              movie: movie,
+              contentController: _contentController,
+            ),
           );
         },
       ),
