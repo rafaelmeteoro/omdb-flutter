@@ -31,21 +31,40 @@ class HiveMovieStorage implements MovieStorage {
     }
   }
 
+  /// Recupera os dados de todas as chaves presentes
+  @override
+  Future<List<Map>> readAll() async {
+    try {
+      final box = await _openBox(movieBox);
+      if (box.isEmpty) {
+        return [];
+      }
+      final movies = <Map>[];
+      for (final key in box.keys) {
+        final movie = await read(key);
+        movies.add(movie);
+      }
+      return movies;
+    } catch (e) {
+      throw MovieStorageException(message: '$e');
+    }
+  }
+
   /// Recupera a estrutura de dados na chave [key]
   ///
   /// ```dart
   /// try {
-  ///   final result = await movieStorage.read('my_key');
+  ///   final result = awaitfinalvieStorage.read('my_key');
   /// } catch (e) {
   ///   ...
   /// }
   /// ```
   @override
-  Future<List<Map>> read(String key) async {
+  Future<Map> read(String key) async {
     try {
       final box = await _openBox(movieBox);
       final response = await box.get(key);
-      return response ?? [];
+      return response ?? {};
     } catch (e) {
       throw MovieStorageException(message: '$e');
     }
@@ -64,10 +83,47 @@ class HiveMovieStorage implements MovieStorage {
   Future<Unit> put(String key, Map value) async {
     try {
       final box = await _openBox(movieBox);
-      final movieStorage = await read(key);
-      movieStorage.add(value);
-      await box.put(key, movieStorage);
+      await box.put(key, value);
       return unit;
+    } catch (e) {
+      throw MovieStorageException(message: '$e');
+    }
+  }
+
+  /// Apaga a chave [key]
+  ///
+  /// ```dart
+  /// try {
+  ///   final result = await movieStorage.delete('my_key');
+  /// } catch (e) {
+  ///   ...
+  /// }
+  /// ```
+  @override
+  Future<Unit> delete(String key) async {
+    try {
+      final box = await _openBox(movieBox);
+      await box.delete(key);
+      return unit;
+    } catch (e) {
+      throw MovieStorageException(message: '$e');
+    }
+  }
+
+  /// Verifica se o box possui a [key] informada
+  ///
+  /// ```dart
+  /// try {
+  ///   final result = await movieStorage.containsKey('my_key');
+  /// } catch (e) {
+  ///   ...
+  /// }
+  /// ```
+  @override
+  Future<bool> containsKey(String key) async {
+    try {
+      final box = await _openBox(movieBox);
+      return box.containsKey(key);
     } catch (e) {
       throw MovieStorageException(message: '$e');
     }

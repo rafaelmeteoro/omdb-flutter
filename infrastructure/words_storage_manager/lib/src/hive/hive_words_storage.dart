@@ -81,7 +81,7 @@ class HiveWordsStorage implements WordsStorage {
   ///
   /// ```dart
   /// try {
-  ///   final result = await wordsStorage.delete('mey_key', value);
+  ///   final result = await wordsStorage.delete('my_key', value);
   /// } catch (e) {
   ///   ...
   /// }
