@@ -23,9 +23,7 @@ void main() {
       expect(controller.value, isA<MoviePageStateLoading>());
     });
 
-    test(
-        'should return state MoviePageStateSuccess when usecase return movie detail',
-        () async {
+    test('should return state MoviePageStateSuccess when usecase return movie detail', () async {
       // Arrange
       final movieDetailEntity = MovieDetailEntity(
         title: 'title',
@@ -54,8 +52,7 @@ void main() {
           ),
         ],
       );
-      when(() => useCase.call(id: 'id'))
-          .thenAnswer((_) async => right(movieDetailEntity));
+      when(() => useCase.call(id: 'id')).thenAnswer((_) async => right(movieDetailEntity));
 
       // Act
       await controller.getMovieDetail(id: 'id');
@@ -64,11 +61,9 @@ void main() {
       expect(controller.value, isA<MoviePageStateSuccess>());
     });
 
-    test('should return state MoviePageStateError when usecase return failure',
-        () async {
+    test('should return state MoviePageStateError when usecase return failure', () async {
       // Arrange
-      when(() => useCase.call(id: 'id'))
-          .thenAnswer((_) async => left(MovieDetailFailure()));
+      when(() => useCase.call(id: 'id')).thenAnswer((_) async => left(MovieDetailFailure()));
 
       // Act
       await controller.getMovieDetail(id: 'id');
