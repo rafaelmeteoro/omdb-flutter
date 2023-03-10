@@ -48,11 +48,58 @@ class MovieDetailDto extends MovieDetailEntity {
       imdbVotes: json['imdbVotes'],
       imdbId: json['imdbID'],
       type: json['Type'],
-      ratings: (json['Ratings'] as List)
-          .map((e) => e as JsonFormat)
-          .map(RatingDto.fromJson)
-          .toList(),
+      ratings: (json['Ratings'] as List).map((e) => e as JsonFormat).map(RatingDto.fromJson).toList(),
     );
+  }
+
+  factory MovieDetailDto.fromEntity(MovieDetailEntity entity) {
+    return MovieDetailDto(
+      title: entity.title,
+      year: entity.year,
+      rated: entity.rated,
+      released: entity.released,
+      runtime: entity.runtime,
+      genre: entity.genre,
+      director: entity.director,
+      writer: entity.writer,
+      actors: entity.actors,
+      plot: entity.plot,
+      language: entity.language,
+      country: entity.country,
+      awards: entity.awards,
+      poster: entity.poster,
+      metascore: entity.metascore,
+      imdbRating: entity.imdbRating,
+      imdbVotes: entity.imdbVotes,
+      imdbId: entity.imdbId,
+      type: entity.type,
+      ratings: entity.ratings.map(RatingDto.fromEntity).toList(),
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'title': title,
+      'year': year,
+      'rated': rated,
+      'released': released,
+      'runtime': runtime,
+      'genre': genre,
+      'director': director,
+      'writer': writer,
+      'actors': actors,
+      'plot': plot,
+      'language': language,
+      'country': country,
+      'awards': awards,
+      'poster': poster,
+      'metascore': metascore,
+      'imdbRating': imdbRating,
+      'imdbVotes': imdbVotes,
+      'imdbId': imdbId,
+      'type': type,
+      'ratings': ratings,
+    };
   }
 
   static List<String> _splitAndList(String value) {

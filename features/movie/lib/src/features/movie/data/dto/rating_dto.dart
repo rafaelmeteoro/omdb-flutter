@@ -14,4 +14,11 @@ class RatingDto extends RatingEntity {
       value: json['Value'],
     );
   }
+
+  factory RatingDto.fromEntity(RatingEntity entity) {
+    return RatingDto(
+      source: entity.source,
+      value: entity.value,
+    );
+  }
 }
