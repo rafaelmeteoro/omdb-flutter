@@ -34,9 +34,11 @@ class _MoviePageState extends State<MoviePage> {
   @override
   void initState() {
     super.initState();
-    _controller
-      ..getMovieDetail(id: widget.id)
-      ..addListener(_onStateSuccess);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _controller.getMovieDetail(id: widget.id);
+    });
+
+    _controller.addListener(_onStateSuccess);
     _addRemoveController.addListener(_onAddRemoveListener);
   }
 
