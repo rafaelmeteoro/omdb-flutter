@@ -7,7 +7,10 @@ void main() {
     Widget detailButtonApp(bool favorite) {
       return MaterialApp(
         home: Material(
-          child: MovieDetailWishlistButton(isFavorited: favorite),
+          child: MovieDetailWishlistButton(
+            isFavorited: favorite,
+            action: () {},
+          ),
         ),
       );
     }

@@ -2,6 +2,7 @@ import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/movie_detail_entity.dart';
+import '../controller/movie_add_remove_controller.dart';
 import '../controller/movie_detail_content_controller.dart';
 import 'movie_detail_app_bar.dart';
 import 'movie_detail_info_list.dart';
@@ -15,10 +16,12 @@ class MovieDetailContent extends StatelessWidget {
     super.key,
     required this.movie,
     required this.contentController,
+    required this.addRemoveController,
   });
 
   final MovieDetailEntity movie;
   final MovieDetailContentController contentController;
+  final MovieAddRemoveController addRemoveController;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,9 @@ class MovieDetailContent extends StatelessWidget {
                     builder: (_, state, __) {
                       return MovieDetailWishlistButton(
                         isFavorited: state,
+                        action: () async {
+                          await addRemoveController.addOrRemove(movie: movie);
+                        },
                       );
                     },
                   ),

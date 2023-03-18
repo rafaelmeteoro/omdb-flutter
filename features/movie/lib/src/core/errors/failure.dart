@@ -7,3 +7,7 @@ class MovieDetailFailure extends Failure {
 class MovieContainsStorageFailure extends Failure {
   const MovieContainsStorageFailure({String? message}) : super(message);
 }
+
+class MovieAddRemoveStorageFailure extends Failure {
+  const MovieAddRemoveStorageFailure({String? message}) : super(message);
+}

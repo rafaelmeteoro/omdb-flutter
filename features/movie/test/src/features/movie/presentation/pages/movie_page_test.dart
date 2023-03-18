@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:movie/src/core/errors/failure.dart';
 import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dart';
 import 'package:movie/src/features/movie/domain/entities/rating_entity.dart';
+import 'package:movie/src/features/movie/domain/interfaces/add_remove_movie_storage_use_case.dart';
 import 'package:movie/src/features/movie/domain/interfaces/contains_movie_storage_use_case.dart';
 import 'package:movie/src/features/movie/domain/interfaces/get_movie_detail_use_case.dart';
+import 'package:movie/src/features/movie/presentation/controller/movie_add_remove_controller.dart';
 import 'package:movie/src/features/movie/presentation/controller/movie_detail_content_controller.dart';
 import 'package:movie/src/features/movie/presentation/controller/movie_page_controller.dart';
 import 'package:movie/src/features/movie/presentation/pages/movie_page.dart';
@@ -14,17 +16,23 @@ class GetMovieDetailUseCaseMock extends Mock implements GetMovieDetailUseCase {}
 
 class ContainsMovieStorageUseCaseMock extends Mock implements ContainsMovieStorageUseCase {}
 
+class AddRemoveMovieStorageUseCaseMock extends Mock implements AddRemoveMovieStorageUseCase {}
+
 void main() {
   late GetMovieDetailUseCase mockUseCase;
   late ContainsMovieStorageUseCase mockContainsUseCase;
+  late AddRemoveMovieStorageUseCase mockAddRemoveUseCase;
   late MoviePageController controller;
   late MovieDetailContentController contentController;
+  late MovieAddRemoveController addRemoveController;
 
   setUp(() {
     mockUseCase = GetMovieDetailUseCaseMock();
     mockContainsUseCase = ContainsMovieStorageUseCaseMock();
+    mockAddRemoveUseCase = AddRemoveMovieStorageUseCaseMock();
     controller = MoviePageController(getMovieDetailUseCase: mockUseCase);
     contentController = MovieDetailContentController(containsMovieStorageUseCase: mockContainsUseCase);
+    addRemoveController = MovieAddRemoveController(useCase: mockAddRemoveUseCase);
   });
 
   group(MoviePage, () {
@@ -35,6 +43,7 @@ void main() {
             id: 'some-id',
             controller: controller,
             contentController: contentController,
+            addRemoveController: addRemoveController,
           ),
         ),
       );
@@ -88,11 +97,16 @@ void main() {
       when(() => mockContainsUseCase.call(movie: movieDetailEntity)).thenAnswer(
         (_) async => right(false),
       );
+      when(() => mockAddRemoveUseCase.call(movie: movieDetailEntity)).thenAnswer(
+        (_) async => right(unit),
+      );
 
       await tester.pumpWidget(moviePageApp());
       await tester.pumpAndSettle();
 
       expect(find.byType(MovieDetailContent), findsOneWidget);
+
+      await tester.tap(find.byKey(Key('movieToWatchlist')));
     });
 
     testWidgets('show text when state is error', (tester) async {

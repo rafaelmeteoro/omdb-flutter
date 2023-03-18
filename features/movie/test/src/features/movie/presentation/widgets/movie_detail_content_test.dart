@@ -2,7 +2,9 @@ import 'package:dev_core/dev_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/src/core/typedef/signatures.dart';
 import 'package:movie/src/features/movie/domain/entities/movie_detail_entity.dart';
+import 'package:movie/src/features/movie/domain/interfaces/add_remove_movie_storage_use_case.dart';
 import 'package:movie/src/features/movie/domain/interfaces/contains_movie_storage_use_case.dart';
+import 'package:movie/src/features/movie/presentation/controller/movie_add_remove_controller.dart';
 import 'package:movie/src/features/movie/presentation/controller/movie_detail_content_controller.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_app_bar.dart';
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_content.dart';
@@ -13,6 +15,8 @@ import 'package:movie/src/features/movie/presentation/widgets/movie_detail_title
 import 'package:movie/src/features/movie/presentation/widgets/movie_detail_wishlist_button.dart';
 
 class ContainsMovieStorageUseCaseMock extends Mock implements ContainsMovieStorageUseCase {}
+
+class AddRemoveMovieStorageUseCaseMock extends Mock implements AddRemoveMovieStorageUseCase {}
 
 void main() {
   final movieDetailEntity = MovieDetailEntity(
@@ -39,11 +43,15 @@ void main() {
   );
 
   late ContainsMovieStorageUseCase useCase;
+  late AddRemoveMovieStorageUseCase addRemoveUseCase;
   late MovieDetailContentController controller;
+  late MovieAddRemoveController addRemoveController;
 
   setUp(() {
     useCase = ContainsMovieStorageUseCaseMock();
+    addRemoveUseCase = AddRemoveMovieStorageUseCaseMock();
     controller = MovieDetailContentController(containsMovieStorageUseCase: useCase);
+    addRemoveController = MovieAddRemoveController(useCase: addRemoveUseCase);
   });
 
   group(MovieDetailContent, () {
@@ -53,6 +61,7 @@ void main() {
           child: MovieDetailContent(
             movie: movieDetailEntity,
             contentController: controller,
+            addRemoveController: addRemoveController,
           ),
         ),
       );
@@ -62,6 +71,10 @@ void main() {
       when(() => useCase.call(movie: movieDetailEntity)).thenAnswer(
         (_) async => ResultContainsMovieStorage.right(false),
       );
+      when(() => addRemoveUseCase.call(movie: movieDetailEntity)).thenAnswer(
+        (_) async => ResultAddRemoveMovieStorage.right(unit),
+      );
+
       await tester.pumpWidget(detailContentApp());
       await tester.pumpAndSettle();
 
@@ -72,6 +85,8 @@ void main() {
       expect(find.byType(MovieDetailWishlistButton), findsOneWidget);
       expect(find.byType(MovieDetailPlot), findsOneWidget);
       expect(find.byType(MovieDetailInfoList), findsNWidgets(6));
+
+      await tester.tap(find.byType(MovieDetailWishlistButton));
     });
   });
 }
