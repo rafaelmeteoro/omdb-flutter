@@ -17,7 +17,7 @@ class MovieAddRemoveController extends ValueNotifier<MovieAddRemoveState> {
 
     value = result.fold(
       (failure) => MovieAddRemoveState.error(message: failure.message ?? ''),
-      (value) => const MovieAddRemoveState.success(),
+      (value) => MovieAddRemoveState.success(movie: movie),
     );
   }
 }

@@ -98,7 +98,7 @@ class MovieDetailDto extends MovieDetailEntity {
       'imdbVotes': imdbVotes,
       'imdbId': imdbId,
       'type': type,
-      'ratings': ratings,
+      'ratings': ratings.map((e) => RatingDto.fromEntity(e).toMap()).toList(),
     };
   }
 
