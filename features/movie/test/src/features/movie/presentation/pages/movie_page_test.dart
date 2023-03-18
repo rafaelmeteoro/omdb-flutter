@@ -97,11 +97,16 @@ void main() {
       when(() => mockContainsUseCase.call(movie: movieDetailEntity)).thenAnswer(
         (_) async => right(false),
       );
+      when(() => mockAddRemoveUseCase.call(movie: movieDetailEntity)).thenAnswer(
+        (_) async => right(unit),
+      );
 
       await tester.pumpWidget(moviePageApp());
       await tester.pumpAndSettle();
 
       expect(find.byType(MovieDetailContent), findsOneWidget);
+
+      await tester.tap(find.byKey(Key('movieToWatchlist')));
     });
 
     testWidgets('show text when state is error', (tester) async {

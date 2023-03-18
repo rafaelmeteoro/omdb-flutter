@@ -71,6 +71,10 @@ void main() {
       when(() => useCase.call(movie: movieDetailEntity)).thenAnswer(
         (_) async => ResultContainsMovieStorage.right(false),
       );
+      when(() => addRemoveUseCase.call(movie: movieDetailEntity)).thenAnswer(
+        (_) async => ResultAddRemoveMovieStorage.right(unit),
+      );
+
       await tester.pumpWidget(detailContentApp());
       await tester.pumpAndSettle();
 
@@ -81,6 +85,8 @@ void main() {
       expect(find.byType(MovieDetailWishlistButton), findsOneWidget);
       expect(find.byType(MovieDetailPlot), findsOneWidget);
       expect(find.byType(MovieDetailInfoList), findsNWidgets(6));
+
+      await tester.tap(find.byType(MovieDetailWishlistButton));
     });
   });
 }
