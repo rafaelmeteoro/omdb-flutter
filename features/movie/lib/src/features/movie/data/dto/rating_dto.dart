@@ -24,8 +24,8 @@ class RatingDto extends RatingEntity {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'source': source,
-      'value': value,
+      'Source': source,
+      'Value': value,
     };
   }
 }
