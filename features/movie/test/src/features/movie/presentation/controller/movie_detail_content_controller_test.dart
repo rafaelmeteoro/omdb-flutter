@@ -17,7 +17,7 @@ void main() {
   });
 
   group(MovieDetailContentController, () {
-    test('return satte false when create', () async {
+    test('return satate false when create', () async {
       // Assert
       expect(controller.value, false);
     });
