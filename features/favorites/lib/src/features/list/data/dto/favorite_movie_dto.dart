@@ -1,7 +1,7 @@
 import 'package:app_core/app_core.dart';
 
-import '../domain/entities/favorite_movie_entity.dart';
-import 'dto/favorite_rating_dto.dart';
+import '../../domain/entities/favorite_movie_entity.dart';
+import 'favorite_rating_dto.dart';
 
 class FavoriteMovieDto extends FavoriteMovieEntity {
   const FavoriteMovieDto({

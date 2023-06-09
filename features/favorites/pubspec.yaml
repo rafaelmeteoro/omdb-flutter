@@ -17,6 +17,8 @@ dependencies:
     path: "../../infrastructure/app_core"
   words:
     path: "../words"
+  movie_storage_manager:
+    path: "../../infrastructure/movie_storage_manager"
 
 dev_dependencies:
   flutter_test:
