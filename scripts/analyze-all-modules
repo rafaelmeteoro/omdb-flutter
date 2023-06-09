@@ -2,13 +2,13 @@
 
 set -e
 
-if [ $CI ]; then
-  echo "Realizando analise do Lint no código"
-  pwd
-  flutter analyze . > flutter_analyze_report.txt
-  cat flutter_analyze_report.txt
-  exit 0
-fi
+# if [ $CI ]; then
+#   echo "Realizando analise do Lint no código"
+#   pwd
+#   flutter analyze . > flutter_analyze_report.txt
+#   cat flutter_analyze_report.txt
+#   exit 0
+# fi
 
 ## Analyze all infrastructure
 for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubspec.yaml '{ print $1 }'); do
