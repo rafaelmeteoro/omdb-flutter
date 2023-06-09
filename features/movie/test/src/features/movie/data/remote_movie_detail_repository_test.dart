@@ -19,9 +19,7 @@ void main() {
   });
 
   group(RemoteMovieDetailRepository, () {
-    test(
-        'should return MovieDetail.right when call to http client return a Response with status code = 200',
-        () async {
+    test('should return MovieDetail.right when call to http client return a Response with status code = 200', () async {
       // Arrange
       const id = '1234';
       when(() => dioMock.get('/', queryParameters: {'i': id})).thenAnswer(
@@ -44,9 +42,7 @@ void main() {
       verifyNoMoreInteractions(dioMock);
     });
 
-    test(
-        'should return ServerFailure when call to http client return a Response with status code != 200',
-        () async {
+    test('should return ServerFailure when call to http client return a Response with status code != 200', () async {
       // Arrange
       const id = '1234';
       when(() => dioMock.get('/', queryParameters: {'i': id})).thenAnswer(
@@ -69,14 +65,13 @@ void main() {
       verifyNoMoreInteractions(dioMock);
     });
 
-    test(
-        'should return ServerFailure when call to http client throws a DioError type DioErrorType.connectTimeout',
+    test('should return ServerFailure when call to http client throws a DioError type DioErrorType.connectTimeout',
         () async {
       // Arrange
       const id = '1234';
       when(() => dioMock.get('/', queryParameters: {'i': id})).thenThrow(
-        DioError(
-          type: DioErrorType.connectionTimeout,
+        DioException(
+          type: DioExceptionType.connectionTimeout,
           requestOptions: RequestOptions(path: '/'),
         ),
       );
@@ -93,13 +88,12 @@ void main() {
       verifyNoMoreInteractions(dioMock);
     });
 
-    test(
-        'should return ServerFailure when call to http client throws a DioError type != DioErrorType.connectTimeout',
+    test('should return ServerFailure when call to http client throws a DioError type != DioErrorType.connectTimeout',
         () async {
       // Arrange
       const id = '1234';
       when(() => dioMock.get('/', queryParameters: {'i': id})).thenThrow(
-        DioError(
+        DioException(
           requestOptions: RequestOptions(path: '/'),
         ),
       );

@@ -97,8 +97,8 @@ void main() {
       // Arrange
       const title = '12345';
       when(() => dioMock.get('/', queryParameters: {'s': title})).thenThrow(
-        DioError(
-          type: DioErrorType.connectionTimeout,
+        DioException(
+          type: DioExceptionType.connectionTimeout,
           requestOptions: RequestOptions(path: '/'),
         ),
       );
@@ -121,7 +121,7 @@ void main() {
       // Arrange
       const title = '12345';
       when(() => dioMock.get('/', queryParameters: {'s': title})).thenThrow(
-        DioError(
+        DioException(
           requestOptions: RequestOptions(path: '/'),
         ),
       );
