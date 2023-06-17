@@ -45,7 +45,9 @@ class WordsModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (context, args) => const WordsPage(),
+          child: (context, args) => WordsPage(
+            controller: context.read<WordsPageController>(),
+          ),
         )
       ];
 }

@@ -17,7 +17,8 @@ class LocalFavoritesMovieStorageRepository implements FavoriteMovieStorageReposi
   Future<ResultFavorites> getFavorites() async {
     try {
       final result = await _storage.readAll();
-      final favorites = result.map((e) => FavoriteMovieDto.fromJson(e as JsonFormat)).toList();
+      final favorites =
+          result.map(JsonFormat.from).map(FavoriteMovieDto.fromJson).toList();
       return ResultFavorites.right(favorites);
     } catch (e) {
       return ResultFavorites.left(FavoritesStorageFailure(message: e.toString()));
