@@ -1,6 +1,7 @@
 import 'package:app_core/app_core.dart';
 
 import '../../domain/entities/favorite_movie_entity.dart';
+import '../../domain/entities/favorite_rating_entity.dart';
 import 'favorite_rating_dto.dart';
 
 class FavoriteMovieDto extends FavoriteMovieEntity {
@@ -48,7 +49,16 @@ class FavoriteMovieDto extends FavoriteMovieEntity {
       imdbVotes: json['imdbVotes'],
       imdbId: json['imdbID'],
       type: json['Type'],
-      ratings: (json['Ratings'] as List).map((e) => e as JsonFormat).map(FavoriteRatingDto.fromJson).toList(),
+      ratings: _parseRatings(json),
     );
+  }
+  static List<FavoriteRatingEntity> _parseRatings(JsonFormat source) {
+    final ratingsJson = source['Ratings'] as List;
+    final ratingsList = <FavoriteRatingEntity>[];
+    for (final element in ratingsJson) {
+      final rating = JsonFormat.from(element);
+      ratingsList.add(FavoriteRatingDto.fromJson(rating));
+    }
+    return ratingsList;
   }
 }
