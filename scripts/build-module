@@ -15,6 +15,10 @@ case "$1" in
     if [ -f pubspec.lock ]; then
       rm pubspec.lock
     fi
+
+    if [ -f test/full_coverage_test.dart ]; then
+      rm test/fullcoverage_test.dart
+    fi
     ;;
   build)
     echo "... Installing dependencies to project $directory"

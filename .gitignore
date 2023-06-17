@@ -303,3 +303,6 @@ app/ios/**
 **/test/full_coverage_test.dart
 **/i18n/lib/src/generated
 flutter_analyze_report.txt
+
+## Ignore golden test failure images
+**/goldens/failures/**

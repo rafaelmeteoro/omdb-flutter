@@ -1,22 +1,27 @@
 {
-  "makefile.extensionOutputFolder": "./.vscode",
   "editor.tabSize": 2,
   "editor.rulers": [
-    120
+    90
   ],
+  "files.insertFinalNewline": true,
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+  "dart.renameFilesWithClasses": "prompt",
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
   "editor.formatOnSave": true,
   "editor.renderFinalNewline": "on",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll": true,
+    "source.organizeImports": true,
   },
-  "dart.lineLength": 120,
+  "dart.lineLength": 90,
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.rulers": [
-      120
+      90
     ],
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
