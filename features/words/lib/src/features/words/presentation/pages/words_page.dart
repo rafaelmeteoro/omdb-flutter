@@ -1,4 +1,3 @@
-import 'package:core/presentation.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/words_page_controller.dart';
@@ -8,14 +7,17 @@ import '../widgets/chips_words.dart';
 class WordsPage extends StatefulWidget {
   const WordsPage({
     super.key,
+    required this.controller,
   });
+
+  final WordsPageController controller;
 
   @override
   State<WordsPage> createState() => _WordsPageState();
 }
 
 class _WordsPageState extends State<WordsPage> {
-  WordsPageController get _controller => Modular.get<WordsPageController>();
+  WordsPageController get _controller => widget.controller;
 
   @override
   void initState() {

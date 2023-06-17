@@ -1,7 +1,5 @@
-import 'package:core/presentation.dart';
 import 'package:dev_core/dev_core.dart';
 import 'package:flutter/material.dart';
-import 'package:modular_test/modular_test.dart';
 import 'package:words/src/core/errors/failure.dart';
 import 'package:words/src/core/typedef/signatures.dart';
 import 'package:words/src/features/words/domain/interfaces/delete_words_storage_use_case.dart';
@@ -9,7 +7,6 @@ import 'package:words/src/features/words/domain/interfaces/get_words_storage_use
 import 'package:words/src/features/words/presentation/controller/words_page_controller.dart';
 import 'package:words/src/features/words/presentation/controller/words_page_state.dart';
 import 'package:words/src/features/words/presentation/pages/words_page.dart';
-import 'package:words/words.dart';
 
 class GetWordsStorageUseCaseMock extends Mock implements GetWordsStorageUseCase {}
 
@@ -27,20 +24,15 @@ void main() {
       getWordsStorageUseCase: getWordsStorageUseCaseMock,
       deleteWordsStorageUseCase: deleteWordsStorageUseCaseMock,
     );
-
-    // initModule(WordsModule(), replaceBinds: [
-    //   Bind.factory<WordsPageController>((i) => controller),
-    // ]);
-    initModule(WordsModule(), replaceBinds: [
-      Bind.factory<WordsPageController>((i) => controller),
-    ]);
   });
 
   group(WordsPage, () {
     Widget wordsPageApp() {
       return MaterialApp(
         home: Material(
-          child: WordsPage(),
+          child: WordsPage(
+            controller: controller,
+          ),
         ),
       );
     }
@@ -82,7 +74,8 @@ void main() {
     testWidgets('show error message', (tester) async {
       // Arrange
       when(() => getWordsStorageUseCaseMock.call()).thenAnswer(
-        (_) async => ResultGetWordsStorage.left(WordsGetStorageFailure(message: 'no words')),
+        (_) async =>
+            ResultGetWordsStorage.left(WordsGetStorageFailure(message: 'no words')),
       );
 
       // Act
