@@ -1,4 +1,3 @@
-import 'package:core/domain.dart';
 import 'package:core/presentation.dart';
 import 'package:movie_storage_manager/movie_storage_manager.dart';
 
@@ -19,64 +18,53 @@ import 'features/movie/presentation/pages/movie_page.dart';
 
 class MovieModule extends Module {
   @override
-  List<Bind<Object>> get binds => [
-        // Repository
-        Bind.lazySingleton<MovieDetailRepository>(
-          (i) => RemoteMovieDetailRepository(
-            dio: i.get<Dio>(),
-          ),
-        ),
-        Bind.lazySingleton<MovieStorageRepository>(
-          (i) => LocalMovieStorageRepository(
-            storage: i.get<MovieStorage>(),
-          ),
-        ),
+  void binds(Injector i) {
+    i
+      // Repository
+      ..addLazySingleton<MovieDetailRepository>(
+        RemoteMovieDetailRepository.new,
+      )
+      ..addLazySingleton<MovieStorageRepository>(
+        LocalMovieStorageRepository.new,
+      )
+      // UseCase
+      ..addLazySingleton<GetMovieDetailUseCase>(
+        GetMovieDetail.new,
+      )
+      ..addLazySingleton<ContainsMovieStorageUseCase>(
+        ContainsMovie.new,
+      )
+      ..addLazySingleton<AddRemoveMovieStorageUseCase>(
+        AddRemoveMovie.new,
+      )
+      // Controller
+      ..addLazySingleton<MoviePageController>(
+        MoviePageController.new,
+      )
+      ..addLazySingleton<MovieDetailContentController>(
+        MovieDetailContentController.new,
+      )
+      ..addLazySingleton<MovieAddRemoveController>(
+        MovieAddRemoveController.new,
+      );
+  }
 
-        // UseCase
-        Bind.lazySingleton<GetMovieDetailUseCase>(
-          (i) => GetMovieDetail(
-            repository: i.get<MovieDetailRepository>(),
-          ),
-        ),
-        Bind.lazySingleton<ContainsMovieStorageUseCase>(
-          (i) => ContainsMovie(
-            repository: i.get<MovieStorageRepository>(),
-          ),
-        ),
-        Bind.lazySingleton<AddRemoveMovieStorageUseCase>(
-          (i) => AddRemoveMovie(
-            repository: i.get<MovieStorageRepository>(),
-          ),
-        ),
-
-        // Controller
-        Bind.lazySingleton<MoviePageController>(
-          (i) => MoviePageController(
-            getMovieDetailUseCase: i.get<GetMovieDetailUseCase>(),
-          ),
-        ),
-        Bind.lazySingleton<MovieDetailContentController>(
-          (i) => MovieDetailContentController(
-            containsMovieStorageUseCase: i.get<ContainsMovieStorageUseCase>(),
-          ),
-        ),
-        Bind.lazySingleton<MovieAddRemoveController>(
-          (i) => MovieAddRemoveController(
-            useCase: i.get<AddRemoveMovieStorageUseCase>(),
-          ),
-        ),
+  @override
+  List<Module> get imports => [
+        CoreModule(),
+        MovieStorageModule(),
       ];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          '/',
-          child: (context, args) => MoviePage(
-            id: args.data as String,
-            controller: context.read<MoviePageController>(),
-            contentController: context.read<MovieDetailContentController>(),
-            addRemoveController: context.read<MovieAddRemoveController>(),
-          ),
-        ),
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      '/',
+      child: (context) => MoviePage(
+        id: r.args.data as String,
+        controller: context.read<MoviePageController>(),
+        contentController: context.read<MovieDetailContentController>(),
+        addRemoveController: context.read<MovieAddRemoveController>(),
+      ),
+    );
+  }
 }

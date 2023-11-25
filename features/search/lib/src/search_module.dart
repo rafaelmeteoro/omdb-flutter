@@ -1,5 +1,4 @@
-import 'package:core/domain.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:core/presentation.dart';
 import 'package:words_storage_manager/words_storage_manager.dart';
 
 import 'features/search/data/local_words_storage_repository.dart';
@@ -16,53 +15,46 @@ import 'features/search/presentation/pages/search_page_delegate.dart';
 
 class SearchModule extends Module {
   @override
-  List<Bind<Object>> get binds => [
-        // Repository
-        Bind.lazySingleton<SearchMovieRepository>(
-          (i) => RemoteSearchMovieRepository(
-            dio: i.get<Dio>(),
-          ),
-        ),
-        Bind.lazySingleton<WordsStorageRepository>(
-          (i) => LocalWordsStorageRepository(
-            storage: i.get<WordsStorage>(),
-          ),
-        ),
+  void binds(Injector i) {
+    i
+      // Repository
+      ..addLazySingleton<SearchMovieRepository>(
+        RemoteSearchMovieRepository.new,
+      )
+      ..addLazySingleton<WordsStorageRepository>(
+        LocalWordsStorageRepository.new,
+      )
+      // UseCase
+      ..addLazySingleton<SearchMovieUseCase>(
+        SearchMovie.new,
+      )
+      ..addLazySingleton<WordsStorageUseCase>(
+        SaveQuery.new,
+      )
+      // Controller
+      ..addLazySingleton<SearchPageController>(
+        SearchPageController.new,
+      )
+      // Delegate
+      ..add<SearchPageDelegate>(
+        SearchPageFlow.new,
+      );
+  }
 
-        // UseCase
-        Bind.lazySingleton<SearchMovieUseCase>(
-          (i) => SearchMovie(
-            repository: i.get<SearchMovieRepository>(),
-          ),
-        ),
-        Bind.lazySingleton<WordsStorageUseCase>(
-          (i) => SaveQuery(
-            repository: i.get<WordsStorageRepository>(),
-          ),
-        ),
-
-        // Controller
-        Bind.lazySingleton<SearchPageController>(
-          (i) => SearchPageController(
-            searchMovieUseCase: i.get<SearchMovieUseCase>(),
-            wordsStorageUseCase: i.get<WordsStorageUseCase>(),
-          ),
-        ),
-
-        // Delegate
-        Bind.factory<SearchPageDelegate>(
-          (i) => SearchPageFlow(),
-        )
+  @override
+  List<Module> get imports => [
+        CoreModule(),
+        WordsStorageModule(),
       ];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          '/',
-          child: (context, args) => SearchPage(
-            controller: context.read<SearchPageController>(),
-            navigate: context.read<SearchPageDelegate>(),
-          ),
-        ),
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      '/',
+      child: (context) => SearchPage(
+        controller: context.read<SearchPageController>(),
+        navigate: context.read<SearchPageDelegate>(),
+      ),
+    );
+  }
 }

@@ -17,7 +17,7 @@ case "$1" in
     fi
 
     if [ -f test/full_coverage_test.dart ]; then
-      rm test/fullcoverage_test.dart
+      rm test/full_coverage_test.dart
     fi
     ;;
   build)

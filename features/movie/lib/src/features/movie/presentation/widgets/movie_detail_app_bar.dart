@@ -18,7 +18,6 @@ class MovieDetailAppBar extends StatelessWidget {
       expandedHeight: 250.0,
       flexibleSpace: FlexibleSpaceBar(
         background: FadeIn(
-          duration: const Duration(milliseconds: 500),
           child: ShaderMask(
             shaderCallback: (rect) {
               return const LinearGradient(

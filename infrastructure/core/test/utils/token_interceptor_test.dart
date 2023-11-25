@@ -1,8 +1,7 @@
+import 'package:core/utils/api_config.dart';
+import 'package:core/utils/token_interceptor.dart';
+import 'package:dev_core/dev_core.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:omdb_flutter/app/core/api_config.dart';
-import 'package:omdb_flutter/app/core/token_interceptor.dart';
 
 class MockRequestHandler extends Mock implements RequestInterceptorHandler {}
 
@@ -15,7 +14,7 @@ void main() {
   late TokenInterceptor interceptor;
 
   setUp(() {
-    options = RequestOptions(path: 'htttp://path.com');
+    options = RequestOptions(path: 'http://path.com');
     handler = MockRequestHandler();
     apiConfig = MockApiConfig();
     interceptor = TokenInterceptor(apiConfig: apiConfig);

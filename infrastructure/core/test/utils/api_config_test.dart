@@ -1,5 +1,5 @@
+import 'package:core/utils/api_config.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:omdb_flutter/app/core/api_config.dart';
 
 void main() {
   group(ApiConfig, () {
