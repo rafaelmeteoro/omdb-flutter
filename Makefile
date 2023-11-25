@@ -10,7 +10,7 @@ test-modules: ## Run test on all modules of the current project
 	@scripts/test-all-modules
 
 merge-modules: ## Run merge lcov on all modules of the current project
-	@scripts/merge-all-lcov "**/*module.dart **/main.dart **/app_widget.dart"
+	@scripts/merge-all-lcov
 
 genhtml: ## Run merge lcov on all modules of the current project and generate html
 	@scripts/genhtml-lcov
