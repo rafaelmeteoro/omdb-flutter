@@ -5,3 +5,4 @@ export 'package:hive_flutter/hive_flutter.dart';
 
 export 'src/hive/hive_words_storage.dart';
 export 'src/interfaces.dart';
+export 'src/modules/words_storage_module.dart';

@@ -12,42 +12,37 @@ import 'features/words/presentation/pages/words_page.dart';
 
 class WordsModule extends Module {
   @override
-  List<Bind<Object>> get binds => [
-        // Repository
-        Bind.lazySingleton<WordsStorageRepository>(
-          (i) => LocalWordsStorageRepository(
-            storage: i.get<WordsStorage>(),
-          ),
-        ),
+  void binds(Injector i) {
+    i
+      // Repository
+      ..addLazySingleton<WordsStorageRepository>(
+        LocalWordsStorageRepository.new,
+      )
+      // UseCase
+      ..addLazySingleton<GetWordsStorageUseCase>(
+        GetWords.new,
+      )
+      ..addLazySingleton<DeleteWordsStorageUseCase>(
+        DeleteWords.new,
+      )
+      // Controller
+      ..addLazySingleton<WordsPageController>(
+        WordsPageController.new,
+      );
+  }
 
-        // UseCase
-        Bind.lazySingleton<GetWordsStorageUseCase>(
-          (i) => GetWords(
-            repository: i.get<WordsStorageRepository>(),
-          ),
-        ),
-        Bind.lazySingleton<DeleteWordsStorageUseCase>(
-          (i) => DeleteWords(
-            repository: i.get<WordsStorageRepository>(),
-          ),
-        ),
-
-        // Controller
-        Bind.lazySingleton<WordsPageController>(
-          (i) => WordsPageController(
-            getWordsStorageUseCase: i.get<GetWordsStorageUseCase>(),
-            deleteWordsStorageUseCase: i.get<DeleteWordsStorageUseCase>(),
-          ),
-        ),
+  @override
+  List<Module> get imports => [
+        WordsStorageModule(),
       ];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          '/',
-          child: (context, args) => WordsPage(
-            controller: context.read<WordsPageController>(),
-          ),
-        )
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      '/',
+      child: (context) => WordsPage(
+        controller: context.read<WordsPageController>(),
+      ),
+    );
+  }
 }

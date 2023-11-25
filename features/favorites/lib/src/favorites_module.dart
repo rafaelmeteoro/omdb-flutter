@@ -10,36 +10,32 @@ import 'features/list/presentation/pages/movie_list_page.dart';
 
 class FavoritesModule extends Module {
   @override
-  List<Bind<Object>> get binds => [
-        // Repository
-        Bind.lazySingleton<FavoriteMovieStorageRepository>(
-          (i) => LocalFavoritesMovieStorageRepository(
-            storage: i.get<MovieStorage>(),
-          ),
-        ),
+  void binds(Injector i) {
+    i
+      // Repository
+      ..addLazySingleton<FavoriteMovieStorageRepository>(
+        LocalFavoritesMovieStorageRepository.new,
+      )
+      // UseCase
+      ..addLazySingleton<GetMoviesUseCase>(
+        GetMovies.new,
+      )
+      // Controller
+      ..add<MovieListPageController>(MovieListPageController.new);
+  }
 
-        // UseCase
-        Bind.lazySingleton<GetMoviesUseCase>(
-          (i) => GetMovies(
-            repository: i.get<FavoriteMovieStorageRepository>(),
-          ),
-        ),
-
-        // Controller
-        Bind.factory<MovieListPageController>(
-          (i) => MovieListPageController(
-            useCase: i.get<GetMoviesUseCase>(),
-          ),
-        ),
+  @override
+  List<Module> get imports => [
+        MovieStorageModule(),
       ];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute(
-          '/',
-          child: (context, args) => MovieListPage(
-            controller: context.read<MovieListPageController>(),
-          ),
-        )
-      ];
+  void routes(RouteManager r) {
+    r.child(
+      '/',
+      child: (context) => MovieListPage(
+        controller: context.read<MovieListPageController>(),
+      ),
+    );
+  }
 }
