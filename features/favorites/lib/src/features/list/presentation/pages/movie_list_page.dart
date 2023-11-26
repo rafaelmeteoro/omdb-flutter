@@ -39,27 +39,27 @@ class _MovieListPageState extends State<MovieListPage> {
       body: ValueListenableBuilder<MovieListPageState>(
         valueListenable: _controller,
         builder: (context, state, _) {
-          return state.when(
-            loading: () => const Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
-            error: (message) => Center(
-              child: Text(
-                message,
-                textAlign: TextAlign.center,
+          return switch (state) {
+            MovieListPageStateLoading _ => const Center(
+                child: CircularProgressIndicator.adaptive(),
               ),
-            ),
-            empty: () => const Center(
-              child: Text(
-                'Nenhum filme favoritado',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
+            final MovieListPageStateError state => Center(
+                child: Text(
+                  state.message,
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-            success: (favorites) => FavoriteDetailContent(
-              favorites: favorites,
-            ),
-          );
+            MovieListPageStateEmpty _ => const Center(
+                child: Text(
+                  'Nenhum filme favoritado',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            final MovieListPageStateSuccess state => FavoriteDetailContent(
+                favorites: state.favorites,
+              ),
+          };
         },
       ),
     );
