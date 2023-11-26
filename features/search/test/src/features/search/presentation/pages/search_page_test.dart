@@ -75,7 +75,7 @@ void main() {
     testWidgets('show loading', (tester) async {
       // Act
       await tester.pumpWidget(searchPageApp());
-      controller.value = SearchPageState.loading();
+      controller.value = SearchPageStateLoading();
       await tester.pump();
 
       // Assert
