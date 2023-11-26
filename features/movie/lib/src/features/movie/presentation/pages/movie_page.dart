@@ -55,19 +55,19 @@ class _MoviePageState extends State<MoviePage> {
       body: ValueListenableBuilder<MoviePageState>(
         valueListenable: _controller,
         builder: (context, state, _) {
-          return state.when(
-            loading: () => const Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
-            error: (message) => Center(
-              child: MovieDetailError(message: message),
-            ),
-            success: (movie) => MovieDetailContent(
-              movie: movie,
-              contentController: _contentController,
-              addRemoveController: _addRemoveController,
-            ),
-          );
+          return switch (state) {
+            MoviePageStateLoading _ => const Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            final MoviePageStateError state => Center(
+                child: MovieDetailError(message: state.message),
+              ),
+            final MoviePageStateSuccess state => MovieDetailContent(
+                movie: state.movie,
+                contentController: _contentController,
+                addRemoveController: _addRemoveController,
+              ),
+          };
         },
       ),
     );

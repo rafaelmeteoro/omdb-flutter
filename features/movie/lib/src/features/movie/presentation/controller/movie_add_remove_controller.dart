@@ -8,7 +8,7 @@ class MovieAddRemoveController extends ValueNotifier<MovieAddRemoveState> {
   MovieAddRemoveController({
     required AddRemoveMovieStorageUseCase useCase,
   })  : _useCase = useCase,
-        super(const MovieAddRemoveState.initial());
+        super(MovieAddRemoveStateInitial());
 
   final AddRemoveMovieStorageUseCase _useCase;
 
@@ -16,8 +16,8 @@ class MovieAddRemoveController extends ValueNotifier<MovieAddRemoveState> {
     final result = await _useCase.call(movie: movie);
 
     value = result.fold(
-      (failure) => MovieAddRemoveState.error(message: failure.message ?? ''),
-      (value) => MovieAddRemoveState.success(movie: movie),
+      (failure) => MovieAddRemoveStateError(failure.message ?? ''),
+      (value) => MovieAddRemoveStateSuccess(movie),
     );
   }
 }

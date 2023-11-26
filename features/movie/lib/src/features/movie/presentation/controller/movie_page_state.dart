@@ -1,16 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../domain/entities/movie_detail_entity.dart';
 
-part 'movie_page_state.freezed.dart';
+sealed class MoviePageState {}
 
-@freezed
-class MoviePageState with _$MoviePageState {
-  const factory MoviePageState.loading() = MoviePageStateLoading;
-  const factory MoviePageState.error({
-    required String message,
-  }) = MoviePageStateError;
-  const factory MoviePageState.success({
-    required MovieDetailEntity movie,
-  }) = MoviePageStateSuccess;
+class MoviePageStateLoading extends MoviePageState {}
+
+class MoviePageStateError extends MoviePageState {
+  MoviePageStateError(this.message);
+  final String message;
+}
+
+class MoviePageStateSuccess extends MoviePageState {
+  MoviePageStateSuccess(this.movie);
+  final MovieDetailEntity movie;
 }
