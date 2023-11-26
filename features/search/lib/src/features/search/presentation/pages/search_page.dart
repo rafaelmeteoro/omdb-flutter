@@ -71,59 +71,56 @@ class _SearchPageState extends State<SearchPage> {
             ValueListenableBuilder<SearchPageState>(
               valueListenable: _controller,
               builder: (context, state, _) {
-                return state.maybeWhen(
-                  success: (result) => const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.0),
-                    child: Text(
-                      'Search Result',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w300,
+                return switch (state) {
+                  final SearchPageStateSuccess _ => const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      child: Text(
+                        'Search Result',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w300,
+                        ),
                       ),
                     ),
-                  ),
-                  orElse: () => const SizedBox(),
-                );
+                  SearchPageStateEmpty _ ||
+                  SearchPageStateLoading _ ||
+                  SearchPageStateError _ =>
+                    const SizedBox(),
+                };
               },
             ),
             ValueListenableBuilder<SearchPageState>(
               valueListenable: _controller,
               builder: (context, state, _) {
-                return state.when(
-                  empty: () => const Expanded(
-                    child: Center(
-                      child: Text(
-                        'Nenhum resultado encontrado. Faça uma pesquisa.',
-                        textAlign: TextAlign.center,
+                return Expanded(
+                  child: switch (state) {
+                    SearchPageStateEmpty _ => const Center(
+                        child: Text(
+                          'Nenhum resultado encontrado. Faça uma pesquisa.',
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ),
-                  loading: () => const Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                  ),
-                  error: (message) => Expanded(
-                    child: Center(
-                      child: Text(message),
-                    ),
-                  ),
-                  success: (result) => Expanded(
-                    child: ListView.builder(
-                      itemCount: result.search.length,
-                      itemBuilder: (context, index) {
-                        final movie = result.search[index];
-                        return ItemCard(
-                          movie: movie,
-                          onPressed: (movie) {
-                            _navigate.onItemSearchSelected(
-                              movieId: movie.imdbId,
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ),
+                    SearchPageStateLoading _ => const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      ),
+                    final SearchPageStateError state => Center(
+                        child: Text(state.message),
+                      ),
+                    final SearchPageStateSuccess state => ListView.builder(
+                        itemCount: state.result.search.length,
+                        itemBuilder: (context, index) {
+                          final movie = state.result.search[index];
+                          return ItemCard(
+                            movie: movie,
+                            onPressed: (movie) {
+                              _navigate.onItemSearchSelected(
+                                movieId: movie.imdbId,
+                              );
+                            },
+                          );
+                        },
+                      ),
+                  },
                 );
               },
             ),

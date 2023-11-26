@@ -1,15 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+sealed class WordsPageState {}
 
-part 'words_page_state.freezed.dart';
+class WordsPageStateEmpty extends WordsPageState {}
 
-@freezed
-class WordsPageState with _$WordsPageState {
-  const factory WordsPageState.empty() = WordsPageStateEmpty;
-  const factory WordsPageState.loading() = WordsPageStateLoading;
-  const factory WordsPageState.error({
-    required String message,
-  }) = WordsPageStateError;
-  const factory WordsPageState.success({
-    required List<String> result,
-  }) = WordsPageStateSuccess;
+class WordsPageStateLoading extends WordsPageState {}
+
+class WordsPageStateError extends WordsPageState {
+  WordsPageStateError(this.message);
+  final String message;
+}
+
+class WordsPageStateSuccess extends WordsPageState {
+  WordsPageStateSuccess(this.result);
+  final List<String> result;
 }

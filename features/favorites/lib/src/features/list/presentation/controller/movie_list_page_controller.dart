@@ -7,22 +7,22 @@ class MovieListPageController extends ValueNotifier<MovieListPageState> {
   MovieListPageController({
     required GetMoviesUseCase useCase,
   })  : _useCase = useCase,
-        super(const MovieListPageState.loading());
+        super(MovieListPageStateLoading());
 
   final GetMoviesUseCase _useCase;
 
   Future<void> loadFavorites() async {
-    value = const MovieListPageState.loading();
+    value = MovieListPageStateLoading();
 
     final result = await _useCase();
 
     value = result.fold(
-      (failure) => MovieListPageState.error(message: failure.message ?? ''),
+      (failure) => MovieListPageStateError(failure.message ?? ''),
       (value) {
         if (value.isEmpty) {
-          return const MovieListPageState.empty();
+          return MovieListPageStateEmpty();
         }
-        return MovieListPageState.success(favorites: value);
+        return MovieListPageStateSuccess(value);
       },
     );
   }

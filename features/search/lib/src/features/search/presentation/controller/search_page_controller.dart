@@ -10,24 +10,24 @@ class SearchPageController extends ValueNotifier<SearchPageState> {
     required WordsStorageUseCase wordsStorageUseCase,
   })  : _searchMovieUseCase = searchMovieUseCase,
         _wordsStorageUseCase = wordsStorageUseCase,
-        super(const SearchPageState.empty());
+        super(SearchPageStateEmpty());
 
   final SearchMovieUseCase _searchMovieUseCase;
   final WordsStorageUseCase _wordsStorageUseCase;
 
   Future<void> searchMovie({required String query}) async {
-    value = const SearchPageState.loading();
+    value = SearchPageStateLoading();
 
     final result = await _searchMovieUseCase.call(query: query);
 
     value = result.fold(
-      (failure) => SearchPageState.error(message: failure.message ?? ''),
+      (failure) => SearchPageStateError(failure.message ?? ''),
       (value) {
         if (value.search.isEmpty) {
-          return const SearchPageState.empty();
+          return SearchPageStateEmpty();
         } else {
           _saveQuery(query);
-          return SearchPageState.success(result: value);
+          return SearchPageStateSuccess(value);
         }
       },
     );

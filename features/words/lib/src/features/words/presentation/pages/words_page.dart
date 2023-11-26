@@ -33,26 +33,46 @@ class _WordsPageState extends State<WordsPage> {
       body: ValueListenableBuilder<WordsPageState>(
         valueListenable: _controller,
         builder: (context, state, _) {
-          return state.when(
-            empty: () => const Center(
-              child: Text(
-                'Nenhum resultado encontrado.',
-                textAlign: TextAlign.center,
+          // return state.when(
+          //   empty: () => const Center(
+          //     child: Text(
+          //       'Nenhum resultado encontrado.',
+          //       textAlign: TextAlign.center,
+          //     ),
+          //   ),
+          //   loading: () => const Center(
+          //     child: CircularProgressIndicator.adaptive(),
+          //   ),
+          //   error: (message) => Center(
+          //     child: Text(message),
+          //   ),
+          //   success: (result) => ChipsWords(
+          //     words: result,
+          //     onDeletePressed: (word) async {
+          //       await _controller.deleteWord(word: word);
+          //     },
+          //   ),
+          // );
+          return switch (state) {
+            WordsPageStateEmpty _ => const Center(
+                child: Text(
+                  'Nenhum resultado encontrado.',
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-            loading: () => const Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
-            error: (message) => Center(
-              child: Text(message),
-            ),
-            success: (result) => ChipsWords(
-              words: result,
-              onDeletePressed: (word) async {
-                await _controller.deleteWord(word: word);
-              },
-            ),
-          );
+            WordsPageStateLoading _ => const Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            final WordsPageStateError state => Center(
+                child: Text(state.message),
+              ),
+            final WordsPageStateSuccess state => ChipsWords(
+                words: state.result,
+                onDeletePressed: (word) async {
+                  await _controller.deleteWord(word: word);
+                },
+              ),
+          };
         },
       ),
     );

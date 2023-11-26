@@ -61,7 +61,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(wordsPageApp());
-      controller.value = WordsPageState.loading();
+      controller.value = WordsPageStateLoading();
       await tester.pump();
 
       // Assert

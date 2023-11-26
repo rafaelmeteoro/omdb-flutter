@@ -10,24 +10,24 @@ class WordsPageController extends ValueNotifier<WordsPageState> {
     required DeleteWordsStorageUseCase deleteWordsStorageUseCase,
   })  : _getWordsStorageUseCase = getWordsStorageUseCase,
         _deleteWordsStorageUseCase = deleteWordsStorageUseCase,
-        super(const WordsPageState.empty());
+        super(WordsPageStateEmpty());
 
   final GetWordsStorageUseCase _getWordsStorageUseCase;
   final DeleteWordsStorageUseCase _deleteWordsStorageUseCase;
 
   Future<void> getWords() async {
-    value = const WordsPageState.loading();
+    value = WordsPageStateLoading();
 
     final result = await _getWordsStorageUseCase.call();
 
     value = result.fold(
-      (failure) => WordsPageState.error(message: failure.message ?? ''),
-      (value) => value.isEmpty ? const WordsPageState.empty() : WordsPageStateSuccess(result: value),
+      (failure) => WordsPageStateError(failure.message ?? ''),
+      (value) => value.isEmpty ? WordsPageStateEmpty() : WordsPageStateSuccess(value),
     );
   }
 
   Future<void> deleteWord({required String word}) async {
-    value = const WordsPageState.loading();
+    value = WordsPageStateLoading();
     await _deleteWordsStorageUseCase.call(value: word);
     await getWords();
   }
