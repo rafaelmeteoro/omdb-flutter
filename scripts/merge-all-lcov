@@ -18,13 +18,12 @@ for directory in $(find infrastructure -type f -iname pubspec.yaml | awk -F pubs
     echo "########################################################################"
     echo "Merge ${path_coverage}"
     echo "########################################################################"
-    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
-    
     if [ ! -z "$exclude_files" ]; then
       echo "Excluding ${exclude_files} from coverage"
-      lcov --remove ${path_coverage} ${exclude_files} -o ${path_coverage}
+      lcov --remove ${path_coverage} ${exclude_files} -o ${path_coverage} --ignore-errors unused,unused
     fi
 
+    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
   fi  
 done
 
@@ -36,13 +35,12 @@ for directory in $(find features -type f -iname pubspec.yaml | awk -F pubspec.ya
     echo "########################################################################"
     echo "Merge ${path_coverage}"
     echo "########################################################################"
-    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
-
     if [ ! -z "$exclude_files" ]; then
       echo "Excluding ${exclude_files} from coverage"
-      lcov --remove ${path_coverage} ${exclude_files} -o ${path_coverage}
+      lcov --remove ${path_coverage} ${exclude_files} -o ${path_coverage} --ignore-errors unused,unused
     fi
 
+    sed "s/^SF:.*lib/SF:${directory//\//\\/}lib/g" ${path_coverage} >> coverage/lcov.info
   fi
 done
 
@@ -54,11 +52,10 @@ if [ -f ${path_coverage} ]; then
   echo "########################################################################"
   echo "Merge $app_directory"
   echo "########################################################################"
-  sed "s/^SF:.*lib/SF:${app_directory//\//\\/}\/lib/g" ${path_coverage} >> coverage/lcov.info
-
   if [ ! -z "$exclude_files" ]; then
     echo "Excluding ${exclude_files} from coverage"
-    lcov --remove ${path_coverage} ${exclude_files} -o ${path_coverage}
+    lcov --remove ${path_coverage} ${exclude_files} -o ${path_coverage} --ignore-errors unused,unused
   fi
-  
+
+  sed "s/^SF:.*lib/SF:${app_directory//\//\\/}\/lib/g" ${path_coverage} >> coverage/lcov.info
 fi
