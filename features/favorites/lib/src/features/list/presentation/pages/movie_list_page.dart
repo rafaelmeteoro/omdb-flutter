@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../controller/movie_list_page_controller.dart';
 import '../controller/movie_list_page_state.dart';
-import '../widgets/favorite_detail_content.dart';
+import '../widgets/favorite_detail_content_widget.dart';
 
 class MovieListPage extends StatefulWidget {
   const MovieListPage({
@@ -56,7 +56,7 @@ class _MovieListPageState extends State<MovieListPage> {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-            final MovieListPageStateSuccess state => FavoriteDetailContent(
+            final MovieListPageStateSuccess state => FavoriteDetailContentWidget(
                 favorites: state.favorites,
               ),
           };

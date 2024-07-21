@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/favorite_movie_entity.dart';
 
-class FavoriteDetailContent extends StatelessWidget {
-  const FavoriteDetailContent({
+class FavoriteDetailContentWidget extends StatelessWidget {
+  const FavoriteDetailContentWidget({
     super.key,
     required this.favorites,
   });
