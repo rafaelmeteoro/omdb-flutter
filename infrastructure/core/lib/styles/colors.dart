@@ -10,12 +10,10 @@ const kColorScheme = ColorScheme(
   secondary: kSpaceGrey,
   secondaryContainer: kSpaceGrey,
   surface: kRichBlack,
-  background: kRichBlack,
   error: Colors.redAccent,
   onPrimary: kRichBlack,
   onSecondary: Colors.white,
   onSurface: Colors.white,
-  onBackground: Colors.white,
   onError: Colors.white,
   brightness: Brightness.dark,
 );
