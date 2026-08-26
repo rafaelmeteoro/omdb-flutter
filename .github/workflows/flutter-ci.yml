@@ -47,7 +47,7 @@ jobs:
         run: make merge-modules
 
       - name: Run Coverage Report
-        uses: zgosalvez/github-actions-report-lcov@v1
+        uses: zgosalvez/github-actions-report-lcov@v7
         with:
           coverage-files: coverage/lcov.info
           artifact-name: code-coverage-report
