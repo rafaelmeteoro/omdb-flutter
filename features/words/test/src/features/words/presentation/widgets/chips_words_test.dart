@@ -29,5 +29,26 @@ void main() {
       expect(find.text('maça'), findsOneWidget);
       expect(find.text('mamão'), findsOneWidget);
     });
+
+    testWidgets('call onDeletePressed when delete icon is tapped',
+        (tester) async {
+      String? deletedWord;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Material(
+            child: ChipsWords(
+              words: wordsMock,
+              onDeletePressed: (word) => deletedWord = word,
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byIcon(Icons.cancel).first);
+      await tester.pump();
+
+      expect(deletedWord, 'banana');
+    });
   });
 }
