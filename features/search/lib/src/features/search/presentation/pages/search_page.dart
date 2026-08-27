@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
             child: IconButton(
               key: const Key('favorite_icon'),
               onPressed: () {
-                _navigate.onActionClick();
+                _navigate.onActionClick(context);
               },
               icon: const Icon(Icons.favorite),
             ),
@@ -114,6 +114,7 @@ class _SearchPageState extends State<SearchPage> {
                             movie: movie,
                             onPressed: (movie) {
                               _navigate.onItemSearchSelected(
+                                context,
                                 movieId: movie.imdbId,
                               );
                             },

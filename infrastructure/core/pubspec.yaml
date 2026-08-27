@@ -13,7 +13,7 @@ dependencies:
 
   fpdart: 1.2.0
   cupertino_icons: 1.0.9
-  flutter_modular: 6.4.1
+  flutter_modular: 7.1.0
   dio: 5.11.0
   equatable: 2.1.0
   rxdart: 0.28.0

@@ -1,5 +1,4 @@
 import 'package:core/presentation.dart';
-import 'package:words_storage_manager/words_storage_manager.dart';
 
 import 'features/search/data/local_words_storage_repository.dart';
 import 'features/search/data/remote_search_movie_repository.dart';
@@ -13,48 +12,24 @@ import 'features/search/presentation/controller/search_page_controller.dart';
 import 'features/search/presentation/pages/search_page.dart';
 import 'features/search/presentation/pages/search_page_delegate.dart';
 
-class SearchModule extends Module {
-  @override
-  void binds(Injector i) {
-    i
-      // Repository
-      ..addLazySingleton<SearchMovieRepository>(
-        RemoteSearchMovieRepository.new,
-      )
-      ..addLazySingleton<WordsStorageRepository>(
-        LocalWordsStorageRepository.new,
-      )
-      // UseCase
-      ..addLazySingleton<SearchMovieUseCase>(
-        SearchMovie.new,
-      )
-      ..addLazySingleton<WordsStorageUseCase>(
-        SaveQuery.new,
-      )
-      // Controller
-      ..addLazySingleton<SearchPageController>(
-        SearchPageController.new,
-      )
-      // Delegate
-      ..add<SearchPageDelegate>(
-        SearchPageFlow.new,
+/// Landing feature, mounted at `/`. `coreModule` (Dio) and `wordsStorageModule`
+/// (WordsStorage) are root-owned and resolved from the shared graph by type.
+final searchModule = createModule(
+  path: '/',
+  register: (c) {
+    c
+      ..addLazySingleton<SearchMovieRepository>(RemoteSearchMovieRepository.new)
+      ..addLazySingleton<WordsStorageRepository>(LocalWordsStorageRepository.new)
+      ..addLazySingleton<SearchMovieUseCase>(SearchMovie.new)
+      ..addLazySingleton<WordsStorageUseCase>(SaveQuery.new)
+      ..addLazySingleton<SearchPageController>(SearchPageController.new)
+      ..add<SearchPageDelegate>(SearchPageFlow.new)
+      ..route(
+        '/',
+        child: (ctx, state) => SearchPage(
+          controller: inject<SearchPageController>(),
+          navigate: inject<SearchPageDelegate>(),
+        ),
       );
-  }
-
-  @override
-  List<Module> get imports => [
-        CoreModule(),
-        WordsStorageModule(),
-      ];
-
-  @override
-  void routes(RouteManager r) {
-    r.child(
-      '/',
-      child: (context) => SearchPage(
-        controller: context.read<SearchPageController>(),
-        navigate: context.read<SearchPageDelegate>(),
-      ),
-    );
-  }
-}
+  },
+);

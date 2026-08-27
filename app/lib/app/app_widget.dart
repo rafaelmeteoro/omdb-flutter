@@ -17,7 +17,7 @@ class AppWidget extends StatelessWidget {
           secondary: Colors.redAccent,
         ),
       ),
-      routerConfig: Modular.routerConfig,
+      routerConfig: ModularApp.routerConfigOf(context),
     );
   }
 }

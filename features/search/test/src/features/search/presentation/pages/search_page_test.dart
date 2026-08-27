@@ -17,11 +17,17 @@ class WordsStorageUseCaseMock extends Mock implements WordsStorageUseCase {}
 
 class SearchPageDelegateMock extends Mock implements SearchPageDelegate {}
 
+class _FakeBuildContext extends Fake implements BuildContext {}
+
 void main() {
   late SearchMovieUseCase mockSearchUseCase;
   late WordsStorageUseCase mockWodsStorageUseCase;
   late SearchPageDelegate mockNavigate;
   late SearchPageController controller;
+
+  setUpAll(() {
+    registerFallbackValue(_FakeBuildContext());
+  });
 
   setUp(() {
     mockSearchUseCase = SearchMovieUseCaseMock();
@@ -58,7 +64,7 @@ void main() {
 
     testWidgets('show icon favorites and click', (tester) async {
       // Arrange
-      when(() => mockNavigate.onActionClick()).thenAnswer(
+      when(() => mockNavigate.onActionClick(any())).thenAnswer(
         (_) async => Future.value(),
       );
 
@@ -69,7 +75,7 @@ void main() {
 
       // Assert
       expect(favoriteIcon, findsOneWidget);
-      verify(() => mockNavigate.onActionClick()).called(1);
+      verify(() => mockNavigate.onActionClick(any())).called(1);
     });
 
     testWidgets('show loading', (tester) async {
@@ -137,7 +143,7 @@ void main() {
         (_) async => right(unit),
       );
       when(
-        () => mockNavigate.onItemSearchSelected(movieId: 'imdbId'),
+        () => mockNavigate.onItemSearchSelected(any(), movieId: 'imdbId'),
       ).thenAnswer((_) async => Future.value());
 
       // Act
@@ -151,7 +157,7 @@ void main() {
 
       // Assert
       verify(
-        () => mockNavigate.onItemSearchSelected(movieId: 'imdbId'),
+        () => mockNavigate.onItemSearchSelected(any(), movieId: 'imdbId'),
       ).called(1);
     });
 
