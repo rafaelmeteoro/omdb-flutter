@@ -102,8 +102,8 @@ mode)", "app (release mode)"), all of which set `cwd: app`.
 
 ## Notes
 
-- Dart/Flutter SDK constraints: `sdk: ">=3.0.6 <4.0.0"`, `flutter: ">=3.10.6"` (CI pins Flutter
-  `3.38.10` stable).
+- Dart/Flutter SDK constraints: `sdk: ">=3.12.2 <4.0.0"`, `flutter: ">=3.44.9"` (CI pins Flutter
+  `3.44.9` stable). Third-party deps are pinned to exact versions (no `^`) in every `pubspec.yaml`.
 - Lint config is centralized in `dev_core`: app packages include `package:dev_core/app_analysis.yaml`,
   test-only analysis uses `package:dev_core/test_analysis.yaml`.
 - OMDb API base URL and token are hardcoded in `infrastructure/core/lib/modules/core_module.dart`
