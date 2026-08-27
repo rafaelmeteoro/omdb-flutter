@@ -306,3 +306,6 @@ flutter_analyze_report.txt
 
 ## Ignore golden test failure images
 **/goldens/failures/**
+
+## Local planning notes
+plan/
