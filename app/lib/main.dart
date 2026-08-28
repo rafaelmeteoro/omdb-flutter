@@ -7,7 +7,7 @@ import 'app/app_widget.dart';
 void main() {
   return runApp(
     ModularApp(
-      module: AppModule(),
+      module: appModule,
       child: const AppWidget(),
     ),
   );

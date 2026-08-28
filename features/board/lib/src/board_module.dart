@@ -1,36 +1,29 @@
 import 'package:core/presentation.dart';
 import 'package:favorites/favorites.dart';
+import 'package:flutter/widgets.dart';
 import 'package:words/words.dart';
 
 import 'features/board/presentation/page/board_page.dart';
-import 'features/board/presentation/page/board_page_delegate.dart';
 
-class BoardModule extends Module {
-  @override
-  void binds(Injector i) {
-    // Delegate
-    i.add<BoardPageDelegate>(BoardPageFlow.new);
-  }
-
-  @override
-  void routes(RouteManager r) {
-    r.child(
+/// Persistent shell mounted at `/board`: [BoardPage] hosts a `RouterOutlet`
+/// whose body swaps between the favorites and words features. The bare `/board`
+/// route redirects to the first tab so the outlet always has a child.
+final boardModule = createModule(
+  path: '/board',
+  register: (c) {
+    c.route(
       '/',
-      child: (context) => BoardPage(
-        delegate: Modular.get<BoardPageDelegate>(),
-      ),
-      children: [
-        ModuleRoute(
-          '/favorites',
-          module: FavoritesModule(),
-          transition: TransitionType.noTransition,
-        ),
-        ModuleRoute(
-          '/words',
-          module: WordsModule(),
-          transition: TransitionType.noTransition,
-        ),
-      ],
+      child: (ctx, state) => const BoardPage(),
+      children: (sub) {
+        sub
+          ..route(
+            '/',
+            guards: [(state) => '/board/favorites'],
+            child: (ctx, state) => const SizedBox.shrink(),
+          )
+          ..module(favoritesModule)
+          ..module(wordsModule);
+      },
     );
-  }
-}
+  },
+);
