@@ -18,7 +18,7 @@ dependencies:
   equatable: 2.1.0
   rxdart: 0.28.0
   cached_network_image: 3.4.1
-  animate_do: 3.3.9
+  animate_do: 5.1.0
   pretty_dio_logger: 1.4.0
 
 dev_dependencies:
